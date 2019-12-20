@@ -24,6 +24,13 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+@font-face {
+  font-family: 'DINPro-Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: font-url('DINPro-Medium.woff') format('woff');
+}
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -33,6 +40,7 @@ html, body {
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
+  font-family: 'DINPro-Medium', 'Helvetica', 'Microsoft YaHei', 'PingFangSC-Regular', 'Arial', sans-serif !important;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
@@ -171,6 +179,16 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
+    font-size: 12px;
+  }
+
+  .toc-list-h3 {
+    display: none;
+    background-color: $nav-subitem-bg;
+  }
+
+  .toc-h3 {
+    padding-left: $nav-padding + $nav-padding + $nav-indent;
     font-size: 12px;
   }
 
@@ -340,7 +358,7 @@ html, body {
   }
 
   // the div is the tocify hidden div for placeholding stuff
-  &>h1, &>h2, &>div {
+  & > h1, & > h2, & > h3, & > div {
     clear:both;
   }
 
