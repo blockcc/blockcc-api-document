@@ -28,7 +28,7 @@ $examples-bg: #2E3336 !default;
 $code-bg: #1E2224 !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
+$nav-active-bg: #E5C125 !default;
 $nav-active-parent-bg: #1E2224 !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #1E2224 !default;
@@ -56,7 +56,8 @@ $lang-select-pressed-text: #fff !default; // color of language tab text when mou
 ////////////////////
 $nav-width: 230px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
-$logo-margin: 0px !default; // margin below logo
+$logo-margin: auto !default; // margin logo
+$logo-padding: 20px 0 !default; // padding logo
 $main-padding: 28px !default; // padding to left and right of content & examples
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results

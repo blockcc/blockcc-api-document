@@ -197,9 +197,9 @@ size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。 注意：�
 slug | 交易所名称(ID)
 fullname | 交易所全称
 websiteUrl | 交易所官网链接
-volume | 根据加权计算出的交易量(USD)
-reportedVolume | 未经加权计算出的交易量(USD)
-expectedVolume | 经加权计算出的交易量(USD)
+volume | (旧)通过人工干预统计的交易量(USD)
+reportedVolume | 交易所上报交易量(USD)
+expectedVolume | 推测交易量(USD)
 status | 状态: [enable, disable]. disable为停止更新数据
 kline | 是否接入K线数据
 spot | 是否支持现货
@@ -210,6 +210,11 @@ futures | 是否支持期货
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/symbols'
+```
+
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/symbols/bitcoin'
 ```
 
 > 将会返回以下内容:
@@ -242,14 +247,43 @@ curl -X GET \
             "locale" : "zh_CN",
             "fullName" : "比特币",
             "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值。基于密码学的设计可以使比特币只能被真实的拥有者转移或支付。这同样确保了货币所有权与流通交易的匿名性。比特币与其他虚拟货币最大的不同，是其总数量非常有限，具有极强的稀缺性。该货币系统曾在4年内只有不超过1050万个，之后的总数量将被永久限制在2100万个。 比特，是一种计算机专业术语，是信息量单位，是由英文BIT音译而来。二进制数的一位所包含的信息就是一比特，如二进制数0100就是4比特。那么，比特这个概念和货币联系到一起，不难看出，比特币非现实货币，而是一种计算机电子虚拟货币，存储在你的电脑上。目前，这种崭新的虚拟货币不受任何政府、任何银行控制。因此，它还未被合法化。"
-          }, {
-            "locale" : "en_US",
-            "fullName" : "Bitcoin",
-            "description" : "General Data and Information\n\nThe theory behind Bitcoin was first described by Satoshi Nakomoto in a paper “Bitcoin: A Peer to Peer Electronic Cash System”published to a cryptographic mailing list on the 31st of October 2008. In this paper, Satoshi described the protocol (Proof of Work) that would solve the “double-spend”problem inherent in non-physical (digital) forms of currency. The first or Genesis block was mined by Satoshi on the 3rd of January 2009, with the text “The Times 03/Jan/2009 Chancellor on brink of second bailout for banks” written into the coinbase of the block to act both as a timestamp and a rebuke to the economic instability caused by the widespread practice of fractional reserve banking. \n\nThe total supply of Bitcoins is capped at 21 million coins (roughly 18 million are currently in circulation), with each coin being divisible to the 8th decimal place, with a single unit of the smallest division (0.00000001 BTC) being known colloquially as a Satoshi (or sat). The software to run miners and wallets is open source and decentralized, meaning that the network is accessible to anyone with a computer and an internet connection. Transactions are validated and written into the blockchain by miners selected via the Proof of Work (SHA-256) protocol. The difficulty of the Proof of Work algorithm is adjusted every 2016 blocks (roughly 2 weeks) to maintain an average block time of roughly 10 minutes. \n\nNew Bitcoins are created (minted) as a reward to the miner that mined the valid block, with the reward currently sitting at 12.5 Bitcoins per block. This block reward is halved every 210,000 blocks (roughly 4 years) until it reaches zero. This block reward serves as an economic incentive for the miners to continue securing the Bitcoin network. \n\nMilestones\n\n31st October 2008 - White paper released by Satoshi Nakomoto.\n3rd January 2009 - Genesis block mined by Satoshi Nakomoto.\n12th January 2009  -First transaction using Bitcoin; Satoshi Nakomoto sends 100 BTC to Hal Finney.\n22nd May 2010 - First recorded commercial transaction using Bitcoin; aka Pizza Day.\n14th January 2016 - Lightning Network white paper, a Layer-2 solution to scaling Bitcoin. \n1st August 2017 - Bitcoin Cash (BCH) hard fork.\n23rd August 2017 - Segregated Witness (SegWit) implemented.\n\n\nUtility\n\nAs the flagship cryptocurrency, Bitcoin maintains the largest market capitalization and liquidity making it the “reserve” currency against which all other crypto-currencies trade against. This means that crypto exchanges are obliged to offer BTC trading pairs ahead of any other pairing.This reserve status combined with the widespread availability of trading pairs gives Bitcoin a special status as a store of value in the crypto-currency ecosystem; trading between two alternative cryptocurrencies will often require Bitcoin as a bridge currency to facilitate the exchange. \n\nIn addition, the widespread brand recognition of Bitcoin makes it is the first port of call for most newcomers to the crypto-currency space and it’s name is often considered by the wider public to be synonymous with the entire crypto-currency ecosystem. Although the acceptance of Bitcoin by vendors in the developed nations is not on the level of established fiat currencies, Bitcoin is finding more traction in developing countries where the existing fiat currencies are not able to properly function as stores of value over time. \n\n\n\nSignificant Features\n\n- Decentralized access allowing any party with the open-source software and internet access to send and receive Bitcoin irreversibly without third party interference or trust. \n- Decentralized governance via open-source development and forking. \n- Relatively slow block times in comparison to other crypto-currencies although there are solutions in development such as the Lightning Network aiming to solve the problem of scaling.\n- Largest hashrate (ensuring the security and resilience of the blockchain) and largest liquidity. \n- Most common currency for crypto-currency exchange pairing\n- The hard coded scarcity (maximum 21 million coins) has led to comparisons to traditional physical scarce resources like gold. \n- Transactions are pseduo-anonymous. Funds are sent address to address, but an owner identity can eventually attributed to an address given enough data and analysis.\n- Average blocktime of 10 minutes; Total supply of 21 million BTC; Consensus via Proof of Work (SHA-256). \n\n\nReferences: \n\nhttps://bitcoin.org/bitcoin.pdf\n\nhttps://en.wikipedia.org/wiki/Bitcoin\n\nhttps://en.wikipedia.org/wiki/Satoshi_Nakamoto\n\nhttps://en.wikipedia.org/wiki/Double-spending\n\nhttps://en.wikipedia.org/wiki/Proof_of_work\n\nhttps://www.blockchain.com/en/charts/total-bitcoins"
-        } ]
+          }
+      ]
     }
   ]
 
+```
+
+```json
+{
+  "slug": "bitcoin",
+  "symbol": "BTC",
+  "fullname" : "Bitcoin",
+  "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
+  "volumeUsd": 4463819005.1846,
+  "status": "enable",
+  "marketCapUsd":157081834083.0375,
+  "availableSupply":18039125,
+  "totalSupply":18039125,
+  "maxSupply":21000000,
+  "website":"https://bitcoin.org/en/",
+  "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
+  "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
+  "githubId": "bitcoin",
+  "twitterId": "btc",
+  "facebookId": "bitcoins",
+  "telegramId": "www_bitcoin_com",
+  "redditId": "bitcoin",
+  "algorithm": "SHA256",
+  "proof": "POW",
+  "issueDate": "2008-10-31T16:00:00Z",
+  "details" : [ {
+        "locale" : "zh_CN",
+        "fullName" : "比特币",
+        "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值。基于密码学的设计可以使比特币只能被真实的拥有者转移或支付。这同样确保了货币所有权与流通交易的匿名性。比特币与其他虚拟货币最大的不同，是其总数量非常有限，具有极强的稀缺性。该货币系统曾在4年内只有不超过1050万个，之后的总数量将被永久限制在2100万个。 比特，是一种计算机专业术语，是信息量单位，是由英文BIT音译而来。二进制数的一位所包含的信息就是一比特，如二进制数0100就是4比特。那么，比特这个概念和货币联系到一起，不难看出，比特币非现实货币，而是一种计算机电子虚拟货币，存储在你的电脑上。目前，这种崭新的虚拟货币不受任何政府、任何银行控制。因此，它还未被合法化。"
+      }
+  ]
+}
 ```
 
 获取所有支持的币种列表
@@ -258,12 +292,14 @@ curl -X GET \
 
 `GET https://data.block.cc/api/v3/symbols`
 
+`GET https://data.block.cc/api/v3/symbols/{slug}`
+
 #### 请求参数
 
 参数|传输方式|必选|说明
 --------- |---------|--------- | -----------
-details |URL Params|否| 是否获取币种详情介绍，取值为1(是)，0(否)，默认为0
-slug | URL Path|否| 获取指定币种信息，例如:/api/v3/symbols/bitcoin
+slug | URL Path|否| 获取单个币种信息时使用
+details |QueryString|否| 是否获取币种详情介绍，取值为1(是)，0(否)，默认为0
 page |QueryString|否| 当前页数，默认 0, (>=0)。注意：只有slug不存在时，该值才有效
 size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。 注意：只有slug不存在时，该值才有效
 
@@ -276,14 +312,14 @@ slug | 币种名称（ID）
 symbol | 币种符号
 fullname | 币种全称
 logoUrl| 图标链接
-volumeUsd | 交易量(USD)
+volumeUsd | 通过人工干预统计的交易量(USD)
 status | 状态: [enable, disable]. disable为停止更新数据
 marketCapUsd |币种市值
 availableSupply |流通量
-totalSupply |总量
-maxSupply |最大量
-website |官网
-explorerUrls |区块浏览器
+totalSupply |发行总量
+maxSupply |最大发行量
+website |官网链接
+explorerUrls |区块浏览器链接
 whitePaperUrls |白皮书
 githubId |Github
 twitterId |Twitter
@@ -292,7 +328,7 @@ telegramId |Telegram
 algorithm |核心算法
 proof |激励机制
 issueDate |上市时间
-details |支持的多语言币种介绍
+details |币种介绍, 默认不返回
 
 ## 行情数据
 
