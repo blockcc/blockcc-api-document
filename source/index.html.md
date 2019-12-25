@@ -978,47 +978,31 @@ args: 取值为频道名，可以定义一个或者多个频道(单个用户最�
 
 
 ## 订阅
-<!-- ```shell
-curl -X GET \
-  'wss://data.block.cc/ws/v3?api_key="+token'
-``` -->
-```javascript
-        var token = "[YOUR_API_KEY]";
-        var websocket = new WebSocket("wss://data.block.cc/ws/v3?api_key="+token);
-        var reqMsg = "{\"op\": \"subscribe\", \"args\": [\"price:bitcoin\"]}";
-        websocket.onerror = function(){
-            setMessageInHtml("send error！");
-        }
-        websocket.onopen = function(){
-            setMessageInHtml("connection success！")
-        }
-        websocket.onmessage  = function(event){
-            setMessageInHtml(event.data);
-        }
-        websocket.onclose = function(){
-            setMessageInHtml("closed websocket!")
-        }
-        window.onbeforeunload = function(){
-             websocket.close(3000,"强制关闭");
-        }
-        websocket.send(reqMsg);
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
 > 将会返回以下内容: 
 
 ```json
 {
-	"s": "bitcoin",
-	"S": "BTC",
-	"T": 1564201016247,
-	"u": 10254.613,
-	"b": 1.0,
-	"a": 66180.407,
-	"v": 6.6355183277E8,
-	"ra": 68260.277,
-	"rv": 6.8489011E8,
-	"m": 1.8219371E11
+    "message": "success",
+    "code": 0,
+    "data":{
+          "s": "bitcoin",
+          "S": "BTC",
+          "T": 1564201016247,
+          "u": 10254.613,
+          "b": 1.0,
+          "a": 66180.407,
+          "v": 6.6355183277E8,
+          "ra": 68260.277,
+          "rv": 6.8489011E8,
+          "m": 1.8219371E11
+        }
 }
+
 ```
 
 
@@ -1032,38 +1016,23 @@ curl -X GET \
 
 args 数组内容为频道名称 ：`<channelname>:<filter>`
 
-其中`channelname 是由ticker、price两种类型组成组成
+其中channelname 是由ticker、price、trade三种类型组成
 
 例：
 
 `{"op": "subscribe", "args": ["price:bitcoin"]}`
 
-`{"op": "subscribe", "args": ["ticker:binance:BTC_USDT"]}`
+`{"op": "subscribe", "args": ["ticker:binance_BTC_USDT"]}`
+
+`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
 
 filter 是可筛选数据，具体参考每个频道说明
 
 
 ## 取消订阅
-```javascript
-        var token = "[YOUR_API_KEY]";
-        var websocket = new WebSocket("wss://data.block.cc/ws/v3?api_key="+token);
-        var reqMsg = "{\"op\": \"unsubscribe\", \"args\": [\"price:bitcoin\"]}";
-        websocket.onerror = function(){
-            setMessageInHtml("send error！");
-        }
-        websocket.onopen = function(){
-            setMessageInHtml("connection success！")
-        }
-        websocket.onmessage  = function(event){
-            setMessageInHtml(event.data);
-        }
-        websocket.onclose = function(){
-            setMessageInHtml("closed websocket!")
-        }
-        window.onbeforeunload = function(){
-             websocket.close(3000,"强制关闭");
-        }
-        websocket.send(reqMsg);
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "unsubscribe", "args": ["price:bitcoin"]}
 ```
 
 > 将会返回以下内容
@@ -1095,39 +1064,15 @@ filter 是可筛选数据，具体参考每个频道说明
 
 订阅限制：单个连接的订阅主题数不能超过200个
 
-连接上ws后会主动推送时间戳数据， 建议用户进行以下操作:
-
-1，每次接收到消息后，用户设置一个定时器 ，定时N秒。
-
-2，如果定时器被触发（N 秒内没有收到新消息），发送字符串 'ping'。
-
-3，期待一个文字字符串'pong'作为回应。如果在 N秒内未收到，请发出错误或重新连接。
+每隔30s，系统会主动向每个连接推送时间戳信息。用户可以用此来判断是否断开连接。
 
 出现网络问题会自动断开连接
 
 ## 订阅Price
-```javascript
-        var token = "[YOUR_API_KEY]";
-        var websocket = new WebSocket("wss://data.block.cc/ws/v3?api_key="+token);
-        var reqMsg = "{\"op\": \"subscribe\", \"args\": [\"price:bitcoin\"]}";
-        websocket.onerror = function(){
-            setMessageInHtml("send error！");
-        }
-        websocket.onopen = function(){
-            setMessageInHtml("connection success！")
-        }
-        websocket.onmessage  = function(event){
-            setMessageInHtml(event.data);
-        }
-        websocket.onclose = function(){
-            setMessageInHtml("closed websocket!")
-        }
-        window.onbeforeunload = function(){
-             websocket.close(3000,"强制关闭");
-        }
-        websocket.send(reqMsg);
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
-
 > 将会响应以下内容:
 
 ```json
@@ -1160,7 +1105,7 @@ filter 是可筛选数据，具体参考每个频道说明
 
 `{"op": "subscribe", "args": ["price:bitcoin"]}`
 
-其中price为频道名，bitcoin为币种名称
+其中price为频道名，bitcoin为交易所名称
 
 推送数据
 
@@ -1168,26 +1113,9 @@ filter 是可筛选数据，具体参考每个频道说明
 
 ## 订阅Tickers
 
-```javascript
-var token = "[YOUR_API_KEY]";
-var websocket = new WebSocket("wss://data.block.cc/ws/v3?api_key="+token);
-var reqMsg = "{\"op\": \"subscribe\", \"args\": [\"ticker:binance:BTC_USDT\"]}";
-websocket.onerror = function(){
-    setMessageInHtml("send error！");
-}
-websocket.onopen = function(){
-    setMessageInHtml("connection success！")
-}
-websocket.onmessage  = function(event){
-    setMessageInHtml(event.data);
-}
-websocket.onclose = function(){
-    setMessageInHtml("closed websocket!")
-}
-window.onbeforeunload = function(){
-     websocket.close(3000,"强制关闭");
-}
-websocket.send(reqMsg);
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["ticker:binance_BTC_USDT"]}
 ```
 
 > 将会响应以下内容:
@@ -1203,24 +1131,28 @@ websocket.send(reqMsg);
 
 ```json
 {
-	"T": 1559203047168,
-	"m": "binance_BTC_USDT",
-	"o": 3.59961E-4,
-	"c": 3.8415E-4,
-	"l": 1.6394E-4,
-	"h": 3.8582E-4,
-	"a": 3.8419E-4,
-	"A": 0.0,
-	"b": 1.6394E-4,
-	"B": 0.0,
-	"C": 0.0672,
-	"bv": 0.0,
-	"qv": 0.0,
-	"r": 3642.4481,
-	"p": null,
-	"ap1": 0.0,
-	"bp1": 0.0,
-	"s": 0.0
+	"message": "success",
+	"code": 0,
+	"data": {
+		"T": 1566546505699,
+		"m": "binance_BTC_USDT",
+		"o": 9994.6,
+		"c": 10185.5,
+		"l": 9880.01,
+		"h": 10242.0,
+		"a": 10185.5,
+		"A": 0.0,
+		"b": 10181.0,
+		"B": 0.0,
+		"C": 0.0191,
+		"bv": 27837.6,
+		"qv": 2.80976169E8,
+		"r": 0.99944221,
+		"p": 0.0,
+		"ap1": 0.0,
+		"bp1": 0.0,
+		"s": 0.0
+	}
 }
 
 ```
@@ -1229,13 +1161,62 @@ websocket.send(reqMsg);
                                                      
 订阅示例
 
-`{"op": "subscribe", "args": ["ticker:binance:BTC_USDT"]}`
+`{
+ 	"op": "subscribe",
+ 	"args": [ticker:binance_BTC_USDT"]
+ }`
 
-其中ticker为频道名，livecoin为交易所名称,TKN_BTC为交易对名称
+其中ticker为频道名，binance为交易所名称,BTC_USDT为交易对名称
 
 推送数据
 
 [Tickers](#tickers)
+
+
+## 订阅Trade
+
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}
+```
+
+> 将会响应以下内容:
+
+```json
+{
+	"message": "Topic subscription successfully",
+	"code": 0
+}
+```
+
+> 更新时推送以下内容:
+
+```json
+{
+	"code": 0,
+	"data": {
+		"p": 7354.37,
+		"s": "buy",
+		"T": 1577187482915,
+		"v": 0.04205688,
+		"m": "gdax_BTC_USD"
+	},
+	"message": "success"
+}
+
+```
+
+订阅trade更新
+                                                     
+订阅示例
+
+`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
+
+其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
+
+推送数据
+
+
 
 # 交易所收录
 
