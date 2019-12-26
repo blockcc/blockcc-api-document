@@ -78,7 +78,7 @@ X-RateLimit-Remaining：9999
 ```json
 {
   "code": 10030,
-  "message": "Param Required",
+  "message": "Param Required"
 }
 ```
 
@@ -415,7 +415,9 @@ curl -X GET \
         "v": 663551832.77,
         "ra": 68260.277,
         "rv": 684890110,
-        "m": 182193710000
+        "m": 182193710000,
+        "c": 0.0111
+
       },
       {
         "s": "ethereum",
@@ -427,7 +429,8 @@ curl -X GET \
         "v": 250398262.42,
         "ra": 1123748.2,
         "rv": 250398260,
-        "m": 23944294000
+        "m": 23944294000,
+        "c": 0.0111
       }
   ]
 ```
@@ -679,13 +682,16 @@ curl -X GET \
       "T": 1573721951113,
       "p": 8634,
       "v": 5,
-      "s": "buy"
+      "s": "buy",
+      "m": "bitfinex_BTC_USD"
+
     },
     {
       "T": 1573721944964,
       "p": 8634,
       "v": 0.001519,
-      "s": "sell"
+      "s": "sell",
+      "m": "bitfinex_BTC_USD"
     }
   ]
 
@@ -721,6 +727,7 @@ T|交易成交时间戳
 p|成交价格
 v|成交量
 s|成交类型[buy,sell,none]，为taker操作方向
+m|交易对信息
 
 * 数据按照交易成交时间戳倒序排序
 
@@ -945,7 +952,7 @@ Endpoint：wss://data.block.cc/ws/v3
 ```json
 {
 	"event": "info",
-	"version": 1
+	"version": 3
 }
 
 {
@@ -1086,16 +1093,9 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 ```json
 {
-	"s": "bitcoin",
-	"S": "BTC",
-	"T": 1564201016247,
-	"u": 10254.613,
-	"b": 1.0,
-	"a": 66180.407,
-	"v": 6.6355183277E8,
-	"ra": 68260.277,
-	"rv": 6.8489011E8,
-	"m": 1.8219371E11
+	"message": "success",
+	"code": 0,
+	"data": {<value>}
 }
 ```
 
@@ -1133,26 +1133,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {
 	"message": "success",
 	"code": 0,
-	"data": {
-		"T": 1566546505699,
-		"m": "binance_BTC_USDT",
-		"o": 9994.6,
-		"c": 10185.5,
-		"l": 9880.01,
-		"h": 10242.0,
-		"a": 10185.5,
-		"A": 0.0,
-		"b": 10181.0,
-		"B": 0.0,
-		"C": 0.0191,
-		"bv": 27837.6,
-		"qv": 2.80976169E8,
-		"r": 0.99944221,
-		"p": 0.0,
-		"ap1": 0.0,
-		"bp1": 0.0,
-		"s": 0.0
-	}
+	"data": {<value>}
 }
 
 ```
@@ -1194,13 +1175,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 ```json
 {
 	"code": 0,
-	"data": {
-		"p": 7354.37,
-		"s": "buy",
-		"T": 1577187482915,
-		"v": 0.04205688,
-		"m": "gdax_BTC_USD"
-	},
+	"data": {<value>},
 	"message": "success"
 }
 
@@ -1215,7 +1190,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
 
 推送数据
-
+[Trades](#trades)
 
 
 # 交易所收录
