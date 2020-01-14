@@ -981,6 +981,122 @@ timestamp|时间戳
 importance|是否是要闻
 sourceUrl|原文链接
 market|来源
+url|block.cc原文链接
+images|图片链接
+
+
+### Articles
+
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/articles?locale=zh_CN'
+```
+
+> 将会返回以下内容:
+
+```json
+ [
+  {
+        "id": "5e1d96a5aeae8770b7ff34ac",
+        "author": "小葱区块链",
+        "datetime": 1578997412000,
+        "images": [],
+        "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",
+        "categories": "[\"资讯\"]",
+        "source": "火星财经",
+        "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
+        "cover": null,
+        "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac"
+    },
+    {
+        "id": "5e1d967faeae8770b7ff34a9",
+        "author": "加密谷Live",
+        "datetime": 1578997374000,
+        "images": [],
+        "description": "Coinbase CEO 对数字货币未来十年的11条预言",
+        "categories": "[\"资讯\"]",
+        "source": "链得得",
+        "title": "Coinbase CEO 对数字货币未来十年的11条预言",
+        "cover": null,
+        "url": "https://m.mifengcha.com/news/5e1d967faeae8770b7ff34a9"
+    }
+]
+
+```
+
+获取资讯文章
+#### 请求URL
+
+`GET https://data.block.cc/api/v3/articles?locale=zh_CN`
+
+#### 请求参数
+
+参数名称|传输方式|必选|说明
+--------- |---------|--------- | -----------
+locale |QueryString|是| 语言，支持zh_CN(中文),en_US(英文),ko_KR(韩文)
+page |QueryString|否| 当前页数，默认 0, (>=0)
+size |QueryString|否| 每页数据量，默认 20 (>=1)
+
+
+#### 返回参数说明
+
+参数 | 说明
+--------- | -----------
+id| 文章id
+title|标题
+description|文章描述
+author|文章作者
+datetime|时间戳
+categories|分类
+source|来源
+cover|封面
+url|block.cc原文链接
+images|图片链接
+
+
+### ArticleDetail
+
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/articles/5e1d93ffaeae8770b7ff3450'
+```
+
+> 将会返回以下内容:
+
+```json
+ {
+    "id": "5e1d93ffaeae8770b7ff3450",
+    "title": "「得得交易榜」  BSV单日涨幅为24.93%，HCoin位居交易量排行榜第一｜1月14日",
+    "content": "<div class=\"inner\">\n            <div class=\"fetch_img\" data-position=\"3\">\n<p><img id=\"edit_3271502\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/b07e1815cd3c2639764ac97f3e677b5eb9275dbd.jpg\" alt=\"\"></p>\n</div>\n<p>据链得得App行情数据统计，截至1月14日17:00，全球交易金额最高的TOP30交易所中，位居交易量榜首的是HCoin，过去24小时内交易额约为146.16亿人民币；第二位是BKEX，交易额约为141.19亿人民币。排名前五的交易所还包括P2PB2B、LBank、Coineal。</p>\n<div class=\"fetch_img\" data-position=\"280\">\n<p><img id=\"edit_3271504\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/f900fcb87780cc19eff2c11c352948613342bfec.jpg\" alt=\"\"></p>\n</div>\n<p>本日链得得24小时币种交易量TOP30数字货币市场整体上行，24个数字货币价格上涨，6个数字货币价格下跌， BSV单日涨幅为24.93%。</p>\n<p>占据交易量榜首的是Tether，单日成交额为2341.61亿人民币，24小时跌幅为0.51%；排名第二的为Bitcoin，单日成交额为2010.35亿人民币，24小时内涨幅为4.48%，排名前五的还有Ethereum、Litecoin、BCH。</p>\n<div class=\"fetch_img\" data-position=\"615\">\n<p><img id=\"edit_3271505\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/2ec05d3225be796d9ec433cf4fc0281e82bb18e1.jpg\" alt=\"\"></p>\n</div>                        <!-- 增加 二维码图片 -->\n\n        </div>",
+    "datetime": 1578996733000,
+    "newImages": [
+        "https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/b07e1815cd3c2639764ac97f3e677b5eb9275dbd.jpg",
+        "https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/f900fcb87780cc19eff2c11c352948613342bfec.jpg",
+        "https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/2ec05d3225be796d9ec433cf4fc0281e82bb18e1.jpg"
+    ]
+ }
+```
+
+获取资讯文章详情内容
+#### 请求URL
+
+`GET https://data.block.cc/api/v3/articles/{id}`
+
+#### 请求参数
+
+参数名称|传输方式|必选|说明
+--------- |---------|--------- | -----------
+id |URL Path|是| 文章id，可从文章列表接口获取
+
+
+#### 返回参数说明
+
+参数 | 说明
+--------- | -----------
+id| 文章id
+title|标题
+content|文章内容
+datetime|时间戳
 images|图片链接
 
 
@@ -1083,7 +1199,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 args 数组内容为频道名称 ：`<channelname>:<filter>`
 
-其中channelname 是由ticker、price、trade三种类型组成
+其中channelname 是由ticker、price三种类型组成
 
 例：
 
@@ -1214,7 +1330,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 [Tickers](#tickers)
 
 
-## 订阅Trade
+<!-- ## 订阅Trade
 
 ```shell
 wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
@@ -1239,9 +1355,9 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 	"message": "success"
 }
 
-```
+``` -->
 
-订阅trade更新
+<!-- 订阅trade更新
                                                      
 订阅示例
 
@@ -1250,7 +1366,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
 
 推送数据
-[Trades](#trades)
+[Trades](#trades) -->
 
 
 # 交易所收录
