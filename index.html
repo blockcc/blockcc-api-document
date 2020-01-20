@@ -271,6 +271,9 @@
                               <a href="#price" class="toc-h3 toc-link" data-title="REST API">Price</a>
                             </li>
                             <li>
+                              <a href="#historyprice" class="toc-h3 toc-link" data-title="REST API">HistoryPrice</a>
+                            </li>
+                            <li>
                               <a href="#tickers" class="toc-h3 toc-link" data-title="REST API">Tickers</a>
                             </li>
                             <li>
@@ -358,7 +361,7 @@ curl -X GET <span class="se">\</span>
 </code></pre>
 <p>您可以通过以下方式在REST API调用中提供API密钥：</p>
 
-<p>1.首选方法：通过名为<code>X-API_KEY</code>的自定义标头</p>
+<p>1.首选方法：通过名为<code>X-API_KEY</code>的自定义请求头</p>
 
 <p>2.便捷方法：通过名为<code>API_KEY</code> 的查询字符串参数</p>
 <h2 id='62fdb855e5'>请求限制</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -379,7 +382,7 @@ X-RateLimit-Remaining：9999
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Param Required"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Param Required"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -867,7 +870,9 @@ URL: https://data.block.cc/api/v3
         </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">663551832.77</span><span class="p">,</span><span class="w">
         </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
         </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
+
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
@@ -879,7 +884,8 @@ URL: https://data.block.cc/api/v3
         </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">250398262.42</span><span class="p">,</span><span class="w">
         </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">1123748.2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">250398260</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">23944294000</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">23944294000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -972,6 +978,100 @@ URL: https://data.block.cc/api/v3
 <td>24小时涨跌幅</td>
 </tr>
 </tbody></table>
+<h3 id='historyprice'>HistoryPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  <span class="s1">'https://data.block.cc/api/v3/price/history?slug=bitcoin'</span>
+</code></pre>
+<blockquote>
+<p>将会返回以下内容:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+   </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577758200000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7260.6657</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1501274.4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.087066438855</span><span class="err">E</span><span class="mi">10</span><span class="w">
+      </span><span class="p">},</span><span class="w"> 
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577691000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7397.4515</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1495078.8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.09867723397</span><span class="err">E</span><span class="mi">10</span><span class="w">
+      </span><span class="p">},</span><span class="w"> 
+      </span><span class="p">{</span><span class="w">  
+        </span><span class="s2">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577724600000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7253.9142</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1559626.1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458</span><span class="err">E</span><span class="mi">10</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>获取币种历史价格</p>
+
+<aside class="notice">
+数据来源：每5分钟快照一次当前价格，交易量。
+</aside>
+<h4 id='url-5'>请求URL</h4>
+<p><code>GET https://data.block.cc/api/v3/price/history?slug=bitcoin</code></p>
+<h4 id='1f9ac54b15-5'>请求参数</h4>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>传输方式</th>
+<th>必选</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>slug</td>
+<td>QueryString</td>
+<td>是</td>
+<td>币种名称。</td>
+</tr>
+<tr>
+<td>start</td>
+<td>QueryString</td>
+<td>否</td>
+<td>起始时间，单位：毫秒，若不传起起始时间，默认给4天的历史数据</td>
+</tr>
+<tr>
+<td>end</td>
+<td>QueryString</td>
+<td>否</td>
+<td>截止时间，单位：毫秒，若不传起起始时间，默认最新时间</td>
+</tr>
+</tbody></table>
+<h4 id='51d2618749-5'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>T</td>
+<td>时间戳(毫秒)</td>
+</tr>
+<tr>
+<td>u</td>
+<td>价格(USD)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>价格(BTC)</td>
+</tr>
+<tr>
+<td>v</td>
+<td>交易量(USD)</td>
+</tr>
+<tr>
+<td>a</td>
+<td>交易量(单位为当前币种)</td>
+</tr>
+</tbody></table>
 <h3 id='tickers'>Tickers</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/tickers?market=bitfinex'</span>
 </code></pre>
@@ -996,8 +1096,6 @@ URL: https://data.block.cc/api/v3
         </span><span class="s2">"qv"</span><span class="p">:</span><span class="w"> </span><span class="mi">2574378787</span><span class="p">,</span><span class="w">
         </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ap1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bp1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -1017,9 +1115,9 @@ URL: https://data.block.cc/api/v3
 <aside class="warning">
 注意: 数据中心会对异常数据进行拦截。请接入时检查时间戳。
 </aside>
-<h4 id='url-5'>请求URL</h4>
+<h4 id='url-6'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/tickers</code></p>
-<h4 id='1f9ac54b15-5'>请求参数</h4>
+<h4 id='1f9ac54b15-6'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1086,7 +1184,7 @@ URL: https://data.block.cc/api/v3
 <li>获取bitfinex与binance的BTC和ETH交易对Ticker <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
 <li>获取bitfinex_BTC_USD与binance_ETH_BTC的Ticker <code>market_pair=bitfinex_BTC_USD,binance_ETH_BTC</code></li>
 </ul>
-<h4 id='51d2618749-5'>返回参数说明</h4>
+<h4 id='51d2618749-6'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1144,14 +1242,6 @@ URL: https://data.block.cc/api/v3
 <tr>
 <td>r</td>
 <td>基础转货币转美元的汇率</td>
-</tr>
-<tr>
-<td>ap1</td>
-<td>盘口卖单挂单量</td>
-</tr>
-<tr>
-<td>bp1</td>
-<td>盘口买单挂单量</td>
 </tr>
 <tr>
 <td>s</td>
@@ -1219,9 +1309,9 @@ URL: https://data.block.cc/api/v3
 <aside class="warning">
 注意: 数据中心会对异常数据进行拦截。请接入时检查时间戳。
 </aside>
-<h4 id='url-6'>请求URL</h4>
+<h4 id='url-7'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/orderbook</code></p>
-<h4 id='1f9ac54b15-6'>请求参数</h4>
+<h4 id='1f9ac54b15-7'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1243,7 +1333,7 @@ URL: https://data.block.cc/api/v3
 <td>深度档位，默认25。</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749-6'>返回参数说明</h4>
+<h4 id='51d2618749-7'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1298,13 +1388,16 @@ URL: https://data.block.cc/api/v3
       </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721951113</span><span class="p">,</span><span class="w">
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
+      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex_BTC_USD"</span><span class="w">
+
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721944964</span><span class="p">,</span><span class="w">
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="w">
+      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex_BTC_USD"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 
@@ -1318,9 +1411,9 @@ URL: https://data.block.cc/api/v3
 <aside class="notice">
 数据来源：通过交易所API获取
 </aside>
-<h4 id='url-7'>请求URL</h4>
+<h4 id='url-8'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/trades</code></p>
-<h4 id='1f9ac54b15-7'>请求参数</h4>
+<h4 id='1f9ac54b15-8'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1342,7 +1435,7 @@ URL: https://data.block.cc/api/v3
 <td>返回数据量，默认50</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749-7'>返回参数说明</h4>
+<h4 id='51d2618749-8'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1364,6 +1457,10 @@ URL: https://data.block.cc/api/v3
 <tr>
 <td>s</td>
 <td>成交类型[buy,sell,none]，为taker操作方向</td>
+</tr>
+<tr>
+<td>m</td>
+<td>交易对信息</td>
 </tr>
 </tbody></table>
 
@@ -1401,9 +1498,9 @@ URL: https://data.block.cc/api/v3
 <aside class="notice">
 数据来源：通过交易所API获取
 </aside>
-<h4 id='url-8'>请求URL</h4>
+<h4 id='url-9'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/kline</code></p>
-<h4 id='1f9ac54b15-8'>请求参数</h4>
+<h4 id='1f9ac54b15-9'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1437,7 +1534,7 @@ URL: https://data.block.cc/api/v3
 <td>截止时间，单位：毫秒，默认最新时间</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749-8'>返回参数说明</h4>
+<h4 id='51d2618749-9'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1498,9 +1595,9 @@ URL: https://data.block.cc/api/v3
 
 </span></code></pre>
 <p>获取快讯数据</p>
-<h4 id='url-9'>请求URL</h4>
+<h4 id='url-10'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/briefs?locale=zh_CN</code></p>
-<h4 id='1f9ac54b15-9'>请求参数</h4>
+<h4 id='1f9ac54b15-10'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1528,7 +1625,7 @@ URL: https://data.block.cc/api/v3
 <td>每页数据量，默认 20 (&gt;=1)</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749-9'>返回参数说明</h4>
+<h4 id='51d2618749-10'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1598,9 +1695,9 @@ URL: https://data.block.cc/api/v3
 <aside class="notice">
 数据来源：通过交易所获取
 </aside></p>
-<h4 id='url-10'>请求URL</h4>
+<h4 id='url-11'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/announcements?locale=zh_CN</code></p>
-<h4 id='1f9ac54b15-10'>请求参数</h4>
+<h4 id='1f9ac54b15-11'>请求参数</h4>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -1634,7 +1731,7 @@ URL: https://data.block.cc/api/v3
 <td>获取指定的交易所公告</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749-10'>返回参数说明</h4>
+<h4 id='51d2618749-11'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1666,10 +1763,186 @@ URL: https://data.block.cc/api/v3
 <td>来源</td>
 </tr>
 <tr>
+<td>url</td>
+<td>block.cc原文链接</td>
+</tr>
+<tr>
 <td>images</td>
 <td>图片链接</td>
 </tr>
 </tbody></table>
+
+<!--### Articles-->
+
+<!--```shell-->
+
+<!--curl -X GET \-->
+
+<!--  'https://data.block.cc/api/v3/articles?locale=zh_CN'-->
+
+<!--```-->
+
+<!--> 将会返回以下内容:-->
+
+<!--```json-->
+
+<!-- [-->
+
+<!--  {-->
+
+<!--        "id": "5e1d96a5aeae8770b7ff34ac",-->
+
+<!--        "author": "小葱区块链",-->
+
+<!--        "datetime": 1578997412000,-->
+
+<!--        "images": [],-->
+
+<!--        "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",-->
+
+<!--        "categories": "[\"资讯\"]",-->
+
+<!--        "source": "火星财经",-->
+
+<!--        "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",-->
+
+<!--        "cover": null,-->
+
+<!--        "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac"-->
+
+<!--    },-->
+
+<!--    {-->
+
+<!--        "id": "5e1d967faeae8770b7ff34a9",-->
+
+<!--        "author": "加密谷Live",-->
+
+<!--        "datetime": 1578997374000,-->
+
+<!--        "images": [],-->
+
+<!--        "description": "Coinbase CEO 对数字货币未来十年的11条预言",-->
+
+<!--        "categories": "[\"资讯\"]",-->
+
+<!--        "source": "链得得",-->
+
+<!--        "title": "Coinbase CEO 对数字货币未来十年的11条预言",-->
+
+<!--        "cover": null,-->
+
+<!--        "url": "https://m.mifengcha.com/news/5e1d967faeae8770b7ff34a9"-->
+
+<!--    }-->
+
+<!--]-->
+
+<!--```-->
+
+<!--获取资讯文章-->
+
+<!--#### 请求URL-->
+
+<!--`GET https://data.block.cc/api/v3/articles?locale=zh_CN`-->
+
+<!--#### 请求参数-->
+
+<!--参数名称|传输方式|必选|说明-->
+
+<!----------- |---------|--------- | ------------->
+
+<!--locale |QueryString|是| 语言，支持zh_CN(中文),en_US(英文),ko_KR(韩文)-->
+
+<!--page |QueryString|否| 当前页数，默认 0, (>=0)-->
+
+<!--size |QueryString|否| 每页数据量，默认 20 (>=1)-->
+
+<!--#### 返回参数说明-->
+
+<!--参数 | 说明-->
+
+<!----------- | ------------->
+
+<!--id| 文章id-->
+
+<!--title|标题-->
+
+<!--description|文章描述-->
+
+<!--author|文章作者-->
+
+<!--datetime|时间戳-->
+
+<!--categories|分类-->
+
+<!--source|来源-->
+
+<!--cover|封面-->
+
+<!--url|block.cc原文链接-->
+
+<!--images|图片链接-->
+
+<!--### ArticleDetail-->
+
+<!--```shell-->
+
+<!--curl -X GET \-->
+
+<!--  'https://data.block.cc/api/v3/articles/5e1d93ffaeae8770b7ff3450'-->
+
+<!--```-->
+
+<!--> 将会返回以下内容:-->
+
+<!--```json-->
+
+<!-- {-->
+
+<!--    "id": "5e1d93ffaeae8770b7ff3450",-->
+
+<!--    "title": "「得得交易榜」  BSV单日涨幅为24.93%，HCoin位居交易量排行榜第一｜1月14日",-->
+
+<p>&lt;!--    &quot;content&quot;: &quot;<div class=\"inner\">\n            <div class=\"fetch_img\" data-position=\"3\">\n<p><img id=\"edit_3271502\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/b07e1815cd3c2639764ac97f3e677b5eb9275dbd.jpg\" alt=\"\"></p>\n</div>\n<p>据链得得App行情数据统计，截至1月14日17:00，全球交易金额最高的TOP30交易所中，位居交易量榜首的是HCoin，过去24小时内交易额约为146.16亿人民币；第二位是BKEX，交易额约为141.19亿人民币。排名前五的交易所还包括P2PB2B、LBank、Coineal。</p>\n<div class=\"fetch_img\" data-position=\"280\">\n<p><img id=\"edit_3271504\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/f900fcb87780cc19eff2c11c352948613342bfec.jpg\" alt=\"\"></p>\n</div>\n<p>本日链得得24小时币种交易量TOP30数字货币市场整体上行，24个数字货币价格上涨，6个数字货币价格下跌， BSV单日涨幅为24.93%。</p>\n<p>占据交易量榜首的是Tether，单日成交额为2341.61亿人民币，24小时跌幅为0.51%；排名第二的为Bitcoin，单日成交额为2010.35亿人民币，24小时内涨幅为4.48%，排名前五的还有Ethereum、Litecoin、BCH。</p>\n<div class=\"fetch_img\" data-position=\"615\">\n<p><img id=\"edit_3271505\" class=\"aligncenter\" src=\"https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/2ec05d3225be796d9ec433cf4fc0281e82bb18e1.jpg\" alt=\"\"></p>\n</div>                        &lt;!-- 增加 二维码图片 --&gt;\n\n        </div>&quot;,--&gt;
+&lt;!--    &quot;datetime&quot;: 1578996733000,--&gt;
+&lt;!--    &quot;newImages&quot;: [--&gt;
+&lt;!--        &quot;https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/b07e1815cd3c2639764ac97f3e677b5eb9275dbd.jpg&quot;,--&gt;
+&lt;!--        &quot;https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/f900fcb87780cc19eff2c11c352948613342bfec.jpg&quot;,--&gt;
+&lt;!--        &quot;https://mifengcha.oss-cn-beijing.aliyuncs.com/content/full/2ec05d3225be796d9ec433cf4fc0281e82bb18e1.jpg&quot;--&gt;
+&lt;!--    ]--&gt;
+&lt;!-- }--&gt;
+&lt;!--```--&gt;</p>
+
+<!--获取资讯文章详情内容-->
+
+<!--#### 请求URL-->
+
+<!--`GET https://data.block.cc/api/v3/articles/{id}`-->
+
+<!--#### 请求参数-->
+
+<!--参数名称|传输方式|必选|说明-->
+
+<!----------- |---------|--------- | ------------->
+
+<!--id |URL Path|是| 文章id，可从文章列表接口获取-->
+
+<!--#### 返回参数说明-->
+
+<!--参数 | 说明-->
+
+<!----------- | ------------->
+
+<!--id| 文章id-->
+
+<!--title|标题-->
+
+<!--content|文章内容-->
+
+<!--datetime|时间戳-->
+
+<!--images|图片链接-->
 <h1 id='websocket-api'>WebSocket API 概述</h1><h2 id='153042ed9e-2'>概述</h2>
 <p>WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信， 使得数据可以快速地双向传播。通过一次简单的握手就可以建立客户端和服务器连接， 服务器根据业务规则可以主动推送信息给客户端。其优点如下：</p>
 
@@ -1694,7 +1967,7 @@ URL: https://data.block.cc/api/v3
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
@@ -1721,46 +1994,29 @@ URL: https://data.block.cc/api/v3
 <p>其中 op 的取值为 1--subscribe 订阅； 2-- unsubscribe 取消订阅 </p>
 
 <p>args: 取值为频道名，可以定义一个或者多个频道(单个用户最多不能超过200个频道)</p>
-<h2 id='5319af762d'>订阅</h2>
-<!-- ```shell
-curl -X GET \
-  'wss://data.block.cc/ws/v3?api_key="+token'
-``` -->
-<pre class="highlight javascript tab-javascript"><code>        <span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="s2">"[YOUR_API_KEY]"</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">"wss://data.block.cc/ws/v3?api_key="</span><span class="o">+</span><span class="nx">token</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">reqMsg</span> <span class="o">=</span> <span class="s2">"{\"op\": \"subscribe\", \"args\": [\"price:bitcoin\"]}"</span><span class="p">;</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"send error！"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"connection success！"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onmessage</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"closed websocket!"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-             <span class="nx">websocket</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span><span class="s2">"强制关闭"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">reqMsg</span><span class="p">);</span>
+<h2 id='5319af762d'>订阅</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.6355183277</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8489011</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8219371</span><span class="err">E</span><span class="mi">11</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.6355183277</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8489011</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8219371</span><span class="err">E</span><span class="mi">11</span><span class="w">
+        </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <p>用户可以选择订阅一个或者多个频道，多个频道总个数不能超过200个</p>
 
@@ -1772,34 +2028,19 @@ curl -X GET \
 
 <p>args 数组内容为频道名称 ：<code>&lt;channelname&gt;:&lt;filter&gt;</code></p>
 
-<p>其中`channelname 是由ticker、price两种类型组成组成</p>
+<p>其中channelname 是由ticker、price三种类型组成</p>
 
 <p>例：</p>
 
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;price:bitcoin&quot;]}</code></p>
 
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;ticker:binance:BTC_USDT&quot;]}</code></p>
+<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;ticker:binance_BTC_USDT&quot;]}</code></p>
+
+<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;trade:gdax_BTC_USD&quot;]}</code></p>
 
 <p>filter 是可筛选数据，具体参考每个频道说明</p>
-<h2 id='b109d834a1'>取消订阅</h2><pre class="highlight javascript tab-javascript"><code>        <span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="s2">"[YOUR_API_KEY]"</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">"wss://data.block.cc/ws/v3?api_key="</span><span class="o">+</span><span class="nx">token</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">reqMsg</span> <span class="o">=</span> <span class="s2">"{\"op\": \"unsubscribe\", \"args\": [\"price:bitcoin\"]}"</span><span class="p">;</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"send error！"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"connection success！"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onmessage</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"closed websocket!"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-             <span class="nx">websocket</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span><span class="s2">"强制关闭"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">reqMsg</span><span class="p">);</span>
+<h2 id='b109d834a1'>取消订阅</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"unsubscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容</p>
@@ -1826,34 +2067,11 @@ curl -X GET \
 <h2 id='cbaedee104'>连接限制</h2>
 <p>订阅限制：单个连接的订阅主题数不能超过200个</p>
 
-<p>连接上ws后会主动推送时间戳数据， 建议用户进行以下操作:</p>
-
-<p>1，每次接收到消息后，用户设置一个定时器 ，定时N秒。</p>
-
-<p>2，如果定时器被触发（N 秒内没有收到新消息），发送字符串 &#39;ping&#39;。</p>
-
-<p>3，期待一个文字字符串&#39;pong&#39;作为回应。如果在 N秒内未收到，请发出错误或重新连接。</p>
+<p>每隔30s，系统会主动向每个连接推送时间戳信息。用户可以用此来判断是否断开连接。</p>
 
 <p>出现网络问题会自动断开连接</p>
-<h2 id='price-2'>订阅Price</h2><pre class="highlight javascript tab-javascript"><code>        <span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="s2">"[YOUR_API_KEY]"</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">"wss://data.block.cc/ws/v3?api_key="</span><span class="o">+</span><span class="nx">token</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">reqMsg</span> <span class="o">=</span> <span class="s2">"{\"op\": \"subscribe\", \"args\": [\"price:bitcoin\"]}"</span><span class="p">;</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"send error！"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"connection success！"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onmessage</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"closed websocket!"</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-             <span class="nx">websocket</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span><span class="s2">"强制关闭"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nx">websocket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">reqMsg</span><span class="p">);</span>
+<h2 id='price-2'>订阅Price</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
 <p>将会响应以下内容:</p>
@@ -1867,16 +2085,9 @@ curl -X GET \
 <p>更新时推送以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.6355183277</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8489011</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8219371</span><span class="err">E</span><span class="mi">11</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&lt;value&gt;</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>订阅币种价格</p>
@@ -1885,30 +2096,13 @@ curl -X GET \
 
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;price:bitcoin&quot;]}</code></p>
 
-<p>其中price为频道名，bitcoin为币种名称</p>
+<p>其中price为频道名，bitcoin为交易所名称</p>
 
 <p>推送数据</p>
 
 <p><a href="#price">Price</a></p>
-<h2 id='tickers-2'>订阅Tickers</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="s2">"[YOUR_API_KEY]"</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">websocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">"wss://data.block.cc/ws/v3?api_key="</span><span class="o">+</span><span class="nx">token</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">reqMsg</span> <span class="o">=</span> <span class="s2">"{\"op\": \"subscribe\", \"args\": [\"ticker:binance:BTC_USDT\"]}"</span><span class="p">;</span>
-<span class="nx">websocket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"send error！"</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">websocket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"connection success！"</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nx">websocket</span><span class="p">.</span><span class="nx">onmessage</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-    <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">websocket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">setMessageInHtml</span><span class="p">(</span><span class="s2">"closed websocket!"</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-     <span class="nx">websocket</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span><span class="s2">"强制关闭"</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">websocket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">reqMsg</span><span class="p">);</span>
+<h2 id='tickers-2'>订阅Tickers</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"ticker:binance_BTC_USDT"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
 <p>将会响应以下内容:</p>
@@ -1922,24 +2116,9 @@ curl -X GET \
 <p>更新时推送以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1559203047168</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance_BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.59961E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.8415E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6394E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.8582E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.8419E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"A"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6394E-4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"B"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"C"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0672</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bv"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"qv"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mf">3642.4481</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ap1"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bp1"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">&lt;value&gt;</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1947,13 +2126,54 @@ curl -X GET \
 
 <p>订阅示例</p>
 
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;ticker:binance:BTC_USDT&quot;]}</code></p>
+<p><code>{
+    &quot;op&quot;: &quot;subscribe&quot;,
+    &quot;args&quot;: [ticker:binance_BTC_USDT&quot;]
+ }</code></p>
 
-<p>其中ticker为频道名，livecoin为交易所名称,TKN_BTC为交易对名称</p>
+<p>其中ticker为频道名，binance为交易所名称,BTC_USDT为交易对名称</p>
 
 <p>推送数据</p>
 
 <p><a href="#tickers">Tickers</a></p>
+
+<!-- ## 订阅Trade
+
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}
+```
+
+> 将会响应以下内容:
+
+```json
+{
+    "message": "Topic subscription successfully",
+    "code": 0
+}
+```
+
+> 更新时推送以下内容:
+
+```json
+{
+    "code": 0,
+    "data": {<value>},
+    "message": "success"
+}
+
+``` -->
+
+<!-- 订阅trade更新
+                                                     
+订阅示例
+
+`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
+
+其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
+
+推送数据
+[Trades](#trades) -->
 <h1 id='f0e2f84a59'>交易所收录</h1>
 <p>API 建议</p>
 
