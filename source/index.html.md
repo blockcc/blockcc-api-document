@@ -984,6 +984,128 @@ market|来源
 url|block.cc原文链接
 images|图片链接
 
+
+### Articles
+
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/articles?locale=zh_CN'
+```
+
+> 将会返回以下内容:
+
+```json
+[
+  {
+    "id": "5e1d96a5aeae8770b7ff34ac",
+    "timestamp": 1578997412000,
+    "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
+    "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",
+    "author": "小葱区块链",
+    "categories": "资讯",
+    "images": [],
+    "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
+    "source": "火星财经"
+  },
+  "..."
+]
+
+```
+
+获取资讯文章列表
+
+#### 请求URL
+
+`GET https://data.block.cc/api/v3/articles?locale=zh_CN`
+
+#### 请求参数
+
+参数名称|传输方式|必选|说明
+--------- |---------|--------- | -----------
+locale |QueryString|是| 语言，支持zh_CN(中文),en_US(英文),ko_KR(韩文)
+page |QueryString|否| 当前页数，默认 0, (>=0)
+size |QueryString|否| 每页数据量，默认 20 (>=1, <=100)
+
+
+#### 返回参数说明
+
+参数 | 说明
+--------- | -----------
+id| 文章id
+timestamp|发布时间
+title|标题
+description|文章描述
+author|文章作者
+categories|分类, 逗号分隔
+images|图片链接
+url|block.cc原文链接
+source|来源
+
+
+### ArticleDetail
+
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/articles/5e1d96a5aeae8770b7ff34ac'
+```
+
+> 将会返回以下内容:
+
+```json
+  {
+    "id": "5e1d96a5aeae8770b7ff34ac",
+    "timestamp": 1578997412000,
+    "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
+    "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",
+    "author": "小葱区块链",
+    "categories": "资讯",
+    "images": [],
+    "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
+    "source": "火星财经",
+    "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
+    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+    "btcPrice": 8465.6615,
+    "content": "<html value>"
+  }
+```
+
+获取资讯文章详情内容
+
+#### 请求URL
+
+`GET https://data.block.cc/api/v3/articles/{id}`
+
+#### 请求参数
+
+参数 | 说明
+--------- | -----------
+id| 文章id
+timestamp|发布时间
+title|标题
+description|文章描述
+author|文章作者
+categories|分类, 逗号分隔
+images|图片链接
+url|block.cc原文链接
+source|来源
+sourceUrl|原文链接
+keywords|关键字
+btcPrice|发文时比特币价格
+content|HTML内容
+
+
+#### 返回参数说明
+
+参数 | 说明
+--------- | -----------
+id| 文章id
+title|标题
+content|文章内容
+datetime|时间戳
+images|图片链接
+
+
+
 # WebSocket API 概述
 ## 概述
 
@@ -1013,14 +1135,18 @@ Endpoint：wss://data.block.cc/ws/v3
 	"event": "info",
 	"version": 3
 }
+```
 
+```json
 {
 	"code": 0,
 	"message": "Topic subscription successfully"
 }
+```
 
+```json
 {
-	"data": < value > ,
+	"data": "<value>" ,
 	"message": "success",
 	"code": 0
 }
@@ -1031,7 +1157,7 @@ Endpoint：wss://data.block.cc/ws/v3
 ```json
 {
   "message":"<error_message>",
-  "code":<errorCode>
+  "code":"<errorCode>"
   }
 ```
 
@@ -1154,7 +1280,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {
 	"message": "success",
 	"code": 0,
-	"data": {<value>}
+	"data": {"...":"..."}
 }
 ```
 
@@ -1192,7 +1318,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {
 	"message": "success",
 	"code": 0,
-	"data": {<value>}
+	"data": {"...": "..."}
 }
 
 ```
