@@ -996,7 +996,7 @@ curl -X GET \
 
 ```json
 [
-  {
+    {
     "id": "5e1d96a5aeae8770b7ff34ac",
     "timestamp": 1578997412000,
     "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
@@ -1005,8 +1005,11 @@ curl -X GET \
     "categories": "资讯",
     "images": [],
     "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
-    "source": "火星财经"
-  },
+    "source": "火星财经",
+    "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
+    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+    "content": "<html value>"
+  }
   "..."
 ]
 
@@ -1024,7 +1027,7 @@ curl -X GET \
 --------- |---------|--------- | -----------
 locale |QueryString|是| 语言，支持zh_CN(中文),en_US(英文),ko_KR(韩文)
 page |QueryString|否| 当前页数，默认 0, (>=0)
-size |QueryString|否| 每页数据量，默认 20 (>=1, <=100)
+size |QueryString|否| 每页数据量，默认 20 (>=1, <=20)
 
 
 #### 返回参数说明
@@ -1042,7 +1045,7 @@ url|block.cc原文链接
 source|来源
 
 
-### ArticleDetail
+### Article
 
 ```shell
 curl -X GET \
@@ -1064,12 +1067,12 @@ curl -X GET \
     "source": "火星财经",
     "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
     "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
-    "btcPrice": 8465.6615,
-    "content": "<html value>"
+    "content": "<html value>",
+    "btcPrice": 8465.6615
   }
 ```
 
-获取资讯文章详情内容
+获取单篇资讯文章内容
 
 #### 请求URL
 
@@ -1080,29 +1083,15 @@ curl -X GET \
 参数 | 说明
 --------- | -----------
 id| 文章id
-timestamp|发布时间
-title|标题
-description|文章描述
-author|文章作者
-categories|分类, 逗号分隔
-images|图片链接
-url|block.cc原文链接
-source|来源
-sourceUrl|原文链接
-keywords|关键字
-btcPrice|发文时比特币价格
-content|HTML内容
 
 
 #### 返回参数说明
 
+与文章格式与列表相同，多出`btcPrice`字段
+
 参数 | 说明
 --------- | -----------
-id| 文章id
-title|标题
-content|文章内容
-datetime|时间戳
-images|图片链接
+btcPrice|发文时比特币价格
 
 
 
