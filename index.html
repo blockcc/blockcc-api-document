@@ -300,7 +300,7 @@
                               <a href="#articles" class="toc-h3 toc-link" data-title="REST API">Articles</a>
                             </li>
                             <li>
-                              <a href="#articledetail" class="toc-h3 toc-link" data-title="REST API">ArticleDetail</a>
+                              <a href="#article" class="toc-h3 toc-link" data-title="REST API">Article</a>
                             </li>
                         </ul>
                   </li>
@@ -1784,7 +1784,7 @@ URL: https://data.block.cc/api/v3
 <p>将会返回以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
+    </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e1d96a5aeae8770b7ff34ac"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578997412000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻"</span><span class="p">,</span><span class="w">
@@ -1793,8 +1793,11 @@ URL: https://data.block.cc/api/v3
     </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="s2">"资讯"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"火星财经"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"火星财经"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://news.huoxing24.com/20200114182213991739.html"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html value&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
   </span><span class="s2">"..."</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
@@ -1827,7 +1830,7 @@ URL: https://data.block.cc/api/v3
 <td>size</td>
 <td>QueryString</td>
 <td>否</td>
-<td>每页数据量，默认 20 (&gt;=1, &lt;=100)</td>
+<td>每页数据量，默认 20 (&gt;=1, &lt;=20)</td>
 </tr>
 </tbody></table>
 <h4 id='51d2618749-12'>返回参数说明</h4>
@@ -1874,7 +1877,7 @@ URL: https://data.block.cc/api/v3
 <td>来源</td>
 </tr>
 </tbody></table>
-<h3 id='articledetail'>ArticleDetail</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+<h3 id='article'>Article</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/articles/5e1d96a5aeae8770b7ff34ac'</span>
 </code></pre>
 <blockquote>
@@ -1892,11 +1895,11 @@ URL: https://data.block.cc/api/v3
     </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"火星财经"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://news.huoxing24.com/20200114182213991739.html"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="w">
-    </span><span class="s2">"btcPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">8465.6615</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html value&gt;"</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html value&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"btcPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">8465.6615</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>获取资讯文章详情内容</p>
+<p>获取单篇资讯文章内容</p>
 <h4 id='url-13'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/articles/{id}</code></p>
 <h4 id='1f9ac54b15-13'>请求参数</h4>
@@ -1910,56 +1913,10 @@ URL: https://data.block.cc/api/v3
 <td>id</td>
 <td>文章id</td>
 </tr>
-<tr>
-<td>timestamp</td>
-<td>发布时间</td>
-</tr>
-<tr>
-<td>title</td>
-<td>标题</td>
-</tr>
-<tr>
-<td>description</td>
-<td>文章描述</td>
-</tr>
-<tr>
-<td>author</td>
-<td>文章作者</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>分类, 逗号分隔</td>
-</tr>
-<tr>
-<td>images</td>
-<td>图片链接</td>
-</tr>
-<tr>
-<td>url</td>
-<td>block.cc原文链接</td>
-</tr>
-<tr>
-<td>source</td>
-<td>来源</td>
-</tr>
-<tr>
-<td>sourceUrl</td>
-<td>原文链接</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>关键字</td>
-</tr>
-<tr>
-<td>btcPrice</td>
-<td>发文时比特币价格</td>
-</tr>
-<tr>
-<td>content</td>
-<td>HTML内容</td>
-</tr>
 </tbody></table>
 <h4 id='51d2618749-13'>返回参数说明</h4>
+<p>与文章格式与列表相同，多出<code>btcPrice</code>字段</p>
+
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1967,24 +1924,8 @@ URL: https://data.block.cc/api/v3
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>文章id</td>
-</tr>
-<tr>
-<td>title</td>
-<td>标题</td>
-</tr>
-<tr>
-<td>content</td>
-<td>文章内容</td>
-</tr>
-<tr>
-<td>datetime</td>
-<td>时间戳</td>
-</tr>
-<tr>
-<td>images</td>
-<td>图片链接</td>
+<td>btcPrice</td>
+<td>发文时比特币价格</td>
 </tr>
 </tbody></table>
 <h1 id='websocket-api'>WebSocket API 概述</h1><h2 id='153042ed9e-2'>概述</h2>
