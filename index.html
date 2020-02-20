@@ -307,14 +307,8 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-api" class="toc-h1 toc-link" data-title="WebSocket API 概述">WebSocket API 概述</a>
+            <a href="#websocket-api" class="toc-h1 toc-link" data-title="WebSocket API">WebSocket API</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#153042ed9e-2" class="toc-h2 toc-link" data-title="概述">概述</a>
-                  </li>
-                  <li>
-                    <a href="#fbea44bd98" class="toc-h2 toc-link" data-title="指令格式">指令格式</a>
-                  </li>
                   <li>
                     <a href="#5319af762d" class="toc-h2 toc-link" data-title="订阅">订阅</a>
                   </li>
@@ -322,13 +316,16 @@
                     <a href="#b109d834a1" class="toc-h2 toc-link" data-title="取消订阅">取消订阅</a>
                   </li>
                   <li>
-                    <a href="#cbaedee104" class="toc-h2 toc-link" data-title="连接限制">连接限制</a>
+                    <a href="#93ae6a1184" class="toc-h2 toc-link" data-title="列出已订阅列表">列出已订阅列表</a>
                   </li>
                   <li>
-                    <a href="#price-2" class="toc-h2 toc-link" data-title="订阅Price">订阅Price</a>
+                    <a href="#topic-price" class="toc-h2 toc-link" data-title="Topic: Price">Topic: Price</a>
                   </li>
                   <li>
-                    <a href="#tickers-2" class="toc-h2 toc-link" data-title="订阅Tickers">订阅Tickers</a>
+                    <a href="#topic-ticker" class="toc-h2 toc-link" data-title="Topic: Ticker">Topic: Ticker</a>
+                  </li>
+                  <li>
+                    <a href="#topic-orderbook" class="toc-h2 toc-link" data-title="Topic: Orderbook">Topic: Orderbook</a>
                   </li>
               </ul>
           </li>
@@ -364,12 +361,17 @@ Version: v3.0.0
 
 curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/markets?api_key=[YOUR_API_KEY]'</span>
+
+wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+
 </code></pre>
 <p>您可以通过以下方式在REST API调用中提供API密钥：</p>
 
 <p>1.首选方法：通过名为<code>X-API_KEY</code>的自定义请求头</p>
 
-<p>2.便捷方法：通过名为<code>API_KEY</code> 的查询字符串参数</p>
+<p>2.便捷方法：通过名为<code>api_key</code> 的查询字符串参数</p>
+
+<p>在Websocket API中只能通过名为<code>api_key</code> 的查询字符串参数提供API密钥</p>
 <h2 id='62fdb855e5'>请求限制</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">429</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rate Limited"</span><span class="w">
@@ -878,7 +880,6 @@ URL: https://data.block.cc/api/v3
         </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
         </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
         </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
-
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
@@ -1088,7 +1089,7 @@ URL: https://data.block.cc/api/v3
     </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitmex_XBT-PERPETUAL_USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
         </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
         </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
@@ -1188,7 +1189,7 @@ URL: https://data.block.cc/api/v3
 <ul>
 <li>获取bitfinex的BTC交易对Ticker <code>market=bitfinex&amp;symbol=BTC</code></li>
 <li>获取bitfinex与binance的BTC和ETH交易对Ticker <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
-<li>获取bitfinex_BTC_USD与binance_ETH_BTC的Ticker <code>market_pair=bitfinex_BTC_USD,binance_ETH_BTC</code></li>
+<li>获取gate-io_BTC_USD与binance_ETH_BTC的Ticker <code>market_pair=gate-io_BTC_USD,binance_ETH_BTC</code></li>
 </ul>
 <h4 id='51d2618749-6'>返回参数说明</h4>
 <table><thead>
@@ -1263,14 +1264,14 @@ URL: https://data.block.cc/api/v3
 <li>获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
 </ul>
 <h3 id='orderbook'>Orderbook</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=bitfinex_BTC_USD'</span>
+  <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
         </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
@@ -1330,7 +1331,7 @@ URL: https://data.block.cc/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：bitfinex_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1384,7 +1385,7 @@ URL: https://data.block.cc/api/v3
 <li>数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
 </ul>
 <h3 id='trades'>Trades</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/trades?desc=bitfinex_BTC_USD'</span>
+  <span class="s1">'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USD'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
@@ -1395,7 +1396,7 @@ URL: https://data.block.cc/api/v3
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
 
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1403,7 +1404,7 @@ URL: https://data.block.cc/api/v3
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitfinex_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 
@@ -1432,7 +1433,7 @@ URL: https://data.block.cc/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：bitfinex_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1474,7 +1475,7 @@ URL: https://data.block.cc/api/v3
 <li>数据按照交易成交时间戳倒序排序</li>
 </ul>
 <h3 id='kline'>Kline</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/kline?desc=bitfinex_BTC_USD&amp;type=15m&amp;start=1573637497000'</span>
+  <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USD&amp;type=15m&amp;start=1573637497000'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
@@ -1519,7 +1520,7 @@ URL: https://data.block.cc/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：bitfinex_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
 </tr>
 <tr>
 <td>type</td>
@@ -1928,235 +1929,254 @@ URL: https://data.block.cc/api/v3
 <td>发文时比特币价格</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-api'>WebSocket API 概述</h1><h2 id='153042ed9e-2'>概述</h2>
-<p>WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信， 使得数据可以快速地双向传播。通过一次简单的握手就可以建立客户端和服务器连接， 服务器根据业务规则可以主动推送信息给客户端。其优点如下：</p>
+<h1 id='websocket-api'>WebSocket API</h1>
+<aside class="success">
+URL: wss://data.block.cc/ws/v3
+</aside>
 
 <ul>
-<li>客户端和服务器进行数据传输时，请求头信息比较小，大概2个字节。</li>
-<li>客户端和服务器皆可以主动地发送数据给对方。</li>
-<li>不需要多次创建TCP请求和销毁，节约宽带和服务器的资源。</li>
-<li>强烈建议开发者使用WebSocket API获取市场行情和买卖深度等信息。</li>
+<li>每个链接有效期不超过24小时，请妥善处理断线重连。</li>
+<li>每30秒服务端会发送ping帧，客户端应当在30秒内回复pong帧，否则服务端会主动断开链接。</li>
+<li>连接时需要将用户对应的API_KEY作为参数传入，<code>wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]</code>。</li>
+<li>每个链接最多可订阅200个Topic。</li>
+<li>每个账户可以建立的链接数根据账户套餐设定, 详情查看 <a href="https://data.block.cc/pricing">Pricing</a>。</li>
+<li>服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic额度。</li>
+<li>90秒内不会推送没有变化的数据</li>
 </ul>
-
-<p>Endpoint：wss://data.block.cc/ws/v3</p>
-
-<p>访问时需要网络</p>
-
-<p>连接说明：
-连接时需要将用户对应的API_KEY作为参数传入</p>
-
-<p>连接上ws后,系统会每隔30秒主动向客户端发送时间戳</p>
-<h2 id='fbea44bd98'>指令格式</h2>
-<blockquote>
-<p>成功响应格式:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Topic subscription successfully"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;value&gt;"</span><span class="w"> </span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>失败响应格式(code不为0则为失败):</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"&lt;error_message&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"&lt;errorCode&gt;"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code>{&quot;op&quot;: &quot;&lt;value&gt;&quot;, &quot;args&quot;: [&quot;&lt;value1&gt;&quot;,&quot;&lt;value2&gt;&quot;]}</code></p>
-
-<p>其中 op 的取值为 1--subscribe 订阅； 2-- unsubscribe 取消订阅 </p>
-
-<p>args: 取值为频道名，可以定义一个或者多个频道(单个用户最多不能超过200个频道)</p>
 <h2 id='5319af762d'>订阅</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
 <span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
-<p>将会返回以下内容: </p>
+<p>订阅成功将会返回以下内容: </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.6355183277</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8489011</span><span class="err">E</span><span class="mi">8</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8219371</span><span class="err">E</span><span class="mi">11</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>用户可以选择订阅一个或者多个频道，多个频道总个数不能超过200个</p>
-
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;SubscriptionTopic&gt;&quot;]}</code></p>
-
-<aside class="notice">
-说明 ：op 的取值是 subscribe
-</aside>
-
-<p>args 数组内容为频道名称 ：<code>&lt;channelname&gt;:&lt;filter&gt;</code></p>
-
-<p>其中channelname 是由ticker、price三种类型组成</p>
-
-<p>例：</p>
-
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;price:bitcoin&quot;]}</code></p>
-
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;ticker:binance_BTC_USDT&quot;]}</code></p>
-
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;trade:gdax_BTC_USD&quot;]}</code></p>
-
-<p>filter 是可筛选数据，具体参考每个频道说明</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Subscribed"</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='19b61b1c63'>消息格式</h4>
+<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
+<h4 id='51d2618749-14'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+</tbody></table>
 <h2 id='b109d834a1'>取消订阅</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
 <span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"unsubscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
-<p>将会返回以下内容</p>
+<p>取消订阅成功将会返回以下内容: </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Topic unsubscribed successfully"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>可以取消一个或者多个频道</p>
-
-<p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&lt;SubscriptionTopic&gt;]}</code></p>
-
-<p>例如:</p>
-
-<p>请求:</p>
-
-<p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;price:bitcoin&quot;]}</code></p>
-
-<p>返回:</p>
-
-<p><code>{&quot;message&quot;:&quot;Topic unsubscribed successfully&quot;,&quot;code&quot;:0}</code></p>
-<h2 id='cbaedee104'>连接限制</h2>
-<p>订阅限制：单个连接的订阅主题数不能超过200个</p>
-
-<p>每隔30s，系统会主动向每个连接推送时间戳信息。用户可以用此来判断是否断开连接。</p>
-
-<p>出现网络问题会自动断开连接</p>
-<h2 id='price-2'>订阅Price</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Unsubscribed"</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='19b61b1c63-2'>消息格式</h4>
+<p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
+<h4 id='51d2618749-15'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+</tbody></table>
+<h2 id='93ae6a1184'>列出已订阅列表</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"topics"</span><span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>将会返回以下内容: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="s2">"topics"</span><span class="p">:[</span><span class="s2">"price:bitcoin"</span><span class="p">]}</span><span class="w">
+</span></code></pre><h4 id='19b61b1c63-3'>消息格式</h4>
+<p><code>{&quot;op&quot;: &quot;topics&quot;}</code></p>
+<h4 id='51d2618749-16'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>topics</td>
+<td>Subscribed Topic List</td>
+</tr>
+</tbody></table>
+<h2 id='topic-price'>Topic: Price</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
 <span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
-<p>将会响应以下内容:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Topic subscription successfully"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
 <p>更新时推送以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"..."</span><span class="p">:</span><span class="s2">"..."</span><span class="p">}</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"price:bitcoin"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">663551832.77</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>订阅币种价格</p>
-
-<p>订阅示例</p>
-
-<p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;price:bitcoin&quot;]}</code></p>
-
-<p>其中price为频道名，bitcoin为交易所名称</p>
-
-<p>推送数据</p>
-
-<p><a href="#price">Price</a></p>
-<h2 id='tickers-2'>订阅Tickers</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
-<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"ticker:binance_BTC_USDT"</span><span class="o">]}</span>
+</span></code></pre><h4 id='topic'>Topic格式</h4>
+<p><code>price:</code> + <a href="#symbols">币种</a> slug</p>
+<h4 id='51d2618749-17'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="#price">Price</a></td>
+</tr>
+</tbody></table>
+<h2 id='topic-ticker'>Topic: Ticker</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"ticker:gate-io_BTC_USDT"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
-<p>将会响应以下内容:</p>
+<p>更新时推送以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Topic subscription successfully"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10250</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"A"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">10205.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"B"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"C"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0215</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bv"</span><span class="p">:</span><span class="w"> </span><span class="mi">252242</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"qv"</span><span class="p">:</span><span class="w"> </span><span class="mi">2574378787</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h4 id='topic-2'>Topic格式</h4>
+<p><code>ticker:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
+<h4 id='51d2618749-18'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="#tickers">Ticker</a></td>
+</tr>
+</tbody></table>
+<h2 id='topic-orderbook'>Topic: Orderbook</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
+<span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"orderbook:gate-io_BTC_USDT"</span><span class="o">]}</span>
+</code></pre>
 <blockquote>
 <p>更新时推送以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"..."</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">}</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
+        </span><span class="mf">4.99792</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mf">8221.2</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1.212</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mf">8221.7</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1.10182386</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mf">8222.1</span><span class="p">,</span><span class="w">
+        </span><span class="mf">2.78535112</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>订阅Ticker更新</p>
-
-<p>订阅示例</p>
-
-<p><code>{
-    &quot;op&quot;: &quot;subscribe&quot;,
-    &quot;args&quot;: [ticker:binance_BTC_USDT&quot;]
- }</code></p>
-
-<p>其中ticker为频道名，binance为交易所名称,BTC_USDT为交易对名称</p>
-
-<p>推送数据</p>
-
-<p><a href="#tickers">Tickers</a></p>
-
-<!-- ## 订阅Trade
-
-```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
-> {"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}
-```
-
-> 将会响应以下内容:
-
-```json
-{
-    "message": "Topic subscription successfully",
-    "code": 0
-}
-```
-
-> 更新时推送以下内容:
-
-```json
-{
-    "code": 0,
-    "data": {<value>},
-    "message": "success"
-}
-
-``` -->
-
-<!-- 订阅trade更新
-                                                     
-订阅示例
-
-`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
-
-其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
-
-推送数据
-[Trades](#trades) -->
+</span></code></pre><h4 id='topic-3'>Topic格式</h4>
+<p><code>orderbook:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
+<h4 id='51d2618749-19'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Message Code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>data</td>
+<td><a href="#orderbook">Orderbook</a></td>
+</tr>
+</tbody></table>
 <h1 id='f0e2f84a59'>交易所收录</h1>
 <p>API 建议</p>
 
