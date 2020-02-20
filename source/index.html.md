@@ -43,6 +43,9 @@ curl -X GET \
   
 curl -X GET \
   'https://data.block.cc/api/v3/markets?api_key=[YOUR_API_KEY]'
+  
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+
 ```
 
 
@@ -50,7 +53,9 @@ curl -X GET \
 
 1.首选方法：通过名为`X-API_KEY`的自定义请求头
 
-2.便捷方法：通过名为`API_KEY` 的查询字符串参数
+2.便捷方法：通过名为`api_key` 的查询字符串参数
+
+在Websocket API中只能通过名为`api_key` 的查询字符串参数提供API密钥
 
 
 ## 请求限制
@@ -417,7 +422,6 @@ curl -X GET \
         "rv": 684890110,
         "m": 182193710000,
         "c": 0.0111
-
       },
       {
         "s": "ethereum",
@@ -550,7 +554,7 @@ curl -X GET \
     [
       {
         "T": 1566546506486,
-        "m": "bitmex_XBT-PERPETUAL_USD",
+        "m": "gate-io_BTC_USD",
         "o": 9991.19,
         "c": 10206,
         "l": 9860,
@@ -610,7 +614,7 @@ size |QueryString|否| 每页数据量，默认 20 (>=1)
 
 * 获取bitfinex的BTC交易对Ticker `market=bitfinex&symbol=BTC`
 * 获取bitfinex与binance的BTC和ETH交易对Ticker `market=bitfinex,binance&symbol=BTC,ETH`
-* 获取bitfinex_BTC_USD与binance_ETH_BTC的Ticker `market_pair=bitfinex_BTC_USD,binance_ETH_BTC`
+* 获取gate-io_BTC_USD与binance_ETH_BTC的Ticker `market_pair=gate-io_BTC_USD,binance_ETH_BTC`
 
 #### 返回参数说明
 
@@ -642,7 +646,7 @@ s | 点差
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/orderbook?desc=bitfinex_BTC_USD'
+  'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'
 ```
 
 > 将会返回以下内容:
@@ -650,7 +654,7 @@ curl -X GET \
 ```json
  {
     "T": 1526706175469,
-    "m": "bitfinex_BTC_USD",
+    "m": "gate-io_BTC_USD",
     "b": [
       [
         8221.6,
@@ -705,7 +709,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：bitfinex_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
 limit |QueryString|否| 深度档位，默认25。
 
 
@@ -731,7 +735,7 @@ b/a | 说明
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/trades?desc=bitfinex_BTC_USD'
+  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USD'
 ```
 
 > 将会返回以下内容:
@@ -743,7 +747,7 @@ curl -X GET \
       "p": 8634,
       "v": 5,
       "s": "buy",
-      "m": "bitfinex_BTC_USD"
+      "m": "gate-io_BTC_USD"
 
     },
     {
@@ -751,7 +755,7 @@ curl -X GET \
       "p": 8634,
       "v": 0.001519,
       "s": "sell",
-      "m": "bitfinex_BTC_USD"
+      "m": "gate-io_BTC_USD"
     }
   ]
 
@@ -775,7 +779,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：bitfinex_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
 limit |QueryString|否| 返回数据量，默认50
 
 
@@ -796,7 +800,7 @@ m|交易对信息
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/kline?desc=bitfinex_BTC_USD&type=15m&start=1573637497000'
+  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USD&type=15m&start=1573637497000'
 ```
 
 > 将会返回以下内容:
@@ -837,7 +841,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：bitfinex_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
 type |QueryString|否| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
 start |QueryString|是| 起始时间，单位：毫秒
 end |QueryString|否| 截止时间，单位：毫秒，默认最新时间
@@ -1095,67 +1099,20 @@ btcPrice|发文时比特币价格
 
 
 
-# WebSocket API 概述
-## 概述
+# WebSocket API
 
 
+<aside class="success">
+URL: wss://data.block.cc/ws/v3
+</aside>
 
-WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信， 使得数据可以快速地双向传播。通过一次简单的握手就可以建立客户端和服务器连接， 服务器根据业务规则可以主动推送信息给客户端。其优点如下：
-
-* 客户端和服务器进行数据传输时，请求头信息比较小，大概2个字节。
-* 客户端和服务器皆可以主动地发送数据给对方。
-* 不需要多次创建TCP请求和销毁，节约宽带和服务器的资源。
-* 强烈建议开发者使用WebSocket API获取市场行情和买卖深度等信息。
-
-Endpoint：wss://data.block.cc/ws/v3
-
-访问时需要网络
-
-连接说明：
-连接时需要将用户对应的API_KEY作为参数传入
-
-连接上ws后,系统会每隔30秒主动向客户端发送时间戳
-## 指令格式
-
-> 成功响应格式:
-
-```json
-{
-	"event": "info",
-	"version": 3
-}
-```
-
-```json
-{
-	"code": 0,
-	"message": "Topic subscription successfully"
-}
-```
-
-```json
-{
-	"data": "<value>" ,
-	"message": "success",
-	"code": 0
-}
-```
-
-> 失败响应格式(code不为0则为失败):
-
-```json
-{
-  "message":"<error_message>",
-  "code":"<errorCode>"
-  }
-```
-
-`{"op": "<value>", "args": ["<value1>","<value2>"]}`
-
-其中 op 的取值为 1--subscribe 订阅； 2-- unsubscribe 取消订阅 
-
-args: 取值为频道名，可以定义一个或者多个频道(单个用户最多不能超过200个频道)
-
+* 每个链接有效期不超过24小时，请妥善处理断线重连。
+* 每30秒服务端会发送ping帧，客户端应当在30秒内回复pong帧，否则服务端会主动断开链接。
+* 连接时需要将用户对应的API_KEY作为参数传入，`wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]`。
+* 每个链接最多可订阅200个Topic。
+* 每个账户可以建立的链接数根据账户套餐设定, 详情查看 [Pricing](https://data.block.cc/pricing)。
+* 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic额度。
+* 90秒内不会推送没有变化的数据
 
 
 ## 订阅
@@ -1164,50 +1121,24 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
-> 将会返回以下内容: 
+> 订阅成功将会返回以下内容: 
 
 ```json
-{
-    "message": "success",
-    "code": 0,
-    "data":{
-          "s": "bitcoin",
-          "S": "BTC",
-          "T": 1564201016247,
-          "u": 10254.613,
-          "b": 1.0,
-          "a": 66180.407,
-          "v": 6.6355183277E8,
-          "ra": 68260.277,
-          "rv": 6.8489011E8,
-          "m": 1.8219371E11
-        }
-}
-
+{"code":0,"message":"Subscribed"}
 ```
 
+#### 消息格式
 
-用户可以选择订阅一个或者多个频道，多个频道总个数不能超过200个
+`{"op": "subscribe", "args": ["<topic1>","<topic2>", ...]}`
 
-`{"op": "subscribe", "args": ["<SubscriptionTopic>"]}`
+#### 返回参数说明
 
-<aside class="notice">
-说明 ：op 的取值是 subscribe
-</aside>
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
 
-args 数组内容为频道名称 ：`<channelname>:<filter>`
 
-其中channelname 是由ticker、price三种类型组成
-
-例：
-
-`{"op": "subscribe", "args": ["price:bitcoin"]}`
-
-`{"op": "subscribe", "args": ["ticker:binance_BTC_USDT"]}`
-
-`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
-
-filter 是可筛选数据，具体参考每个频道说明
 
 
 ## 取消订阅
@@ -1216,155 +1147,192 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "unsubscribe", "args": ["price:bitcoin"]}
 ```
 
-> 将会返回以下内容
+> 取消订阅成功将会返回以下内容: 
 
 ```json
-{
-	"message": "Topic unsubscribed successfully",
-	"code": 0
-}
-
+{"code":0,"message":"Unsubscribed"}
 ```
 
+#### 消息格式
 
-可以取消一个或者多个频道
+`{"op": "unsubscribe", "args": ["<topic1>","<topic2>", ...]}`
 
-`{"op": "unsubscribe", "args": [<SubscriptionTopic>]}`
+#### 返回参数说明
 
-例如:
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
 
-请求:
+## 列出已订阅列表
 
-`{"op": "unsubscribe", "args": ["price:bitcoin"]}`
+```shell
+wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+> {"op": "subscribe", "args": ["price:bitcoin"]}
+> {"op": "topics"}
+```
 
-返回:
+> 将会返回以下内容: 
 
-`{"message":"Topic unsubscribed successfully","code":0}`
+```json
+{"code":0,"message":"Success","topics":["price:bitcoin"]}
+```
 
-## 连接限制
+#### 消息格式
 
-订阅限制：单个连接的订阅主题数不能超过200个
+`{"op": "topics"}`
 
-每隔30s，系统会主动向每个连接推送时间戳信息。用户可以用此来判断是否断开连接。
+#### 返回参数说明
 
-出现网络问题会自动断开连接
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
+topics| Subscribed Topic List
 
-## 订阅Price
+## Topic: Price
+
 ```shell
 wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
-> 将会响应以下内容:
-
-```json
-{
-	"message": "Topic subscription successfully",
-	"code": 0
-}
-```
-
 > 更新时推送以下内容:
 
 ```json
 {
-	"message": "success",
-	"code": 0,
-	"data": {"...":"..."}
+  "code": 0,
+  "message": "Success",
+  "topic": "price:bitcoin",
+  "data": {
+    "s": "bitcoin",
+    "S": "BTC",
+    "T": 1564201016247,
+    "u": 10254.613,
+    "b": 1,
+    "a": 66180.407,
+    "v": 663551832.77,
+    "ra": 68260.277,
+    "rv": 684890110,
+    "m": 182193710000,
+    "c": 0.0111
+  }
 }
 ```
 
-订阅币种价格
+#### Topic格式
 
-订阅示例
+`price:` + [币种](#symbols) slug
 
-`{"op": "subscribe", "args": ["price:bitcoin"]}`
+#### 返回参数说明
 
-其中price为频道名，bitcoin为交易所名称
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
+data| [Price](#price)
 
-推送数据
 
-[Price](#price)
-
-## 订阅Tickers
+## Topic: Ticker
 
 ```shell
 wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
-> {"op": "subscribe", "args": ["ticker:binance_BTC_USDT"]}
+> {"op": "subscribe", "args": ["ticker:gate-io_BTC_USDT"]}
 ```
-
-> 将会响应以下内容:
-
-```json
-{
-	"message": "Topic subscription successfully",
-	"code": 0
-}
-```
-
 > 更新时推送以下内容:
 
 ```json
 {
-	"message": "success",
-	"code": 0,
-	"data": {"...": "..."}
+  "code": 0,
+  "message": "Success",
+  "topic": "gate-io_BTC_USDT",
+  "data": {
+    "T": 1566546506486,
+    "m": "gate-io_BTC_USD",
+    "o": 9991.19,
+    "c": 10206,
+    "l": 9860,
+    "h": 10250,
+    "a": 10206,
+    "A": 0,
+    "b": 10205.5,
+    "B": 0,
+    "C": 0.0215,
+    "bv": 252242,
+    "qv": 2574378787,
+    "r": 1,
+    "p": 0,
+    "s": 0
+  }
 }
-
 ```
 
-订阅Ticker更新
-                                                     
-订阅示例
+#### Topic格式
 
-`{
- 	"op": "subscribe",
- 	"args": [ticker:binance_BTC_USDT"]
- }`
+`ticker:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
-其中ticker为频道名，binance为交易所名称,BTC_USDT为交易对名称
+#### 返回参数说明
 
-推送数据
-
-[Tickers](#tickers)
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
+data| [Ticker](#tickers)
 
 
-<!-- ## 订阅Trade
+
+## Topic: Orderbook
 
 ```shell
 wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
-> {"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}
+> {"op": "subscribe", "args": ["orderbook:gate-io_BTC_USDT"]}
 ```
-
-> 将会响应以下内容:
-
-```json
-{
-	"message": "Topic subscription successfully",
-	"code": 0
-}
-```
-
 > 更新时推送以下内容:
 
 ```json
 {
-	"code": 0,
-	"data": {<value>},
-	"message": "success"
+  "code": 0,
+  "message": "Success",
+  "topic": "gate-io_BTC_USDT",
+  "data": {
+    "T": 1526706175469,
+    "m": "gate-io_BTC_USDT",
+    "b": [
+      [
+        8221.6,
+        4.99792
+      ],
+      [
+        8221.2,
+        1.212
+      ]
+    ],
+    "a": [
+      [
+        8221.7,
+        1.10182386
+      ],
+      [
+        8222.1,
+        2.78535112
+      ]
+    ]
+  }
 }
+```
 
-``` -->
+#### Topic格式
 
-<!-- 订阅trade更新
-                                                     
-订阅示例
+`orderbook:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
-`{"op": "subscribe", "args": ["trade:gdax_BTC_USD"]}`
+#### 返回参数说明
 
-其中trade为频道名，gdax为交易所名称,BTC_USD为交易对名称
+参数 | 说明
+--------- | -----------
+code| Message Code
+message| Message
+data| [Orderbook](#orderbook)
 
-推送数据
-[Trades](#trades) -->
+
 
 
 # 交易所收录
