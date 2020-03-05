@@ -21,7 +21,7 @@ search: false
 
 您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。
 
-其中，data.mifengcha.com域名对使用中国大陆的用户做了一定的链路延迟优化。
+其中，data.mifengcha.com域名对中国大陆的用户做了一定的链路延迟优化。
 
 #### REST API
 
@@ -45,7 +45,7 @@ Version: v3.0.0
 
 ### 获取API密钥
 
-针对蜜蜂查 API发出的所有HTTP请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/account/register)。
+针对蜜蜂查 API发出的所有请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/account/register)。
 
 ### 使用您的密钥
 
