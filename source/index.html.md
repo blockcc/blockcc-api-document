@@ -1,10 +1,10 @@
 ---
-title: Block.cc开发者文档
+title: 蜜蜂查开发者文档 v3
 
 language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
-  - <a target="_blank" href='https://data.block.cc/account/login'>登陆data.block.cc</a>
+  - <a target="_blank" href='https://data.mifengcha.com/account/login'>登陆data.mifengcha.com</a>
 
 search: false
 ---
@@ -13,15 +13,30 @@ search: false
 
 ## 简介
 
-Block.cc是专业的区块链产业信息服务平台，提供数字货币行情、数据、资讯等一站式区块链产业服务，追求更及时、更全面、更专业、更准确的行情数据，致力为区块链爱好者和数字货币投资者提供最权威最流畅的产品和服务。
+蜜蜂查是专业的区块链产业信息服务平台，提供数字货币行情、数据、资讯等一站式区块链产业服务，追求更及时、更全面、更专业、更准确的行情数据，致力为区块链爱好者和数字货币投资者提供最权威最流畅的产品和服务。
 
 第三方应用开发者可以借助该服务，快速构建稳定高效的数字货币行情系统，为实时业务需求和产品运营提供技术支持。
 
+## Access URLs
+
+您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。
+
+其中，data.mifengcha.com域名对使用中国大陆的用户做了一定的链路延迟优化。
+
+#### REST API
+
+https://data.block.cc/api/v3
+
+https://data.mifengcha.com/api/v3
+
+#### Websocket Feed
+
+wss://data.block.cc/ws/v3
+
+wss://data.mifengcha.com/ws/v3
+
 ## 当前版本
 
-```
-API Endpoint: https://data.block.cc/api/v3
-```
 <aside class="success">
 Version: v3.0.0
 </aside>
@@ -30,7 +45,7 @@ Version: v3.0.0
 
 ### 获取API密钥
 
-针对Block.cc API发出的所有HTTP请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.block.cc/account/register)。
+针对蜜蜂查 API发出的所有HTTP请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/account/register)。
 
 ### 使用您的密钥
 
@@ -39,12 +54,12 @@ Version: v3.0.0
 ```shell
 curl -X GET \
    -H 'X-API-KEY: [YOUR_API_KEY]' \
-  'https://data.block.cc/api/v3/markets'
+  'https://data.mifengcha.com/api/v3/markets'
   
 curl -X GET \
-  'https://data.block.cc/api/v3/markets?api_key=[YOUR_API_KEY]'
+  'https://data.mifengcha.com/api/v3/markets?api_key=[YOUR_API_KEY]'
   
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 
 ```
 
@@ -67,7 +82,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 }
 ```
 
-为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.block.cc/pricing)
+为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
 
 > 您随时可以通过响应头查看你的剩余次数:
 
@@ -102,7 +117,7 @@ HTTP 状态码|错误码 | 错误信息
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/markets?page=0&size=100'
+  'https://data.mifengcha.com/api/v3/markets?page=0&size=100'
 ```
 
 
@@ -138,7 +153,7 @@ prev | 直接链接到结果的上一页
 # REST API 
 
 <aside class="success">
-URL: https://data.block.cc/api/v3
+URL: https://data.mifengcha.com/api/v3
 </aside>
 
 
@@ -185,7 +200,7 @@ URL: https://data.block.cc/api/v3
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/markets`
+`GET https://data.mifengcha.com/api/v3/markets`
 
 #### 请求参数
 
@@ -214,12 +229,12 @@ futures | 是否支持期货
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/symbols'
+  'https://data.mifengcha.com/api/v3/symbols'
 ```
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/symbols/bitcoin'
+  'https://data.mifengcha.com/api/v3/symbols/bitcoin'
 ```
 
 > 将会返回以下内容:
@@ -295,9 +310,9 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/symbols`
+`GET https://data.mifengcha.com/api/v3/symbols`
 
-`GET https://data.block.cc/api/v3/symbols/{slug}`
+`GET https://data.mifengcha.com/api/v3/symbols/{slug}`
 
 #### 请求参数
 
@@ -342,7 +357,7 @@ details |币种介绍, 默认不返回
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/exchange_rate'
+  'https://data.mifengcha.com/api/v3/exchange_rate'
 ```
 
 > 将会返回以下内容:
@@ -385,7 +400,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/exchange_rate`
+`GET https://data.mifengcha.com/api/v3/exchange_rate`
 
 #### 请求参数
 
@@ -402,7 +417,7 @@ r | 目标兑换汇率,如基础货币为USD，CNY下的数字为USDCNY的汇率
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/price?slug=bitcoin,filecoin'
+  'https://data.mifengcha.com/api/v3/price?slug=bitcoin,filecoin'
 ```
 
 > 将会返回以下内容:
@@ -447,7 +462,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/price`
+`GET https://data.mifengcha.com/api/v3/price`
 
 #### 请求参数
 
@@ -478,7 +493,7 @@ c | 24小时涨跌幅
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/price/history?slug=bitcoin'
+  'https://data.mifengcha.com/api/v3/price/history?slug=bitcoin'
 ```
 
 > 将会返回以下内容:
@@ -518,7 +533,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/price/history?slug=bitcoin`
+`GET https://data.mifengcha.com/api/v3/price/history?slug=bitcoin`
 
 #### 请求参数
 
@@ -544,7 +559,7 @@ a | 交易量(单位为当前币种)
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/tickers?market=bitfinex'
+  'https://data.mifengcha.com/api/v3/tickers?market=bitfinex'
 ```
 
 > 将会返回以下内容:
@@ -591,7 +606,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/tickers`
+`GET https://data.mifengcha.com/api/v3/tickers`
 
 #### 请求参数
 
@@ -646,7 +661,7 @@ s | 点差
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'
+  'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USD'
 ```
 
 > 将会返回以下内容:
@@ -703,7 +718,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/orderbook`
+`GET https://data.mifengcha.com/api/v3/orderbook`
 
 #### 请求参数
 
@@ -735,7 +750,7 @@ b/a | 说明
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USD'
+  'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USD'
 ```
 
 > 将会返回以下内容:
@@ -773,7 +788,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/trades`
+`GET https://data.mifengcha.com/api/v3/trades`
 
 #### 请求参数
 
@@ -800,7 +815,7 @@ m|交易对信息
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USD&type=15m&start=1573637497000'
+  'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USD&type=15m&start=1573637497000'
 ```
 
 > 将会返回以下内容:
@@ -835,7 +850,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/kline`
+`GET https://data.mifengcha.com/api/v3/kline`
 
 #### 请求参数
 
@@ -865,7 +880,7 @@ v|交易量
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/briefs?locale=zh_CN'
+  'https://data.mifengcha.com/api/v3/briefs?locale=zh_CN'
 ```
 
 > 将会返回以下内容:
@@ -898,7 +913,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/briefs?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/briefs?locale=zh_CN`
 
 #### 请求参数
 
@@ -917,7 +932,7 @@ title|标题
 content|内容
 timestamp|时间戳
 importance|是否是要闻
-url|block.cc原文链接
+url|mifengcha.com原文链接
 source|来源
 images|图片链接
 
@@ -926,7 +941,7 @@ images|图片链接
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/announcements?locale=zh_CN'
+  'https://data.mifengcha.com/api/v3/announcements?locale=zh_CN'
 ```
 
 > 将会返回以下内容:
@@ -963,7 +978,7 @@ curl -X GET \
 </aside>
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/announcements?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/announcements?locale=zh_CN`
 
 #### 请求参数
 
@@ -985,7 +1000,7 @@ timestamp|时间戳
 importance|是否是要闻
 sourceUrl|原文链接
 market|来源
-url|block.cc原文链接
+url|mifengcha.com原文链接
 images|图片链接
 
 
@@ -993,7 +1008,7 @@ images|图片链接
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/articles?locale=zh_CN'
+  'https://data.mifengcha.com/api/v3/articles?locale=zh_CN'
 ```
 
 > 将会返回以下内容:
@@ -1023,7 +1038,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/articles?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/articles?locale=zh_CN`
 
 #### 请求参数
 
@@ -1045,7 +1060,7 @@ description|文章描述
 author|文章作者
 categories|分类, 逗号分隔
 images|图片链接
-url|block.cc原文链接
+url|mifengcha.com原文链接
 source|来源
 
 
@@ -1053,7 +1068,7 @@ source|来源
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/articles/5e1d96a5aeae8770b7ff34ac'
+  'https://data.mifengcha.com/api/v3/articles/5e1d96a5aeae8770b7ff34ac'
 ```
 
 > 将会返回以下内容:
@@ -1080,7 +1095,7 @@ curl -X GET \
 
 #### 请求URL
 
-`GET https://data.block.cc/api/v3/articles/{id}`
+`GET https://data.mifengcha.com/api/v3/articles/{id}`
 
 #### 请求参数
 
@@ -1103,21 +1118,21 @@ btcPrice|发文时比特币价格
 
 
 <aside class="success">
-URL: wss://data.block.cc/ws/v3
+URL: wss://data.mifengcha.com/ws/v3
 </aside>
 
 * 每个链接有效期不超过24小时，请妥善处理断线重连。
 * 每30秒服务端会发送ping帧，客户端应当在30秒内回复pong帧，否则服务端会主动断开链接。
-* 连接时需要将用户对应的API_KEY作为参数传入，`wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]`。
+* 连接时需要将用户对应的API_KEY作为参数传入，`wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]`。
 * 每个链接最多可订阅200个Topic。
-* 每个账户可以建立的链接数根据账户套餐设定, 详情查看 [Pricing](https://data.block.cc/pricing)。
+* 每个账户可以建立的链接数根据账户套餐设定, 详情查看 [Pricing](https://data.mifengcha.com/pricing)。
 * 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic额度。
 * 90秒内不会推送没有变化的数据
 
 
 ## 订阅
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
@@ -1143,7 +1158,7 @@ message| Message
 
 ## 取消订阅
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "unsubscribe", "args": ["price:bitcoin"]}
 ```
 
@@ -1167,7 +1182,7 @@ message| Message
 ## 列出已订阅列表
 
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 > {"op": "topics"}
 ```
@@ -1193,7 +1208,7 @@ topics| Subscribed Topic List
 ## Topic: Price
 
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 > 更新时推送以下内容:
@@ -1235,7 +1250,7 @@ data| [Price](#price)
 ## Topic: Ticker
 
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["ticker:gate-io_BTC_USDT"]}
 ```
 > 更新时推送以下内容:
@@ -1283,7 +1298,7 @@ data| [Ticker](#tickers)
 ## Topic: Orderbook
 
 ```shell
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
+wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["orderbook:gate-io_BTC_USDT"]}
 ```
 > 更新时推送以下内容:
