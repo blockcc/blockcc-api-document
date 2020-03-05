@@ -50,7 +50,7 @@ configure :build do
   # activate :gzip
 end
 
-activate :i18n, :langs => [:en_US, :zh_CN]
+activate :i18n, :langs => [:en_US, :zh_CN], :mount_at_root => false
 
 # Deploy Configuration
 # If you want Middleman to listen on a different port, you can set that below
