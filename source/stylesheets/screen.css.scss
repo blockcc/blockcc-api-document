@@ -70,9 +70,15 @@ html, body {
   font-size: 13px;
   font-weight: bold;
 
+  .locale-button img {
+    width: 25px;
+    margin-right: 10px;
+  }
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
+
     a {
       padding-top: 0.5em;
       padding-bottom: 0.5em;

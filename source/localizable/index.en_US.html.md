@@ -2,9 +2,13 @@
 title: Block.cc developer documentation v3
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+
 
 toc_footers:
   - <a target="_blank" href='https://data.block.cc/account/login'>Login data.block.cc</a>
+  - <br>
+  - <a class="locale-button" href='/zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='/en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: true
 ---
