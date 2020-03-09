@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 
 toc_footers:
-  - <a target="_blank" href='https://data.block.cc/account/login'>Login data.block.cc</a>
+  - <a target="_blank" href='https://data.block.cc/login'>Login data.block.cc</a>
   - <br>
   - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
@@ -49,7 +49,7 @@ Version: v3.0.0
 
 ### Get API KEY
 
-All Block.cc API requests must be authenticated using an API key. If you don't have an API key yet, please [click to register](https://data.block.cc/account/register).
+All Block.cc API requests must be authenticated using an API key. If you don't have an API key yet, please [click to register](https://data.block.cc/register).
 
 ### Use your API KEY
 

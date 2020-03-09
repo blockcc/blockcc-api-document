@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a target="_blank" href='https://data.mifengcha.com/account/login'>登陆data.mifengcha.com</a>
+  - <a target="_blank" href='https://data.mifengcha.com/login'>登陆data.mifengcha.com</a>
   - <br>
   - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
@@ -48,7 +48,7 @@ Version: v3.0.0
 
 ### 获取API密钥
 
-针对蜜蜂查 API发出的所有请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/account/register)。
+针对蜜蜂查 API发出的所有请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/register)。
 
 ### 使用您的密钥
 
