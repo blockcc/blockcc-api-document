@@ -392,14 +392,14 @@ curl -X GET \
 
 ```
 
-获取汇率,该接口的汇率都是以`USD`为基础兑换货币
+Get the exchange rate, the exchange rate of this interface is based on `USD`
 
 <aside class="notice">
-更新时间：数字货币更新时间为60秒,法币更新时间为4小时.
+Updated: crypto currency update time of 60 seconds, fiat currency update time was 4 hours.
 </aside>
 
 <aside class="notice">
-数据来源：数字货币汇率从加权平均计算的币种价格获取, 法币汇率由外汇交易所以及各大银行牌价结合. 
+Data source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
 </aside>
 
 #### Request URL
@@ -414,8 +414,8 @@ None
 
 Parameter | Description
 --------- | -----------
-c | 目标兑换货币
-r | 目标兑换汇率,如基础货币为USD,CNY下的数字为USDCNY的汇率.
+c | Target Currency
+r | Exchange Rate
 
 ### Price
 
@@ -458,10 +458,10 @@ curl -X GET \
   ]
 ```
 
-获取币种价格
+Get currency price
 
 <aside class="notice">
-更新时间：5秒-60秒,按照交易量大小分级,交易量最大的币种5秒更新一次价格.
+Update Time: 5 seconds to 60 seconds, according to the volume size classification, the most traded currency prices updated every five seconds.
 </aside>
 
 #### Request URL
@@ -472,22 +472,21 @@ curl -X GET \
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-slug |QueryString|No| 币种名称,可传多个币种,逗号分割.
-page |QueryString|No| Current page, default 0, (>=0).注意：只有slug和symbol两者皆不存在,该值才有效
-size |QueryString|No| Per page size, default is 20 (100>=size>=1). 注意：只有slug和symbol两者皆不存在,该值才有效
-注意：若slug和symbol两者皆存在,优先级 slug > symbol, 按照交易量大小降序返回.
+slug |QueryString|No| Currency slug, separated by commas.
+page |QueryString|No| Current page, default 0, (>=0)
+size |QueryString|No| Per page size, default is 20 (100>=size>=1)
 
 #### Response Parameter
 
 Parameter | Description
 --------- | -----------
-s | 币种名称
-S | 币种符号
-u | 价格(USD)
-b | 价格(BTC)
-v | 交易量(USD)
-T | 时间戳(毫秒)
-a | 交易量(单位为当前币种)
+s | Slug
+S | Symbol
+u | Price(USD)
+b | Price(BTC)
+v | Volume(USD)
+T | 13-bit Unix Timestamp
+a | Amount(单位为当前币种)
 ra | 报告交易量(单位为当前币种)
 rv | 报告交易量(USD)
 m | 市值(USD)
@@ -529,10 +528,10 @@ curl -X GET \
   ]
 ```
 
-获取币种历史价格
+Get currency historical price
 
 <aside class="notice">
-数据来源：每5分钟快照一次当前价格,交易量.
+Data source: snapshot of current price and trading volume every 5 minutes.
 </aside>
 
 #### Request URL
@@ -551,11 +550,11 @@ end |QueryString|No| 截止时间,单位：毫秒,若不传起起始时间,默�
 
 Parameter | Description
 --------- | -----------
-T | 时间戳(毫秒)
-u | 价格(USD)
-b | 价格(BTC)
-v | 交易量(USD)
-a | 交易量(单位为当前币种)
+T | 13-bit Unix Timestamp
+u | Price(USD)
+b | Price(BTC)
+v | Volume(USD)
+a | Amount(unit: baseCurrency)
 
 
 
@@ -594,18 +593,18 @@ curl -X GET \
 
 ```
 
-批量获取交易对Tickers
+Get Tickers
 
 <aside class="notice">
-更新时间：1秒-30秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 1 second to 30 seconds, the impact factor update frequency include: the exchange supports batch API, Websocket supported and network environment.
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 <aside class="warning">
-注意: 数据中心会对异常数据进行拦截.请接入时检查时间戳.
+Note: The data center will intercept abnormal data. Please check the time stamp when connecting.
 </aside>
 
 #### Request URL
@@ -616,50 +615,49 @@ curl -X GET \
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-market |QueryString|No| 交易所名称,可传多个,逗号分割
-symbol |QueryString|No| 币种符号,可传多个,逗号分割
-slug |QueryString|No| 币种名称,可传多个,逗号分割
-currency |QueryString|No| 基础货币,可传多个,逗号分割
-market_pair |QueryString|No| MarketPairDesc,可传多个,逗号分割
+market |QueryString|No| Market Slug, comma separated
+symbol |QueryString|No| BaseCurrency Symbol, comma separated
+slug |QueryString|No|  BaseCurrency Slug, comma separated
+currency |QueryString|No|  QuoteCurrency Symbol, comma separated
+market_pair |QueryString|No| MarketPairDesc, comma separated
 page |QueryString|No| Current page, default 0, (>=0)
 size |QueryString|No| Per page size, default 20 (>=1)
 
-* 数据按照美元交易量倒序排序
-* market,symbol,slug,currency为交易对筛选条件.
-* market,symbol,slug,currency存在两种以上的参数时,只返回条件都符合的交易对.
-* 当market_pair存在时忽略market,symbol,slug,currency.
+* Data are sorted in reverse order of USD transaction volume
+* market, symbol, slug, currency are the screening conditions for trading pairs.
+* When there are more than two parameters of market, symbol, slug, and currency, only transaction pairs that meet the conditions are returned.
+* Ignore market, symbol, slug, currency when market_pair exists.
 
 例如：
 
-* 获取bitfinex的BTC交易对Ticker `market=bitfinex&symbol=BTC`
-* 获取bitfinex与binance的BTC和ETH交易对Ticker `market=bitfinex,binance&symbol=BTC,ETH`
-* 获取gate-io_BTC_USD与binance_ETH_BTC的Ticker `market_pair=gate-io_BTC_USD,binance_ETH_BTC`
+* Get bitfinex's BTC Tickers `market=bitfinex&symbol=BTC`
+* Get bitfinex and binance's BTC and ETH Tickers `market=bitfinex,binance&symbol=BTC,ETH`
+* Get gate-io_BTC_USD and binance_ETH_BTC Tickers `market_pair=gate-io_BTC_USD,binance_ETH_BTC`
 
 #### Response Parameter
 
 Parameter | Description
 --------- | -----------
-T | 数据更新时间
-c | 最新价格(单位：基础货币)
-b | 买一价(单位：基础货币)
-a | 卖一价(单位：基础货币)
-o | 开盘价(单位：基础货币)
-h | 24小时最高价(单位：基础货币)
-l | 24小时最低价(单位：基础货币)
-bv | 24小时交易货币交易量
-qv | 24小时基础货币交易量
-C | 24小时涨幅
+T | 13-bit Unix Timestamp
+c | Last Price, Close Price(unit：quoteCurrency)
+b | Best Bid Price(unit：quoteCurrency)
+a | Best Ask Price(unit：quoteCurrency)
+o | 24H Open Price(unit：quoteCurrency)
+h | 24H High Price(unit：quoteCurrency)
+l | 24H Low Price(unit：quoteCurrency)
+bv | 24H Base Volume(unit：baseCurrency)
+qv | 24H Quote Volume(unit：quoteCurrency)
+C | 24H Price Change Rate
 m | MarketPairDesc
-p | 纯度
-r | 基础转货币转美元的汇率
-s | 点差
+p | Purity
+r | To Usd Rate
+s | Spread
 
-* 数据更新时间一般为交易所接口返回的时间戳,如果交易所接口未返回时间戳则为发出请求前的时间戳
-* 如涨幅为1%,则返回值为0.01
-* r为基础货币转换到美元的汇率.
-* 获取最新美元价格为： 最新价(c) * 基础转货币转美元的汇率(r)
-* 获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)
-
+* The data update time is generally the timestamp returned by the exchange API. If the exchange interface does not return a timestamp, it is the timestamp before the request.
+* If the increase is 1%, the `C` return value is 0.01
+* r is the exchange rate from base currency to USD.
+* Get latest USD price as: latest price (c) * quote currency to USD exchange rate (r)
+* Get 24-hour USD transaction volume: 24 hour quote volume (qv) * quote currency to USD exchange rate (r)
 
 ### Orderbook
 
@@ -706,7 +704,7 @@ curl -X GET \
 
 ```
 
-获取交易对深度
+Get OrderBook
 
 <aside class="notice">
 更新时间：1秒-40秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
@@ -736,7 +734,7 @@ limit |QueryString|No| Limit,default 25.
 
 Parameter | Description
 --------- | -----------
-T|Timestamp
+T|13-bit Unix Timestamp
 m|MarketPairDesc
 b|Bids
 a|Asks
@@ -870,7 +868,7 @@ end |QueryString|No| 截止时间,单位：毫秒,默认最新时间
 
 Parameter | Description
 --------- | -----------
-T|时间戳
+T|13-bit Unix Timestamp
 o|开盘价
 c|收盘价
 l|最低价
@@ -934,7 +932,7 @@ Parameter | Description
 --------- | -----------
 title|标题
 content|内容
-timestamp|时间戳
+timestamp|13-bit Unix Timestamp
 importance|是否是要闻
 url|block.cc原文链接
 source|来源
@@ -1000,7 +998,7 @@ Parameter | Description
 --------- | -----------
 title|标题
 content|内容
-timestamp|时间戳
+timestamp|13-bit Unix Timestamp
 importance|是否是要闻
 sourceUrl|原文链接
 market|来源
