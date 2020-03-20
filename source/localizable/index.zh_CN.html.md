@@ -547,6 +547,8 @@ slug |QueryString|是| 币种名称。
 start |QueryString|否| 起始时间，单位：毫秒, 默认该币种最早记录的时间
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 
+- 该接口会对返回数据进行下采样(downsampled), 数据点的间隔(`interval`)根据传递的参数`end` - `start`设置, 原则上`interval` = `end` - `start` / 1000, 每次请求数据返回限制大约为1000条。
+
 #### 返回参数说明
 
 参数 | 说明
@@ -861,11 +863,11 @@ curl -X GET \
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
-interval |QueryString|否| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
+interval |QueryString|否| K线类型 (数据点间隔)[5m,15m,30m,1h,6h,1d,7d],默认5m
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
 
-- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`
+- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`, 如果请求超过2000个数据点则会响应400 `10010 Duration Limited`
 
 #### 返回参数说明
 
