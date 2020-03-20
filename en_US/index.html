@@ -281,7 +281,7 @@
                               <a href="#price" class="toc-h3 toc-link" data-title="REST API">Price</a>
                             </li>
                             <li>
-                              <a href="#historyprice" class="toc-h3 toc-link" data-title="REST API">HistoryPrice</a>
+                              <a href="#historicalprice" class="toc-h3 toc-link" data-title="REST API">HistoricalPrice</a>
                             </li>
                             <li>
                               <a href="#tickers" class="toc-h3 toc-link" data-title="REST API">Tickers</a>
@@ -857,14 +857,14 @@ URL: https://data.block.cc/api/v3
   </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<p>获取汇率,该接口的汇率都是以<code>USD</code>为基础兑换货币</p>
+<p>Get the exchange rate, the exchange rate of this interface is based on <code>USD</code></p>
 
 <aside class="notice">
-更新时间：数字货币更新时间为60秒,法币更新时间为4小时.
+Updated: crypto currency update time of 60 seconds, fiat currency update time was 4 hours.
 </aside>
 
 <aside class="notice">
-数据来源：数字货币汇率从加权平均计算的币种价格获取, 法币汇率由外汇交易所以及各大银行牌价结合. 
+Data source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
 </aside>
 <h4 id='request-url-3'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/exchange_rate</code></p>
@@ -879,11 +879,11 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>c</td>
-<td>目标兑换货币</td>
+<td>Target Currency</td>
 </tr>
 <tr>
 <td>r</td>
-<td>目标兑换汇率,如基础货币为USD,CNY下的数字为USDCNY的汇率.</td>
+<td>Exchange Rate</td>
 </tr>
 </tbody></table>
 <h3 id='price'>Price</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -922,10 +922,10 @@ URL: https://data.block.cc/api/v3
       </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>获取币种价格</p>
+<p>Get currency price</p>
 
 <aside class="notice">
-更新时间：5秒-60秒,按照交易量大小分级,交易量最大的币种5秒更新一次价格.
+Update Time: 5 seconds to 60 seconds, according to the volume size classification, the most traded currency prices updated every five seconds.
 </aside>
 <h4 id='request-url-4'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/price</code></p>
@@ -942,23 +942,21 @@ URL: https://data.block.cc/api/v3
 <td>slug</td>
 <td>QueryString</td>
 <td>No</td>
-<td>币种名称,可传多个币种,逗号分割.</td>
+<td>Currency slug, separated by commas.</td>
 </tr>
 <tr>
 <td>page</td>
 <td>QueryString</td>
 <td>No</td>
-<td>Current page, default 0, (&gt;=0).注意：只有slug和symbol两者皆不存在,该值才有效</td>
+<td>Current page, default 0, (&gt;=0)</td>
 </tr>
 <tr>
 <td>size</td>
 <td>QueryString</td>
 <td>No</td>
-<td>Per page size, default is 20 (100&gt;=size&gt;=1). 注意：只有slug和symbol两者皆不存在,该值才有效</td>
+<td>Per page size, default is 20 (100&gt;=size&gt;=1)</td>
 </tr>
 </tbody></table>
-
-<p>注意：若slug和symbol两者皆存在,优先级 slug &gt; symbol, 按照交易量大小降序返回.</p>
 <h4 id='response-parameter-4'>Response Parameter</h4>
 <table><thead>
 <tr>
@@ -968,31 +966,31 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>s</td>
-<td>币种名称</td>
+<td>Slug</td>
 </tr>
 <tr>
 <td>S</td>
-<td>币种符号</td>
+<td>Symbol</td>
 </tr>
 <tr>
 <td>u</td>
-<td>价格(USD)</td>
+<td>Price(USD)</td>
 </tr>
 <tr>
 <td>b</td>
-<td>价格(BTC)</td>
+<td>Price(BTC)</td>
 </tr>
 <tr>
 <td>v</td>
-<td>交易量(USD)</td>
+<td>Volume(USD)</td>
 </tr>
 <tr>
 <td>T</td>
-<td>时间戳(毫秒)</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>a</td>
-<td>交易量(单位为当前币种)</td>
+<td>Amount(单位为当前币种)</td>
 </tr>
 <tr>
 <td>ra</td>
@@ -1011,7 +1009,7 @@ URL: https://data.block.cc/api/v3
 <td>24小时涨跌幅</td>
 </tr>
 </tbody></table>
-<h3 id='historyprice'>HistoryPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+<h3 id='historicalprice'>HistoricalPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/price/history?slug=bitcoin'</span>
 </code></pre>
 <blockquote>
@@ -1042,10 +1040,10 @@ URL: https://data.block.cc/api/v3
       </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>获取币种历史价格</p>
+<p>Get currency historical price</p>
 
 <aside class="notice">
-数据来源：每5分钟快照一次当前价格,交易量.
+Data source: snapshot of current price and trading volume every 5 minutes.
 </aside>
 <h4 id='request-url-5'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/price/history?slug=bitcoin</code></p>
@@ -1067,16 +1065,20 @@ URL: https://data.block.cc/api/v3
 <tr>
 <td>start</td>
 <td>QueryString</td>
-<td>No</td>
-<td>起始时间,单位：毫秒,若不传起起始时间,默认给4天的历史数据</td>
+<td>否</td>
+<td>起始时间，单位：毫秒, 默认该币种最早记录的时间</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
-<td>No</td>
-<td>截止时间,单位：毫秒,若不传起起始时间,默认最新时间</td>
+<td>否</td>
+<td>截止时间，单位：毫秒，默认当前时间</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>该接口会对返回数据进行下采样(downsampled), 数据点的间隔(<code>interval</code>)根据传递的参数<code>end</code> - <code>start</code>设置, 原则上<code>interval</code> = <code>end</code> - <code>start</code> / 1000, 每次请求数据返回限制大约为1000条。</li>
+</ul>
 <h4 id='response-parameter-5'>Response Parameter</h4>
 <table><thead>
 <tr>
@@ -1086,23 +1088,23 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>T</td>
-<td>时间戳(毫秒)</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>u</td>
-<td>价格(USD)</td>
+<td>Price(USD)</td>
 </tr>
 <tr>
 <td>b</td>
-<td>价格(BTC)</td>
+<td>Price(BTC)</td>
 </tr>
 <tr>
 <td>v</td>
-<td>交易量(USD)</td>
+<td>Volume(USD)</td>
 </tr>
 <tr>
 <td>a</td>
-<td>交易量(单位为当前币种)</td>
+<td>Amount(unit: baseCurrency)</td>
 </tr>
 </tbody></table>
 <h3 id='tickers'>Tickers</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1135,18 +1137,18 @@ URL: https://data.block.cc/api/v3
 
 
 </span></code></pre>
-<p>批量获取交易对Tickers</p>
+<p>Get Tickers</p>
 
 <aside class="notice">
-更新时间：1秒-30秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 1 second to 30 seconds, the impact factor update frequency include: the exchange supports batch API, Websocket supported and network environment.
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 <aside class="warning">
-注意: 数据中心会对异常数据进行拦截.请接入时检查时间戳.
+Note: The data center will intercept abnormal data. Please check the time stamp when connecting.
 </aside>
 <h4 id='request-url-6'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/tickers</code></p>
@@ -1163,31 +1165,31 @@ URL: https://data.block.cc/api/v3
 <td>market</td>
 <td>QueryString</td>
 <td>No</td>
-<td>交易所名称,可传多个,逗号分割</td>
+<td>Market Slug, comma separated</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>QueryString</td>
 <td>No</td>
-<td>币种符号,可传多个,逗号分割</td>
+<td>BaseCurrency Symbol, comma separated</td>
 </tr>
 <tr>
 <td>slug</td>
 <td>QueryString</td>
 <td>No</td>
-<td>币种名称,可传多个,逗号分割</td>
+<td>BaseCurrency Slug, comma separated</td>
 </tr>
 <tr>
 <td>currency</td>
 <td>QueryString</td>
 <td>No</td>
-<td>基础货币,可传多个,逗号分割</td>
+<td>QuoteCurrency Symbol, comma separated</td>
 </tr>
 <tr>
 <td>market_pair</td>
 <td>QueryString</td>
 <td>No</td>
-<td>MarketPairDesc,可传多个,逗号分割</td>
+<td>MarketPairDesc, comma separated</td>
 </tr>
 <tr>
 <td>page</td>
@@ -1204,18 +1206,18 @@ URL: https://data.block.cc/api/v3
 </tbody></table>
 
 <ul>
-<li>数据按照美元交易量倒序排序</li>
-<li>market,symbol,slug,currency为交易对筛选条件.</li>
-<li>market,symbol,slug,currency存在两种以上的参数时,只返回条件都符合的交易对.</li>
-<li>当market_pair存在时忽略market,symbol,slug,currency.</li>
+<li>Data are sorted in reverse order of USD transaction volume</li>
+<li>market, symbol, slug, currency are the screening conditions for trading pairs.</li>
+<li>When there are more than two parameters of market, symbol, slug, and currency, only transaction pairs that meet the conditions are returned.</li>
+<li>Ignore market, symbol, slug, currency when market_pair exists.</li>
 </ul>
 
 <p>例如：</p>
 
 <ul>
-<li>获取bitfinex的BTC交易对Ticker <code>market=bitfinex&amp;symbol=BTC</code></li>
-<li>获取bitfinex与binance的BTC和ETH交易对Ticker <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
-<li>获取gate-io_BTC_USD与binance_ETH_BTC的Ticker <code>market_pair=gate-io_BTC_USD,binance_ETH_BTC</code></li>
+<li>Get bitfinex&#39;s BTC Tickers <code>market=bitfinex&amp;symbol=BTC</code></li>
+<li>Get bitfinex and binance&#39;s BTC and ETH Tickers <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
+<li>Get gate-io_BTC_USD and binance_ETH_BTC Tickers <code>market_pair=gate-io_BTC_USD,binance_ETH_BTC</code></li>
 </ul>
 <h4 id='response-parameter-6'>Response Parameter</h4>
 <table><thead>
@@ -1226,43 +1228,43 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>T</td>
-<td>数据更新时间</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>c</td>
-<td>最新价格(单位：基础货币)</td>
+<td>Last Price, Close Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>b</td>
-<td>买一价(单位：基础货币)</td>
+<td>Best Bid Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>a</td>
-<td>卖一价(单位：基础货币)</td>
+<td>Best Ask Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>o</td>
-<td>开盘价(单位：基础货币)</td>
+<td>24H Open Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>h</td>
-<td>24小时最高价(单位：基础货币)</td>
+<td>24H High Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>l</td>
-<td>24小时最低价(单位：基础货币)</td>
+<td>24H Low Price(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>bv</td>
-<td>24小时交易货币交易量</td>
+<td>24H Base Volume(unit：baseCurrency)</td>
 </tr>
 <tr>
 <td>qv</td>
-<td>24小时基础货币交易量</td>
+<td>24H Quote Volume(unit：quoteCurrency)</td>
 </tr>
 <tr>
 <td>C</td>
-<td>24小时涨幅</td>
+<td>24H Price Change Rate</td>
 </tr>
 <tr>
 <td>m</td>
@@ -1270,24 +1272,24 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>p</td>
-<td>纯度</td>
+<td>Purity</td>
 </tr>
 <tr>
 <td>r</td>
-<td>基础转货币转美元的汇率</td>
+<td>To Usd Rate</td>
 </tr>
 <tr>
 <td>s</td>
-<td>点差</td>
+<td>Spread</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>数据更新时间一般为交易所接口返回的时间戳,如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
-<li>如涨幅为1%,则返回值为0.01</li>
-<li>r为基础货币转换到美元的汇率.</li>
-<li>获取最新美元价格为： 最新价(c) * 基础转货币转美元的汇率(r)</li>
-<li>获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
+<li>The data update time is generally the timestamp returned by the exchange API. If the exchange interface does not return a timestamp, it is the timestamp before the request.</li>
+<li>If the increase is 1%, the <code>C</code> return value is 0.01</li>
+<li>r is the exchange rate from base currency to USD.</li>
+<li>Get latest USD price as: latest price (c) * quote currency to USD exchange rate (r)</li>
+<li>Get 24-hour USD transaction volume: 24 hour quote volume (qv) * quote currency to USD exchange rate (r)</li>
 </ul>
 <h3 id='orderbook'>Orderbook</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
@@ -1329,7 +1331,7 @@ URL: https://data.block.cc/api/v3
   </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>获取交易对深度</p>
+<p>Get OrderBook</p>
 
 <aside class="notice">
 更新时间：1秒-40秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
@@ -1375,7 +1377,7 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>T</td>
-<td>Timestamp</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>m</td>
@@ -1394,7 +1396,7 @@ URL: https://data.block.cc/api/v3
 <table><thead>
 <tr>
 <th>b/a</th>
-<th>说明</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1549,24 +1551,28 @@ URL: https://data.block.cc/api/v3
 <td>交易所的某个交易对.例如：gate-io_BTC_USD</td>
 </tr>
 <tr>
-<td>type</td>
+<td>interval</td>
 <td>QueryString</td>
-<td>No</td>
-<td>K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m</td>
-</tr>
-<tr>
-<td>start</td>
-<td>QueryString</td>
-<td>Yes</td>
-<td>起始时间,单位：毫秒</td>
+<td>否</td>
+<td>K线类型 (数据点间隔)[5m,15m,30m,1h,6h,1d,7d],默认5m</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
-<td>No</td>
-<td>截止时间,单位：毫秒,默认最新时间</td>
+<td>否</td>
+<td>截止时间，单位：毫秒，默认当前时间</td>
+</tr>
+<tr>
+<td>start</td>
+<td>QueryString</td>
+<td>否</td>
+<td>起始时间，单位：毫秒，默认<code>end - (1000 * interval)</code>, 即表示 <code>end</code> 之前1000条数据</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>单次请求最大可获取2000条数据，<code>(end - start) / interval &lt;= 2000</code>, 如果请求超过2000个数据点则会响应400 <code>10010 Duration Limited</code></li>
+</ul>
 <h4 id='response-parameter-9'>Response Parameter</h4>
 <table><thead>
 <tr>
@@ -1576,27 +1582,27 @@ URL: https://data.block.cc/api/v3
 </thead><tbody>
 <tr>
 <td>T</td>
-<td>时间戳</td>
+<td>Open Time 13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>o</td>
-<td>开盘价</td>
+<td>Open Price(unit: quoteCurrency)</td>
 </tr>
 <tr>
 <td>c</td>
-<td>收盘价</td>
+<td>Close Price(unit: quoteCurrency)</td>
 </tr>
 <tr>
 <td>l</td>
-<td>最低价</td>
+<td>Low Price(unit: quoteCurrency)</td>
 </tr>
 <tr>
 <td>h</td>
-<td>最高价</td>
+<td>High Price(unit: quoteCurrency)</td>
 </tr>
 <tr>
 <td>v</td>
-<td>交易量</td>
+<td>Volume (unit: baseCurrency)</td>
 </tr>
 </tbody></table>
 <h2 id='information-data'>Information data</h2><h3 id='brief'>Brief</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1675,7 +1681,7 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>timestamp</td>
-<td>时间戳</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>importance</td>
@@ -1781,7 +1787,7 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>timestamp</td>
-<td>时间戳</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>importance</td>

@@ -277,7 +277,7 @@
                               <a href="#price" class="toc-h3 toc-link" data-title="REST API">Price</a>
                             </li>
                             <li>
-                              <a href="#historyprice" class="toc-h3 toc-link" data-title="REST API">HistoryPrice</a>
+                              <a href="#historicalprice" class="toc-h3 toc-link" data-title="REST API">HistoricalPrice</a>
                             </li>
                             <li>
                               <a href="#tickers" class="toc-h3 toc-link" data-title="REST API">Tickers</a>
@@ -487,19 +487,19 @@ X-Total-Count →10000
 </thead><tbody>
 <tr>
 <td>next</td>
-<td>直接链接到结果的下一页</td>
+<td>下一页的链接</td>
 </tr>
 <tr>
 <td>last</td>
-<td>直接链接到结果的最后一页</td>
+<td>最后一页的链接</td>
 </tr>
 <tr>
 <td>first</td>
-<td>第一页结果的链接关系</td>
+<td>第一页的链接</td>
 </tr>
 <tr>
 <td>prev</td>
-<td>直接链接到结果的上一页</td>
+<td>上一页的链接</td>
 </tr>
 </tbody></table>
 <h1 id='rest-api-2'>REST API</h1>
@@ -1005,7 +1005,7 @@ URL: https://data.mifengcha.com/api/v3
 <td>24小时涨跌幅</td>
 </tr>
 </tbody></table>
-<h3 id='historyprice'>HistoryPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+<h3 id='historicalprice'>HistoricalPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/price/history?slug=bitcoin'</span>
 </code></pre>
 <blockquote>
@@ -1062,15 +1062,19 @@ URL: https://data.mifengcha.com/api/v3
 <td>start</td>
 <td>QueryString</td>
 <td>否</td>
-<td>起始时间，单位：毫秒，若不传起起始时间，默认给4天的历史数据</td>
+<td>起始时间，单位：毫秒, 默认该币种最早记录的时间</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
 <td>否</td>
-<td>截止时间，单位：毫秒，若不传起起始时间，默认最新时间</td>
+<td>截止时间，单位：毫秒，默认当前时间</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>该接口会对返回数据进行下采样(downsampled), 数据点的间隔(<code>interval</code>)根据传递的参数<code>end</code> - <code>start</code>设置, 原则上<code>interval</code> = <code>end</code> - <code>start</code> / 1000, 每次请求数据返回限制大约为1000条。</li>
+</ul>
 <h4 id='51d2618749-5'>返回参数说明</h4>
 <table><thead>
 <tr>
@@ -1084,19 +1088,19 @@ URL: https://data.mifengcha.com/api/v3
 </tr>
 <tr>
 <td>u</td>
-<td>价格(USD)</td>
+<td>价格(单位: USD)</td>
 </tr>
 <tr>
 <td>b</td>
-<td>价格(BTC)</td>
+<td>价格(单位: BTC)</td>
 </tr>
 <tr>
 <td>v</td>
-<td>交易量(USD)</td>
+<td>交易量(单位: USD)</td>
 </tr>
 <tr>
 <td>a</td>
-<td>交易量(单位为当前币种)</td>
+<td>交易量(单位: 当前币种)</td>
 </tr>
 </tbody></table>
 <h3 id='tickers'>Tickers</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1543,24 +1547,28 @@ URL: https://data.mifengcha.com/api/v3
 <td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
 </tr>
 <tr>
-<td>type</td>
+<td>interval</td>
 <td>QueryString</td>
 <td>否</td>
-<td>K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m</td>
-</tr>
-<tr>
-<td>start</td>
-<td>QueryString</td>
-<td>是</td>
-<td>起始时间，单位：毫秒</td>
+<td>K线类型 (数据点间隔)[5m,15m,30m,1h,6h,1d,7d],默认5m</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
 <td>否</td>
-<td>截止时间，单位：毫秒，默认最新时间</td>
+<td>截止时间，单位：毫秒，默认当前时间</td>
+</tr>
+<tr>
+<td>start</td>
+<td>QueryString</td>
+<td>否</td>
+<td>起始时间，单位：毫秒，默认<code>end - (1000 * interval)</code>, 即表示 <code>end</code> 之前1000条数据</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>单次请求最大可获取2000条数据，<code>(end - start) / interval &lt;= 2000</code>, 如果请求超过2000个数据点则会响应400 <code>10010 Duration Limited</code></li>
+</ul>
 <h4 id='51d2618749-9'>返回参数说明</h4>
 <table><thead>
 <tr>
