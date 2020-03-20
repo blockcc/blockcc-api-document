@@ -1,14 +1,31 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
+  <img src="https://mifengcha.oss-cn-beijing.aliyuncs.com/web/logo.png" alt="Block.cc" width="64">
   <br>
   <a href="https://travis-ci.com/slatedocs/slate"><img src="https://travis-ci.com/slatedocs/slate.svg?branch=master" alt="Build Status"></a>
 </p>
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+<p align="center"><em>This repo above was fork from Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+Git Repo
+-----------
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
+Github: [https://github.com/blockcc/blockcc-api-document](https://github.com/blockcc/blockcc-api-document).
+
+Coding: [https://blockcc-dev.coding.net/p/blockcc-api-document](https://blockcc-dev.coding.net/p/blockcc-api-document).
+
+Document Url
+------------
+
+[GithubPages English](https://blockcc.github.io/blockcc-api-document/en_US).
+
+[CodingPages English](https://l130vk.coding-pages.com/en_US).
+
+---
+
+[GithubPages 中文文档](https://blockcc.github.io/blockcc-api-document/zh_CN).
+
+[CodingPages 中文文档](https://l130vk.coding-pages.com/zh_CN).
+
 
 Features
 ------------
