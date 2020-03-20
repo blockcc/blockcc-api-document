@@ -19,7 +19,6 @@ Options:
       --push-only          Only push but not build
 "
 
-
 run_build() {
   bundle exec middleman build --clean
 }
@@ -33,20 +32,20 @@ parse_args() {
   # Parse arg flags
   # If something is exposed as an environment variable, set/overwrite it
   # here. Otherwise, set/overwrite the internal variable instead.
-  while : ; do
-    if [[ $1 = "-h" || $1 = "--help" ]]; then
+  while :; do
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
       echo "$help_message"
       return 0
-    elif [[ $1 = "-v" || $1 = "--verbose" ]]; then
+    elif [[ $1 == "-v" || $1 == "--verbose" ]]; then
       verbose=true
       shift
-    elif [[ $1 = "-e" || $1 = "--allow-empty" ]]; then
+    elif [[ $1 == "-e" || $1 == "--allow-empty" ]]; then
       allow_empty=true
       shift
-    elif [[ ( $1 = "-m" || $1 = "--message" ) && -n $2 ]]; then
+    elif [[ ($1 == "-m" || $1 == "--message") && -n $2 ]]; then
       commit_message=$2
       shift 2
-    elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
+    elif [[ $1 == "-n" || $1 == "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
       shift
     else
@@ -66,13 +65,20 @@ parse_args() {
   default_email=${GIT_DEPLOY_EMAIL:-}
 
   #repository to deploy to. must be readable and writable.
-  repo=origin
 
   #append commit hash to the end of message by default
   append_hash=${GIT_DEPLOY_APPEND_HASH:-true}
 }
 
 main() {
+  repo=origin
+  main_internal "$@"
+
+  repo=origin2
+  main_internal "$@"
+}
+
+main_internal() {
   parse_args "$@"
 
   enable_expanded_output
@@ -82,8 +88,8 @@ main() {
     return 1
   fi
 
-  commit_title=`git log -n 1 --format="%s" HEAD`
-  commit_hash=` git log -n 1 --format="%H" HEAD`
+  commit_title=$(git log -n 1 --format="%s" HEAD)
+  commit_hash=$(git log -n 1 --format="%H" HEAD)
 
   #default commit message uses last title if a custom one is not supplied
   if [[ -z $commit_message ]]; then
@@ -95,7 +101,7 @@ main() {
     commit_message="$commit_message"$'\n\n'"generated from commit $commit_hash"
   fi
 
-  previous_branch=`git rev-parse --abbrev-ref HEAD`
+  previous_branch=$(git rev-parse --abbrev-ref HEAD)
 
   if [ ! -d "$deploy_directory" ]; then
     echo "Deploy directory '$deploy_directory' does not exist. Aborting." >&2
@@ -103,12 +109,12 @@ main() {
   fi
 
   # must use short form of flag in ls for compatibility with macOS and BSD
-  if [[ -z `ls -A "$deploy_directory" 2> /dev/null` && -z $allow_empty ]]; then
+  if [[ -z $(ls -A "$deploy_directory" 2>/dev/null) && -z $allow_empty ]]; then
     echo "Deploy directory '$deploy_directory' is empty. Aborting. If you're sure you want to deploy an empty tree, use the --allow-empty / -e flag." >&2
     return 1
   fi
 
-  if git ls-remote --exit-code $repo "refs/heads/$deploy_branch" ; then
+  if git ls-remote --exit-code $repo "refs/heads/$deploy_branch"; then
     # deploy_branch exists in $repo; make sure we have the latest version
 
     disable_expanded_output
@@ -117,9 +123,10 @@ main() {
   fi
 
   # check if deploy_branch exists locally
-  if git show-ref --verify --quiet "refs/heads/$deploy_branch"
-  then incremental_deploy
-  else initial_deploy
+  if git show-ref --verify --quiet "refs/heads/$deploy_branch"; then
+    incremental_deploy
+  else
+    initial_deploy
   fi
 
   restore_head
@@ -142,12 +149,12 @@ incremental_deploy() {
   diff=$(git --work-tree "$deploy_directory" diff --exit-code --quiet HEAD --)$?
   set -o errexit
   case $diff in
-    0) echo No changes to files in $deploy_directory. Skipping commit.;;
-    1) commit+push;;
-    *)
-      echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
-      return $diff
-      ;;
+  0) echo No changes to files in $deploy_directory. Skipping commit. ;;
+  1) commit+push ;;
+  *)
+    echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
+    return $diff
+    ;;
   esac
 }
 
@@ -178,16 +185,16 @@ disable_expanded_output() {
 }
 
 set_user_id() {
-  if [[ -z `git config user.name` ]]; then
+  if [[ -z $(git config user.name) ]]; then
     git config user.name "$default_username"
   fi
-  if [[ -z `git config user.email` ]]; then
+  if [[ -z $(git config user.email) ]]; then
     git config user.email "$default_email"
   fi
 }
 
 restore_head() {
-  if [[ $previous_branch = "HEAD" ]]; then
+  if [[ $previous_branch == "HEAD" ]]; then
     #we weren't on any branch before, so just set HEAD back to the commit it was on
     git update-ref --no-deref HEAD $commit_hash $deploy_branch
   else
@@ -205,9 +212,9 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-if [[ $1 = --source-only ]]; then
+if [[ $1 == --source-only ]]; then
   run_build
-elif [[ $1 = --push-only ]]; then
+elif [[ $1 == --push-only ]]; then
   main "$@"
 else
   run_build
