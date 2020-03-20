@@ -492,7 +492,7 @@ rv | 报告交易量(USD)
 m | 市值(USD)
 c | 24小时涨跌幅
 
-### HistoryPrice
+### HistoricalPrice
 
 ```shell
 curl -X GET \
@@ -739,7 +739,7 @@ m|MarketPairDesc
 b|Bids
 a|Asks
 
-b/a | 说明
+b/a | Description
 --------- | -----------
 0|Price
 1|Amount
@@ -859,21 +859,23 @@ curl -X GET \
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
 desc |QueryString|Yes| 交易所的某个交易对.例如：gate-io_BTC_USD
-type |QueryString|No| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
-start |QueryString|Yes| 起始时间,单位：毫秒
-end |QueryString|No| 截止时间,单位：毫秒,默认最新时间
+interval |QueryString|No| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
+end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
+start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
+
+- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`
 
 
 #### Response Parameter
 
 Parameter | Description
 --------- | -----------
-T|13-bit Unix Timestamp
-o|开盘价
-c|收盘价
-l|最低价
-h|最高价
-v|交易量
+T|Open Time 13-bit Unix Timestamp
+o|Open Price(unit: quoteCurrency)
+c|Close Price(unit: quoteCurrency)
+l|Low Price(unit: quoteCurrency)
+h|High Price(unit: quoteCurrency)
+v|Volume (unit: baseCurrency)
 
 ## Information data
 

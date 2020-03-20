@@ -493,7 +493,7 @@ rv | 报告交易量(USD)
 m | 市值(USD)
 c | 24小时涨跌幅
 
-### HistoryPrice
+### HistoricalPrice
 
 ```shell
 curl -X GET \
@@ -544,18 +544,18 @@ curl -X GET \
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 slug |QueryString|是| 币种名称。
-start |QueryString|否| 起始时间，单位：毫秒，若不传起起始时间，默认给4天的历史数据
-end |QueryString|否| 截止时间，单位：毫秒，若不传起起始时间，默认最新时间
+start |QueryString|否| 起始时间，单位：毫秒, 默认该币种最早记录的时间
+end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 
 #### 返回参数说明
 
 参数 | 说明
 --------- | -----------
 T | 时间戳(毫秒)
-u | 价格(USD)
-b | 价格(BTC)
-v | 交易量(USD)
-a | 交易量(单位为当前币种)
+u | 价格(单位: USD)
+b | 价格(单位: BTC)
+v | 交易量(单位: USD)
+a | 交易量(单位: 当前币种)
 
 
 
@@ -861,10 +861,11 @@ curl -X GET \
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
-type |QueryString|否| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
-start |QueryString|是| 起始时间，单位：毫秒
-end |QueryString|否| 截止时间，单位：毫秒，默认最新时间
+interval |QueryString|否| K线类型[5m,15m,30m,1h,6h,1d,7d],默认5m
+end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
+start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
 
+- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`
 
 #### 返回参数说明
 
