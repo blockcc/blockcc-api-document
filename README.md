@@ -16,15 +16,13 @@ Coding: [https://blockcc-dev.coding.net/p/blockcc-api-document](https://blockcc-
 Document Url
 ------------
 
-[GithubPages English](https://blockcc.github.io/blockcc-api-document/en_US).
+[GithubPages](https://blockcc.github.io/blockcc-api-document/en_US).
 
-[CodingPages English](https://l130vk.coding-pages.com/en_US).
+[CodingPages](https://l130vk.coding-pages.com/en_US).
 
 ---
 
-[GithubPages 中文文档](https://blockcc.github.io/blockcc-api-document/zh_CN).
-
-[CodingPages 中文文档](https://l130vk.coding-pages.com/zh_CN).
+[中文文档](https://l130vk.coding-pages.com/zh_CN).
 
 
 Features
