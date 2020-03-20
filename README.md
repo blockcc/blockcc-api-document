@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://mifengcha.oss-cn-beijing.aliyuncs.com/web/logo.png" alt="Block.cc" width="64">
+  <img src="https://mifengcha-public.oss-accelerate.aliyuncs.com/logo.png" alt="Block.cc" width="64">
   <br>
   <a href="https://travis-ci.com/slatedocs/slate"><img src="https://travis-ci.com/slatedocs/slate.svg?branch=master" alt="Build Status"></a>
 </p>
