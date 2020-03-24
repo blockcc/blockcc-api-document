@@ -70,7 +70,7 @@ wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 
 您可以通过以下方式在REST API调用中提供API密钥：
 
-1.首选方法：通过名为`X-API_KEY`的自定义请求头
+1.首选方法：通过名为`X-API-KEY`的自定义请求头
 
 2.便捷方法：通过名为`api_key` 的查询字符串参数
 
