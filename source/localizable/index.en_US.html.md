@@ -70,7 +70,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 You can provide an API key in a REST API call in the following ways:
 
-1. Preferred method: Via a custom request header named `X-API_KEY`
+1. Preferred method: Via a custom request header named `X-API-KEY`
 
 2. Convenient method: pass a query string parameter named `api_key`
 
