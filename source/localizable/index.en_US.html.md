@@ -152,6 +152,23 @@ last | The last page link
 first | The first page link
 prev | The previous page link
 
+# Changelog
+
+### 2020-04-09
+
+[Price](#price) add fields
+
+- Highest daily price
+- Lowest daily price
+- Weekly price change
+- Weekly high price
+- Weekly lowest price
+- Monthly price change
+- Highest monthly price
+- Lowest monthly price
+- Highest price in history
+- Lowest price in history
+
 # REST API 
 
 <aside class="success">
@@ -427,7 +444,6 @@ curl -X GET \
 > Response:
 
 ```json
-
    [
       {
         "s": "bitcoin",
@@ -440,20 +456,17 @@ curl -X GET \
         "ra": 68260.277,
         "rv": 684890110,
         "m": 182193710000,
-        "c": 0.0111
-      },
-      {
-        "s": "ethereum",
-        "S": "ETH",
-        "T": 1564201016249,
-        "u": 224.72639,
-        "b": 0.021914663,
-        "a": 1123748.2,
-        "v": 250398262.42,
-        "ra": 1123748.2,
-        "rv": 250398260,
-        "m": 23944294000,
-        "c": 0.0111
+        "c": 0.0111,
+        "h": 10254,
+        "l": 10254,
+        "cw": 0.0111,
+        "hw": 10254,
+        "lw": 10254,
+        "cm": 0.0111,
+        "hm": 10254,
+        "lm": 10254,
+        "ha": 10254,
+        "la": 10254
       }
   ]
 ```
@@ -484,13 +497,23 @@ s | Slug
 S | Symbol
 u | Price(USD)
 b | Price(BTC)
-v | Volume(USD)
 T | 13-bit Unix Timestamp
-a | Amount(单位为当前币种)
-ra | 报告交易量(单位为当前币种)
-rv | 报告交易量(USD)
-m | 市值(USD)
-c | 24小时涨跌幅
+a | Amount(unit: baseCurrency)
+v | Volume(unit: USD)
+ra | ReportedAmount(unit: baseCurrency)
+rv | ReportedVolume(unit: USD)
+m | MarketCap(unit: USD)
+c | 24h price change
+h | 24h highest price
+l | 24h lowest price
+cw | One week price change
+hw | One week highest price
+lw | One week lowest price
+cm | One month price change
+hm | One month highest price
+lm | One month lowest price
+ha | Historical highest price
+la | Historical lowest price
 
 ### HistoricalPrice
 
