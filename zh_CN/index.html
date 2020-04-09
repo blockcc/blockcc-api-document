@@ -254,6 +254,14 @@
               </ul>
           </li>
           <li>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#2020-04-09" class="toc-h2 toc-link" data-title="2020-04-09">2020-04-09</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#rest-api-2" class="toc-h1 toc-link" data-title="REST API">REST API</a>
               <ul class="toc-list-h2">
                   <li>
@@ -502,6 +510,21 @@ X-Total-Count →10000
 <td>上一页的链接</td>
 </tr>
 </tbody></table>
+<h1 id='changelog'>Changelog</h1><h3 id='2020-04-09'>2020-04-09</h3>
+<p><a href="#price">Price</a> 新增字段</p>
+
+<ul>
+<li>24小时最高价 </li>
+<li>24小时最低价 </li>
+<li>1周涨跌幅</li>
+<li>1周最高价 </li>
+<li>1周最低价</li>
+<li>1月涨跌幅</li>
+<li>1月最高价 </li>
+<li>1月最低价</li>
+<li>历史最高价 </li>
+<li>历史最低价</li>
+</ul>
 <h1 id='rest-api-2'>REST API</h1>
 <aside class="success">
 URL: https://data.mifengcha.com/api/v3
@@ -886,8 +909,7 @@ URL: https://data.mifengcha.com/api/v3
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-   </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">   </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -899,20 +921,17 @@ URL: https://data.mifengcha.com/api/v3
         </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
         </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
         </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016249</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">224.72639</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.021914663</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">1123748.2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">250398262.42</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">1123748.2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">250398260</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">23944294000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cw"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ha"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"la"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1003,6 +1022,46 @@ URL: https://data.mifengcha.com/api/v3
 <tr>
 <td>c</td>
 <td>24小时涨跌幅</td>
+</tr>
+<tr>
+<td>h</td>
+<td>24小时最高价</td>
+</tr>
+<tr>
+<td>l</td>
+<td>24小时最低价</td>
+</tr>
+<tr>
+<td>cw</td>
+<td>1周涨跌幅</td>
+</tr>
+<tr>
+<td>hw</td>
+<td>1周最高价</td>
+</tr>
+<tr>
+<td>lw</td>
+<td>1周最低价</td>
+</tr>
+<tr>
+<td>cm</td>
+<td>1月涨跌幅</td>
+</tr>
+<tr>
+<td>hm</td>
+<td>1月最高价</td>
+</tr>
+<tr>
+<td>lm</td>
+<td>1月最低价</td>
+</tr>
+<tr>
+<td>ha</td>
+<td>历史最高价</td>
+</tr>
+<tr>
+<td>la</td>
+<td>历史最低价</td>
 </tr>
 </tbody></table>
 <h3 id='historicalprice'>HistoricalPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
