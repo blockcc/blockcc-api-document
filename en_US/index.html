@@ -258,6 +258,14 @@
               </ul>
           </li>
           <li>
+            <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#2020-04-09" class="toc-h2 toc-link" data-title="2020-04-09">2020-04-09</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#rest-api-2" class="toc-h1 toc-link" data-title="REST API">REST API</a>
               <ul class="toc-list-h2">
                   <li>
@@ -506,6 +514,21 @@ X-Total-Count →10000
 <td>The previous page link</td>
 </tr>
 </tbody></table>
+<h1 id='changelog'>Changelog</h1><h3 id='2020-04-09'>2020-04-09</h3>
+<p><a href="#price">Price</a> add fields</p>
+
+<ul>
+<li>Highest daily price</li>
+<li>Lowest daily price</li>
+<li>Weekly price change</li>
+<li>Weekly high price</li>
+<li>Weekly lowest price</li>
+<li>Monthly price change</li>
+<li>Highest monthly price</li>
+<li>Lowest monthly price</li>
+<li>Highest price in history</li>
+<li>Lowest price in history</li>
+</ul>
 <h1 id='rest-api-2'>REST API</h1>
 <aside class="success">
 URL: https://data.block.cc/api/v3
@@ -892,8 +915,7 @@ Data source: The crypto currency exchange rate is obtained from the currency pri
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-   </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">   </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -905,20 +927,17 @@ Data source: The crypto currency exchange rate is obtained from the currency pri
         </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
         </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
         </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016249</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">224.72639</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.021914663</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">1123748.2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">250398262.42</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">1123748.2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">250398260</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">23944294000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="w">
+        </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cw"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ha"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"la"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -981,32 +1000,72 @@ Update Time: 5 seconds to 60 seconds, according to the volume size classificatio
 <td>Price(BTC)</td>
 </tr>
 <tr>
-<td>v</td>
-<td>Volume(USD)</td>
-</tr>
-<tr>
 <td>T</td>
 <td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>a</td>
-<td>Amount(单位为当前币种)</td>
+<td>Amount(unit: baseCurrency)</td>
+</tr>
+<tr>
+<td>v</td>
+<td>Volume(unit: USD)</td>
 </tr>
 <tr>
 <td>ra</td>
-<td>报告交易量(单位为当前币种)</td>
+<td>ReportedAmount(unit: baseCurrency)</td>
 </tr>
 <tr>
 <td>rv</td>
-<td>报告交易量(USD)</td>
+<td>ReportedVolume(unit: USD)</td>
 </tr>
 <tr>
 <td>m</td>
-<td>市值(USD)</td>
+<td>MarketCap(unit: USD)</td>
 </tr>
 <tr>
 <td>c</td>
-<td>24小时涨跌幅</td>
+<td>24h price change</td>
+</tr>
+<tr>
+<td>h</td>
+<td>24h highest price</td>
+</tr>
+<tr>
+<td>l</td>
+<td>24h lowest price</td>
+</tr>
+<tr>
+<td>cw</td>
+<td>One week price change</td>
+</tr>
+<tr>
+<td>hw</td>
+<td>One week highest price</td>
+</tr>
+<tr>
+<td>lw</td>
+<td>One week lowest price</td>
+</tr>
+<tr>
+<td>cm</td>
+<td>One month price change</td>
+</tr>
+<tr>
+<td>hm</td>
+<td>One month highest price</td>
+</tr>
+<tr>
+<td>lm</td>
+<td>One month lowest price</td>
+</tr>
+<tr>
+<td>ha</td>
+<td>Historical highest price</td>
+</tr>
+<tr>
+<td>la</td>
+<td>Historical lowest price</td>
 </tr>
 </tbody></table>
 <h3 id='historicalprice'>HistoricalPrice</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
