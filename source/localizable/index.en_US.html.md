@@ -156,7 +156,7 @@ prev | The previous page link
 
 ### 2020-04-09
 
-add fields to [Price](#price) 
+Add fields to [Price](#price) 
 
 - Highest daily price
 - Lowest daily price
