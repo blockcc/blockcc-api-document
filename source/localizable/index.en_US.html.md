@@ -169,6 +169,10 @@ Add fields to [Price](#price)
 - Highest price in history
 - Lowest price in history
 
+### 2020-04-16
+
+[Kline](#kline) add 1min interval
+
 # REST API 
 
 <aside class="success">
@@ -740,7 +744,7 @@ Get OrderBook
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 <aside class="warning">
@@ -814,7 +818,7 @@ curl -X GET \
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 #### Request URL
@@ -873,10 +877,10 @@ curl -X GET \
 
 ```
 
-获取交易对K线数据(OHLCV)
+Get Kline Data(OHLCV)
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 #### Request URL
@@ -887,12 +891,12 @@ curl -X GET \
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-desc |QueryString|Yes| 交易所的某个交易对.例如：gate-io_BTC_USD
-interval |QueryString|否| K线类型 (数据点间隔)[5m,15m,30m,1h,6h,1d,7d],默认5m
-end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
-start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
+desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USD
+interval |QueryString|No| interval [1m,5m,15m,30m,1h,6h,1d,7d], default: 5m
+end |QueryString|No| End Time，unit: mills，default current time
+start |QueryString|No| Start Time，unit: mills，default `end - (1000 * interval)`
 
-- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`, 如果请求超过2000个数据点则会响应400 `10010 Duration Limited`
+- maximum of 2000 pieces of data for a single request, `(end-start)/interval <= 2000`, if the request exceeds 2000 data points, the response will be return '10010 Duration Limited'
 
 #### Response Parameter
 
