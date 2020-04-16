@@ -263,6 +263,9 @@
                   <li>
                     <a href="#2020-04-09" class="toc-h2 toc-link" data-title="2020-04-09">2020-04-09</a>
                   </li>
+                  <li>
+                    <a href="#2020-04-16" class="toc-h2 toc-link" data-title="2020-04-16">2020-04-16</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -529,6 +532,8 @@ X-Total-Count →10000
 <li>Highest price in history</li>
 <li>Lowest price in history</li>
 </ul>
+<h3 id='2020-04-16'>2020-04-16</h3>
+<p><a href="#kline">Kline</a> add 1min interval</p>
 <h1 id='rest-api-2'>REST API</h1>
 <aside class="success">
 URL: https://data.block.cc/api/v3
@@ -1404,7 +1409,7 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 
 <aside class="warning">
@@ -1510,7 +1515,7 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 </aside>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 <h4 id='request-url-8'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/trades</code></p>
@@ -1594,10 +1599,10 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
   </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<p>获取交易对K线数据(OHLCV)</p>
+<p>Get Kline Data(OHLCV)</p>
 
 <aside class="notice">
-数据来源：通过交易所API获取
+Data source: Obtained through the exchange API
 </aside>
 <h4 id='request-url-9'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/kline</code></p>
@@ -1614,30 +1619,30 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <td>desc</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>交易所的某个交易对.例如：gate-io_BTC_USD</td>
+<td>MarketPair Desc e.g. gate-io_BTC_USD</td>
 </tr>
 <tr>
 <td>interval</td>
 <td>QueryString</td>
-<td>否</td>
-<td>K线类型 (数据点间隔)[5m,15m,30m,1h,6h,1d,7d],默认5m</td>
+<td>No</td>
+<td>interval [1m,5m,15m,30m,1h,6h,1d,7d], default: 5m</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
-<td>否</td>
-<td>截止时间，单位：毫秒，默认当前时间</td>
+<td>No</td>
+<td>End Time，unit: mills，default current time</td>
 </tr>
 <tr>
 <td>start</td>
 <td>QueryString</td>
-<td>否</td>
-<td>起始时间，单位：毫秒，默认<code>end - (1000 * interval)</code>, 即表示 <code>end</code> 之前1000条数据</td>
+<td>No</td>
+<td>Start Time，unit: mills，default <code>end - (1000 * interval)</code></td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>单次请求最大可获取2000条数据，<code>(end - start) / interval &lt;= 2000</code>, 如果请求超过2000个数据点则会响应400 <code>10010 Duration Limited</code></li>
+<li>maximum of 2000 pieces of data for a single request, <code>(end-start)/interval &lt;= 2000</code>, if the request exceeds 2000 data points, the response will be return &#39;10010 Duration Limited&#39;</li>
 </ul>
 <h4 id='response-parameter-9'>Response Parameter</h4>
 <table><thead>
