@@ -1188,7 +1188,7 @@ Data source: snapshot of current price and trading volume every 5 minutes.
     </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
         </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
         </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
@@ -1288,7 +1288,7 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <ul>
 <li>Get bitfinex&#39;s BTC Tickers <code>market=bitfinex&amp;symbol=BTC</code></li>
 <li>Get bitfinex and binance&#39;s BTC and ETH Tickers <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
-<li>Get gate-io_BTC_USD and binance_ETH_BTC Tickers <code>market_pair=gate-io_BTC_USD,binance_ETH_BTC</code></li>
+<li>Get gate-io_BTC_USDT and binance_ETH_BTC Tickers <code>market_pair=gate-io_BTC_USDT,binance_ETH_BTC</code></li>
 </ul>
 <h4 id='response-parameter-6'>Response Parameter</h4>
 <table><thead>
@@ -1363,14 +1363,14 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <li>Get 24-hour USD transaction volume: 24 hour quote volume (qv) * quote currency to USD exchange rate (r)</li>
 </ul>
 <h3 id='orderbook'>Orderbook</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
+  <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USDT'</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
         </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
@@ -1430,7 +1430,7 @@ Data source: Obtained through the exchange API
 <td>desc</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>MarketPair Desc e.g. gate-io_BTC_USD</td>
+<td>MarketPair Desc e.g. gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1484,7 +1484,7 @@ Data source: Obtained through the exchange API
 <li>数据更新时间一般为交易所接口返回的时间戳,如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
 </ul>
 <h3 id='trades'>Trades</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USD'</span>
+  <span class="s1">'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -1495,7 +1495,7 @@ Data source: Obtained through the exchange API
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
 
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1503,7 +1503,7 @@ Data source: Obtained through the exchange API
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 
@@ -1532,7 +1532,7 @@ Data source: Obtained through the exchange API
 <td>desc</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>交易所的某个交易对.例如：gate-io_BTC_USD</td>
+<td>交易所的某个交易对.例如：gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1574,7 +1574,7 @@ Data source: Obtained through the exchange API
 <li>数据按照交易成交时间戳倒序排序</li>
 </ul>
 <h3 id='kline'>Kline</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USD&amp;type=15m&amp;start=1573637497000'</span>
+  <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&amp;type=15m&amp;start=1573637497000'</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -1619,7 +1619,7 @@ Data source: Obtained through the exchange API
 <td>desc</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>MarketPair Desc e.g. gate-io_BTC_USD</td>
+<td>MarketPair Desc e.g. gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>interval</td>
@@ -2184,7 +2184,7 @@ URL: wss://data.block.cc/ws/v3
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
     </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
     </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
