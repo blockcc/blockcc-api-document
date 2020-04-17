@@ -605,7 +605,7 @@ curl -X GET \
     [
       {
         "T": 1566546506486,
-        "m": "gate-io_BTC_USD",
+        "m": "gate-io_BTC_USDT",
         "o": 9991.19,
         "c": 10206,
         "l": 9860,
@@ -665,7 +665,7 @@ size |QueryString|否| 每页数据量，默认 20 (>=1)
 
 * 获取bitfinex的BTC交易对Ticker `market=bitfinex&symbol=BTC`
 * 获取bitfinex与binance的BTC和ETH交易对Ticker `market=bitfinex,binance&symbol=BTC,ETH`
-* 获取gate-io_BTC_USD与binance_ETH_BTC的Ticker `market_pair=gate-io_BTC_USD,binance_ETH_BTC`
+* 获取gate-io_BTC_USDT与binance_ETH_BTC的Ticker `market_pair=gate-io_BTC_USDT,binance_ETH_BTC`
 
 #### 返回参数说明
 
@@ -697,7 +697,7 @@ s | 点差
 
 ```shell
 curl -X GET \
-  'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USD'
+  'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USDT'
 ```
 
 > 将会返回以下内容:
@@ -705,7 +705,7 @@ curl -X GET \
 ```json
  {
     "T": 1526706175469,
-    "m": "gate-io_BTC_USD",
+    "m": "gate-io_BTC_USDT",
     "b": [
       [
         8221.6,
@@ -760,7 +760,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
 limit |QueryString|否| 深度档位，默认25。
 
 
@@ -786,7 +786,7 @@ b/a | 说明
 
 ```shell
 curl -X GET \
-  'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USD'
+  'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USDT'
 ```
 
 > 将会返回以下内容:
@@ -798,7 +798,7 @@ curl -X GET \
       "p": 8634,
       "v": 5,
       "s": "buy",
-      "m": "gate-io_BTC_USD"
+      "m": "gate-io_BTC_USDT"
 
     },
     {
@@ -806,7 +806,7 @@ curl -X GET \
       "p": 8634,
       "v": 0.001519,
       "s": "sell",
-      "m": "gate-io_BTC_USD"
+      "m": "gate-io_BTC_USDT"
     }
   ]
 
@@ -830,7 +830,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
 limit |QueryString|否| 返回数据量，默认50
 
 
@@ -851,7 +851,7 @@ m|交易对信息
 
 ```shell
 curl -X GET \
-  'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USD&type=15m&start=1573637497000'
+  'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
 ```
 
 > 将会返回以下内容:
@@ -892,7 +892,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USD
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
 interval |QueryString|否| K线类型 (数据点间隔)[1m,5m,15m,30m,1h,6h,1d,7d],默认5m
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
@@ -1299,7 +1299,7 @@ wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
   "topic": "gate-io_BTC_USDT",
   "data": {
     "T": 1566546506486,
-    "m": "gate-io_BTC_USD",
+    "m": "gate-io_BTC_USDT",
     "o": 9991.19,
     "c": 10206,
     "l": 9860,
