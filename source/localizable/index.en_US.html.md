@@ -605,7 +605,7 @@ curl -X GET \
     [
       {
         "T": 1566546506486,
-        "m": "gate-io_BTC_USD",
+        "m": "gate-io_BTC_USDT",
         "o": 9991.19,
         "c": 10206,
         "l": 9860,
@@ -665,7 +665,7 @@ size |QueryString|No| Per page size, default 20 (>=1)
 
 * Get bitfinex's BTC Tickers `market=bitfinex&symbol=BTC`
 * Get bitfinex and binance's BTC and ETH Tickers `market=bitfinex,binance&symbol=BTC,ETH`
-* Get gate-io_BTC_USD and binance_ETH_BTC Tickers `market_pair=gate-io_BTC_USD,binance_ETH_BTC`
+* Get gate-io_BTC_USDT and binance_ETH_BTC Tickers `market_pair=gate-io_BTC_USDT,binance_ETH_BTC`
 
 #### Response Parameter
 
@@ -696,7 +696,7 @@ s | Spread
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'
+  'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USDT'
 ```
 
 > Response:
@@ -704,7 +704,7 @@ curl -X GET \
 ```json
  {
     "T": 1526706175469,
-    "m": "gate-io_BTC_USD",
+    "m": "gate-io_BTC_USDT",
     "b": [
       [
         8221.6,
@@ -759,7 +759,7 @@ Data source: Obtained through the exchange API
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USD
+desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USDT
 limit |QueryString|No| Limit,default 25.
 
 
@@ -785,7 +785,7 @@ b/a | Description
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USD'
+  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'
 ```
 
 > Response:
@@ -797,7 +797,7 @@ curl -X GET \
       "p": 8634,
       "v": 5,
       "s": "buy",
-      "m": "gate-io_BTC_USD"
+      "m": "gate-io_BTC_USDT"
 
     },
     {
@@ -805,7 +805,7 @@ curl -X GET \
       "p": 8634,
       "v": 0.001519,
       "s": "sell",
-      "m": "gate-io_BTC_USD"
+      "m": "gate-io_BTC_USDT"
     }
   ]
 
@@ -829,7 +829,7 @@ Data source: Obtained through the exchange API
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-desc |QueryString|Yes| 交易所的某个交易对.例如：gate-io_BTC_USD
+desc |QueryString|Yes| 交易所的某个交易对.例如：gate-io_BTC_USDT
 limit |QueryString|No| 返回数据量,默认50
 
 
@@ -850,7 +850,7 @@ m|交易对信息
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USD&type=15m&start=1573637497000'
+  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
 ```
 
 > Response:
@@ -891,7 +891,7 @@ Data source: Obtained through the exchange API
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USD
+desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USDT
 interval |QueryString|No| interval [1m,5m,15m,30m,1h,6h,1d,7d], default: 5m
 end |QueryString|No| End Time，unit: mills，default current time
 start |QueryString|No| Start Time，unit: mills，default `end - (1000 * interval)`
@@ -1298,7 +1298,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
   "topic": "gate-io_BTC_USDT",
   "data": {
     "T": 1566546506486,
-    "m": "gate-io_BTC_USD",
+    "m": "gate-io_BTC_USDT",
     "o": 9991.19,
     "c": 10206,
     "l": 9860,
