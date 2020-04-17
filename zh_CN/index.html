@@ -1184,7 +1184,7 @@ URL: https://data.mifengcha.com/api/v3
     </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
         </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
         </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
@@ -1284,7 +1284,7 @@ URL: https://data.mifengcha.com/api/v3
 <ul>
 <li>获取bitfinex的BTC交易对Ticker <code>market=bitfinex&amp;symbol=BTC</code></li>
 <li>获取bitfinex与binance的BTC和ETH交易对Ticker <code>market=bitfinex,binance&amp;symbol=BTC,ETH</code></li>
-<li>获取gate-io_BTC_USD与binance_ETH_BTC的Ticker <code>market_pair=gate-io_BTC_USD,binance_ETH_BTC</code></li>
+<li>获取gate-io_BTC_USDT与binance_ETH_BTC的Ticker <code>market_pair=gate-io_BTC_USDT,binance_ETH_BTC</code></li>
 </ul>
 <h4 id='51d2618749-6'>返回参数说明</h4>
 <table><thead>
@@ -1359,14 +1359,14 @@ URL: https://data.mifengcha.com/api/v3
 <li>获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
 </ul>
 <h3 id='orderbook'>Orderbook</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
+  <span class="s1">'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USDT'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
         </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
@@ -1426,7 +1426,7 @@ URL: https://data.mifengcha.com/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1480,7 +1480,7 @@ URL: https://data.mifengcha.com/api/v3
 <li>数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
 </ul>
 <h3 id='trades'>Trades</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USD'</span>
+  <span class="s1">'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USDT'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
@@ -1491,7 +1491,7 @@ URL: https://data.mifengcha.com/api/v3
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
 
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1499,7 +1499,7 @@ URL: https://data.mifengcha.com/api/v3
       </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
       </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
       </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="w">
+      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 
@@ -1528,7 +1528,7 @@ URL: https://data.mifengcha.com/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -1570,7 +1570,7 @@ URL: https://data.mifengcha.com/api/v3
 <li>数据按照交易成交时间戳倒序排序</li>
 </ul>
 <h3 id='kline'>Kline</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USD&amp;type=15m&amp;start=1573637497000'</span>
+  <span class="s1">'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USDT&amp;type=15m&amp;start=1573637497000'</span>
 </code></pre>
 <blockquote>
 <p>将会返回以下内容:</p>
@@ -1615,7 +1615,7 @@ URL: https://data.mifengcha.com/api/v3
 <td>desc</td>
 <td>QueryString</td>
 <td>是</td>
-<td>交易所的某个交易对。例如：gate-io_BTC_USD</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>interval</td>
@@ -2180,7 +2180,7 @@ URL: wss://data.mifengcha.com/ws/v3
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
     </span><span class="s2">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
     </span><span class="s2">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
