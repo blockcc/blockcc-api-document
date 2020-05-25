@@ -262,6 +262,9 @@
                   <li>
                     <a href="#2020-04-16" class="toc-h2 toc-link" data-title="2020-04-16">2020-04-16</a>
                   </li>
+                  <li>
+                    <a href="#2020-05-25" class="toc-h2 toc-link" data-title="2020-05-25">2020-05-25</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -318,6 +321,9 @@
                             </li>
                             <li>
                               <a href="#article" class="toc-h3 toc-link" data-title="REST API">Article</a>
+                            </li>
+                            <li>
+                              <a href="#socialmedia" class="toc-h3 toc-link" data-title="REST API">SocialMedia</a>
                             </li>
                         </ul>
                   </li>
@@ -529,7 +535,9 @@ X-Total-Count →10000
 <li>历史最低价</li>
 </ul>
 <h3 id='2020-04-16'>2020-04-16</h3>
-<p><a href="#kline">Kline</a> 新增1分钟类型</p>
+<p>K线新增1分钟类型 <a href="#kline">Kline</a> </p>
+<h3 id='2020-05-25'>2020-05-25</h3>
+<p>新增社交媒体API <a href="#socialmedia">SocialMedia</a></p>
 <h1 id='rest-api-2'>REST API</h1>
 <aside class="success">
 URL: https://data.mifengcha.com/api/v3
@@ -2028,6 +2036,143 @@ URL: https://data.mifengcha.com/api/v3
 <td>发文时比特币价格</td>
 </tr>
 </tbody></table>
+<h3 id='socialmedia'>SocialMedia</h3><pre class="highlight shell tab-shell"><code>curl https://data.mifengcha.com/api/v3/social_media?source<span class="o">=</span>TWITTER
+</code></pre>
+<blockquote>
+<p>将会返回以下内容:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1264806231472046080"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TWITTER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The ability to recognize humor is a defining characteristic of intelligence.</span><span class="se">\n\n</span><span class="s2">I use it constantly to cull my followers by placing the burden of culling upon themselves."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"961445378"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/officialmcafee.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"screenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"officialmcafee"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590388279000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"retweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1264805947861536771"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TWITTER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"⚡ @cartesiproject Listing + Contest ⚡</span><span class="se">\n\n</span><span class="s2">$CTSI/USDT trading starts today at 5 PM IST on #WazirX.</span><span class="se">\n\n</span><span class="s2">We're giving away 378 #CTSI worth ₹1,000 each to 5 lucky people who:</span><span class="se">\n\n</span><span class="s2">1. Retweet this tweet</span><span class="se">\n</span><span class="s2">2. Reply to this tweet &amp;amp; mention 3 friends in the reply</span><span class="se">\n\n</span><span class="s2">Valid for 24 hrs! https://t.co/MIhccc43AI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"955744720092835841"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/WazirXIndia.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"screenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WazirXIndia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590388211000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"retweeted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"retweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>获取社交媒体内容</p>
+
+<aside class="notice">
+数据来源：Twitter，微博
+</aside>
+<h4 id='url-14'>请求URL</h4>
+<p><code>GET https://data.mifengcha.com/api/v3/social_media</code></p>
+<h4 id='1f9ac54b15-14'>请求参数</h4>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>传输方式</th>
+<th>必选</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source</td>
+<td>QueryString</td>
+<td>否</td>
+<td>来源: [WEIBO, TWITTER], 默认 WEIBO</td>
+</tr>
+<tr>
+<td>page</td>
+<td>QueryString</td>
+<td>否</td>
+<td>当前页数，默认 0, (&gt;=0)。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>QueryString</td>
+<td>否</td>
+<td>每页数据量，默认 20 (100&gt;=size&gt;=1)。</td>
+</tr>
+</tbody></table>
+<h4 id='51d2618749-14'>返回参数说明</h4>
+<table><thead>
+<tr>
+<th>参数</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td style="text-align: left">推文ID</td>
+</tr>
+<tr>
+<td>source</td>
+<td style="text-align: left">社交媒体平台</td>
+</tr>
+<tr>
+<td>content</td>
+<td style="text-align: left">推文内容</td>
+</tr>
+<tr>
+<td>images</td>
+<td style="text-align: left">推文图片</td>
+</tr>
+<tr>
+<td>userId</td>
+<td style="text-align: left">用户ID</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td style="text-align: left">用户头像</td>
+</tr>
+<tr>
+<td>screenName</td>
+<td style="text-align: left">用户名</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td style="text-align: left">发布时间</td>
+</tr>
+<tr>
+<td>retweeted</td>
+<td style="text-align: left">是否是转推</td>
+</tr>
+<tr>
+<td>retweet</td>
+<td style="text-align: left">被转发推文</td>
+</tr>
+<tr>
+<td>retweet.content</td>
+<td style="text-align: left">被转发推文内容</td>
+</tr>
+<tr>
+<td>retweet.images</td>
+<td style="text-align: left">被转发推文图片</td>
+</tr>
+<tr>
+<td>retweet.userId</td>
+<td style="text-align: left">被转发用户ID</td>
+</tr>
+<tr>
+<td>retweet.avatar</td>
+<td style="text-align: left">被转发用户头像</td>
+</tr>
+<tr>
+<td>retweet.screenName</td>
+<td style="text-align: left">被转发用户名</td>
+</tr>
+</tbody></table>
 <h1 id='websocket-api'>WebSocket API</h1>
 <aside class="success">
 URL: wss://data.mifengcha.com/ws/v3
@@ -2051,7 +2196,7 @@ URL: wss://data.mifengcha.com/ws/v3
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Subscribed"</span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='19b61b1c63'>消息格式</h4>
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='51d2618749-14'>返回参数说明</h4>
+<h4 id='51d2618749-15'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2076,7 +2221,7 @@ URL: wss://data.mifengcha.com/ws/v3
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Unsubscribed"</span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='19b61b1c63-2'>消息格式</h4>
 <p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='51d2618749-15'>返回参数说明</h4>
+<h4 id='51d2618749-16'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2102,7 +2247,7 @@ URL: wss://data.mifengcha.com/ws/v3
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="s2">"topics"</span><span class="p">:[</span><span class="s2">"price:bitcoin"</span><span class="p">]}</span><span class="w">
 </span></code></pre><h4 id='19b61b1c63-3'>消息格式</h4>
 <p><code>{&quot;op&quot;: &quot;topics&quot;}</code></p>
-<h4 id='51d2618749-16'>返回参数说明</h4>
+<h4 id='51d2618749-17'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2148,7 +2293,7 @@ URL: wss://data.mifengcha.com/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic'>Topic格式</h4>
 <p><code>price:</code> + <a href="#symbols">币种</a> slug</p>
-<h4 id='51d2618749-17'>返回参数说明</h4>
+<h4 id='51d2618749-18'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2199,7 +2344,7 @@ URL: wss://data.mifengcha.com/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-2'>Topic格式</h4>
 <p><code>ticker:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='51d2618749-18'>返回参数说明</h4>
+<h4 id='51d2618749-19'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2256,7 +2401,7 @@ URL: wss://data.mifengcha.com/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-3'>Topic格式</h4>
 <p><code>orderbook:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='51d2618749-19'>返回参数说明</h4>
+<h4 id='51d2618749-20'>返回参数说明</h4>
 <table><thead>
 <tr>
 <th>参数</th>
