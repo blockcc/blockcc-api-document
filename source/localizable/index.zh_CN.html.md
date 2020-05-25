@@ -173,7 +173,11 @@ prev | 上一页的链接
 
 ### 2020-04-16
 
-[Kline](#kline) 新增1分钟类型
+K线新增1分钟类型 [Kline](#kline) 
+
+### 2020-05-25
+
+新增社交媒体API [SocialMedia](#socialmedia)
 
 # REST API 
 
@@ -1149,191 +1153,85 @@ id| 文章id
 --------- | -----------
 btcPrice|发文时比特币价格
 
-
-### Weibo
+### SocialMedia
 
 ```shell
-curl https://mifengcha.com/api/new/v2/social/media?type=weibo&t={app_key}
+curl https://data.mifengcha.com/api/v3/social_media?source=TWITTER
 ```
 
 > 将会返回以下内容:
 
 ```json
-{
-    "code":0,
-    "message":"success",
-    "data":{
-        "list":[
-            {
-                "admin_flag":0,
-                "hasConfirmLives":false,
-                "datetime":1588819284000,
-                "text":"转发微博",
-                "language":"zh",
-                "user_id":"1868196513",
-                "screen_name":"闪电HSL",
-                "retweet_images":[
-
-                ],
-                "retweet":"发布了头条文章：《新冠病毒会导致经济大萧条吗？》    面对目前新冠病毒带来的经济困境，加上中国的经济已经转弱了一些时日，我在下面提出七项政策建议给北京的朋友考虑。 http://t.cn/A6ACnpPM ​",
-                "retweet_screen_name":"张五常",
-                "retweet_user_id":"1199839991",
-                "retweeted":true,
-                "_index":"weibo_3",
-                "_id":"4501896733253411",
-                "avatar":"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/meddia/weibo/avatar/1868196513.jpg",
-                "retweeted_user_avatar":"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/1868196513.jpg"
-            },
-            {
-                "admin_flag":1,
-                "hasConfirmLives":false,
-                "datetime":1588823914000,
-                "text":"#成都[超话]#成都开始发钱了啊！啊啊啊[doge][doge]#成都# ​",
-                "language":"zh",
-                "user_id":"1962141953",
-                "screen_name":"区块创投仝春",
-                "images":[
-                    "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/media/weibo/93ff5474ed51d417214a3b76fb58d33a.jpg"
-                ],
-                "retweeted":false,
-                "_index":"weibo_3",
-                "_id":"4501916150020417",
-                "avatar":"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/meddia/weibo/avatar/1962141953.jpg"
-            }
-        ],
-        "count":97381,
-        "page":0,
-        "size":20,
-        "pageCount":4870
+[
+    {
+    "id": "1264806231472046080",
+    "source": "TWITTER",
+    "content": "The ability to recognize humor is a defining characteristic of intelligence.\n\nI use it constantly to cull my followers by placing the burden of culling upon themselves.",
+    "images": [],
+    "userId": "961445378",
+    "avatar": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/officialmcafee.jpg",
+    "screenName": "officialmcafee",
+    "timestamp": 1590388279000,
+    "retweeted": false,
+    "retweet": null
+    },
+    {
+    "id": "1264805947861536771",
+    "source": "TWITTER",
+    "content": "⚡ @cartesiproject Listing + Contest ⚡\n\n$CTSI/USDT trading starts today at 5 PM IST on #WazirX.\n\nWe're giving away 378 #CTSI worth ₹1,000 each to 5 lucky people who:\n\n1. Retweet this tweet\n2. Reply to this tweet &amp; mention 3 friends in the reply\n\nValid for 24 hrs! https://t.co/MIhccc43AI",
+    "images": [
+    "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"
+    ],
+    "userId": "955744720092835841",
+    "avatar": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/WazirXIndia.jpg",
+    "screenName": "WazirXIndia",
+    "timestamp": 1590388211000,
+    "retweeted": false,
+    "retweet": null
     }
-}
+]
 ```
 
-微博推文，按时间倒序。
+获取社交媒体内容
 
 <aside class="notice">
-数据来源：微博
+数据来源：Twitter，微博
 </aside>
 
-#### 请求 URL
+#### 请求URL
 
-`https://mifengcha.com/api/new/v2/social/media?type=weibo&t={app_key}`
-
-#### 请求参数
-
-参数名称|传输方式|必选|说明
---------- |---------|--------- | -----------
- type      |QueryString|是| 类型 
- t         |QueryString|是| app_key                                                      
-timestamp |QueryString|否| 毫秒时间戳，默认是当前时间；若制定时间，则获取该时间前的微博信息 
- size      |QueryString|否| 返回的条数，默认 20 条 
-
-
-#### 返回参数说明
-
-参数 | 说明
-:-------: | :---------:
- user_id |用户 ID
- screen_name |用户名
- avatar |用户头像
- images |推文图片
- text      |推文内容
- datetime  |发布时间
- language  |语言
- retweeted |是否包含转发的推文
- retweet |转发推文内容
- retweet_screen_name |转发推文用户名
- retweet_images |转发推文图片
- retweet_user_id |转发推文的用户 ID
-
-
-### Twitter
-
-```shell
-curl https://mifengcha.com/api/new/v2/social/media?type=twitter&t={app_key}
-```
-
-> 将会返回以下内容:
-
-```json
-{
-    "code":0,
-    "message":"success",
-    "data":{
-        "list":[
-            {
-                "images":[
-
-                ],
-                "datetime":1588823024000,
-                "user_id":"902839045356744704",
-                "screen_name":"justinsuntron",
-                "retweet_images":[
-                    "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/4da0f8d9adfd30d704593bba84f5e701.jpg"
-                ],
-                "translation_zh":"⚠️当“风险警告”在#TronLink上跳出时，发生了什么？ 🔈不必担心⛔️由于主网某些节点上的负载过大Switch只需单击“切换节点”即可手动更改为任何可用节点as️请按照以下说明进行操作⬇️https://t.co/lb1AUO7jz2",
-                "name":"Justin Sun",
-                "description":"Tron创始人孙宇晨",
-                "language":"en",
-                "text":"⚠️ What happened when the "Risk warning" jumps out on #TronLink?
-
-🔈Don't worry
-
-⛔️ Due to the overload on certain node of the Mainnet
-
-🔁Just click "Switch Node" to manually change to any available node
-
-⬇️ Follow as below ⬇️ https://t.co/lb1AUO7jz2",
-                "retweeted":true,
-                "_index":"twitter_1",
-                "_id":"1258241078064377857",
-                "avatar":"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/justinsuntron.jpg",
-                "retweeted_user_avatar":"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/undefined.jpg"
-            }
-        ],
-        "count":708304,
-        "page":0,
-        "size":20,
-        "pageCount":35416
-    }
-}
-```
-
-推特推文，按时间倒序。
-
-<aside class="notice">
-数据来源：推特
-</aside>
-
-#### 请求 URL
-
-`https://mifengcha.com/api/new/v2/social/media?type=twitter&t={app_key}`
-
+`GET https://data.mifengcha.com/api/v3/social_media`
 
 
 #### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
- type      |QueryString|是| 类型
- t         |QueryString|是| app_key                                                      
-timestamp |QueryString|否| 毫秒时间戳，默认是当前时间；若制定时间，则获取该时间前的微博信息 
- size      |QueryString|否| 返回的条数，默认 20 条 
+source |QueryString|否| 来源: [WEIBO, TWITTER], 默认 WEIBO                                               
+page |QueryString|否| 当前页数，默认 0, (>=0)。
+size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。
 
 
 
 #### 返回参数说明
 
 参数 | 说明
-:-------- | :----------
- user_id |用户 ID
- avatar |用户头像
- name |用户名
- text |推文内容
- translation_zh |推文内容中文翻译
- retweeted |是否是转发推文
- retweet_images |转发推文图片
- retweeted_user_avatar |转发推文用户头像
+-------- | :----------
+id | 推文ID
+source | 社交媒体平台
+content |推文内容
+images | 推文图片
+userId |用户ID
+avatar |用户头像
+screenName | 用户名
+timestamp | 发布时间
+retweeted | 是否是转推
+retweet | 被转发推文
+retweet.content | 被转发推文内容
+retweet.images | 被转发推文图片
+retweet.userId | 被转发用户ID
+retweet.avatar | 被转发用户头像
+retweet.screenName | 被转发用户名
 
 
 
