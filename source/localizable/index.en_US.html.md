@@ -1,5 +1,5 @@
 ---
-title: Block.cc developer documentation v3
+title: Block.cc APIv3 Developer Documentation 
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -11,13 +11,14 @@ toc_footers:
   - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: true
+code_clipboard: true
 ---
 
 # Overview
 
 ## Introduction
 
-Block.cc is a professional cryptocurrency information service platform that provides one-stop cryptocurrency services such as cryptocurrency quotes, data, and information. Blockchain enthusiasts and cryptocurrency investors provide the most authoritative and smooth products and services.
+[Block.cc](https://block.cc)  is a professional cryptocurrency information service platform that provides one-stop cryptocurrency services such as cryptocurrency quotes, data, and information. Blockchain enthusiasts and cryptocurrency investors provide the most authoritative and smooth products and services.
 
 Third-party application developers can use this service to quickly build a stable and efficient cryptocurrency market system to provide technical support for real-time business needs and product operations.
 
@@ -153,6 +154,10 @@ first | The first page link
 prev | The previous page link
 
 # Changelog
+
+### 2020-10-01
+
+- APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.
 
 ### 2020-04-09
 
