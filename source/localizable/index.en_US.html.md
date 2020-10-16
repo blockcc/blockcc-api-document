@@ -429,7 +429,7 @@ Updated: crypto currency update time of 60 seconds, fiat currency update time wa
 </aside>
 
 <aside class="notice">
-Data source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
+Data Source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
 </aside>
 
 #### Request URL
@@ -498,7 +498,7 @@ Update Time: 5 seconds to 60 seconds, according to the volume size classificatio
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-slug |QueryString|No| Currency slug, separated by commas.
+slug |QueryString|No| Currency slug, comma-separated
 page |QueryString|No| Current page, default 0, (>=0)
 size |QueryString|No| Per page size, default is 20 (100>=size>=1)
 
@@ -570,7 +570,7 @@ curl -X GET \
 Get currency historical price
 
 <aside class="notice">
-Data source: snapshot of current price and trading volume every 5 minutes.
+Data Source: Snapshot of current price and trading volume every 5 minutes.
 </aside>
 
 #### Request URL
@@ -581,11 +581,11 @@ Data source: snapshot of current price and trading volume every 5 minutes.
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-slug |QueryString|Yes| 币种名称.
-start |QueryString|否| 起始时间，单位：毫秒, 默认该币种最早记录的时间
-end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
+slug |QueryString|Yes| Symbol Slug.
+start |QueryString|No| Start Time，unit: mills, default min timestamp
+end |QueryString|No| End Time，unit: mills，default current timestamp
 
-- 该接口会对返回数据进行下采样(downsampled), 数据点的间隔(`interval`)根据传递的参数`end` - `start`设置, 原则上`interval` = `end` - `start` / 1000, 每次请求数据返回限制大约为1000条。
+- This API will downsample the returned data, the interval of data points (`interval`) is set according to the passed parameters `end`-`start`, in principle `interval` = `end`-`start` / 1000, each request data return limit is about 1000.
 
 #### Response Parameter
 
@@ -642,7 +642,7 @@ Updated: 1 second to 30 seconds, the impact factor update frequency include: the
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 <aside class="warning">
@@ -657,11 +657,11 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-market |QueryString|No| Market Slug, comma separated
-symbol |QueryString|No| BaseCurrency Symbol, comma separated
-slug |QueryString|No|  BaseCurrency Slug, comma separated
-currency |QueryString|No|  QuoteCurrency Symbol, comma separated
-market_pair |QueryString|No| MarketPairDesc, comma separated
+market |QueryString|No| Market Slug, comma-separated
+symbol |QueryString|No| BaseCurrency Symbol, comma-separated
+slug |QueryString|No|  BaseCurrency Slug, comma-separated
+currency |QueryString|No|  QuoteCurrency Symbol, comma-separated
+market_pair |QueryString|No| MarketPairDesc, comma-separated
 page |QueryString|No| Current page, default 0, (>=0)
 size |QueryString|No| Per page size, default 20 (>=1)
 
@@ -670,7 +670,7 @@ size |QueryString|No| Per page size, default 20 (>=1)
 * When there are more than two parameters of market, symbol, slug, and currency, only transaction pairs that meet the conditions are returned.
 * Ignore market, symbol, slug, currency when market_pair exists.
 
-例如：
+e.g.
 
 * Get bitfinex's BTC Tickers `market=bitfinex&symbol=BTC`
 * Get bitfinex and binance's BTC and ETH Tickers `market=bitfinex,binance&symbol=BTC,ETH`
@@ -749,15 +749,15 @@ curl -X GET \
 Get OrderBook
 
 <aside class="notice">
-更新时间：1秒-40秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 0.1-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 <aside class="warning">
-注意: 数据中心会对异常数据进行拦截.请接入时检查时间戳.
+Note: The data center will intercept abnormal data. Please check the timestamp when accessing.
 </aside>
 
 #### Request URL
@@ -787,7 +787,7 @@ b/a | Description
 1|Amount
 
 
-* 数据更新时间一般为交易所接口返回的时间戳,如果交易所接口未返回时间戳则为发出请求前的时间戳
+* The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a timestamp, it is the timestamp before request
 
 
 ### Trades
@@ -820,14 +820,14 @@ curl -X GET \
 
 ```
 
-获取交易对成交记录
+Get Trades
 
 <aside class="notice">
-更新时间：5秒-60秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 5-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 #### Request URL
@@ -838,21 +838,21 @@ Data source: Obtained through the exchange API
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-desc |QueryString|Yes| 交易所的某个交易对.例如：gate-io_BTC_USDT
-limit |QueryString|No| 返回数据量,默认50
+desc |QueryString|Yes| Market Pair Desc. e.g.：gate-io_BTC_USDT
+limit |QueryString|No| Data Size, default 50 (<=100)
 
 
 #### Response Parameter
 
 Parameter | Description
 --------- | -----------
-T|交易成交时间戳
-p|成交价格
-v|成交量
-s|成交类型[buy,sell,none],为taker操作方向
-m|交易对信息
+T|13-bit Unix Timestamp
+p|Price
+v|Base Volume
+s|Taker Order Side[buy,sell,none]
+m|Market Pair Desc
 
-* 数据按照交易成交时间戳倒序排序
+* Data in reverse order according to transaction timestamp
 
 
 ### Kline
@@ -889,7 +889,7 @@ curl -X GET \
 Get Kline Data(OHLCV)
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 #### Request URL
@@ -918,7 +918,7 @@ l|Low Price(unit: quoteCurrency)
 h|High Price(unit: quoteCurrency)
 v|Volume (unit: baseCurrency)
 
-## Information data
+## News data
 
 
 ### Brief
@@ -973,13 +973,13 @@ size |QueryString|No| Per page size, default 20 (>=1)
 
 Parameter | Description
 --------- | -----------
-title|标题
-content|内容
+title|Title 
+content|Content
 timestamp|13-bit Unix Timestamp
-importance|是否是要闻
-url|block.cc原文链接
-source|来源
-images|图片链接
+importance|Is Importance
+url|Block.cc Link
+source|Source
+images|Cover Image Link
 
 
 ### Announcements
@@ -1017,10 +1017,12 @@ curl -X GET \
 
 ```
 
-获取交易所公告数据
+Get Exchange Announcement List
+
 <aside class="notice">
-数据来源：通过交易所获取
+Data Source: From Exchange
 </aside>
+
 #### Request URL
 
 `GET https://data.block.cc/api/v3/announcements?locale=zh_CN`
@@ -1039,14 +1041,14 @@ market |QueryString|No| Market slug
 
 Parameter | Description
 --------- | -----------
-title|标题
-content|内容
+title|Title
+content|HTML Content
 timestamp|13-bit Unix Timestamp
-importance|是否是要闻
-sourceUrl|原文链接
-market|来源
-url|block.cc原文链接
-images|图片链接
+importance|Is Importance
+sourceUrl|Source Url
+market|Market
+url|Block.cc Link
+images|Cover Image Link
 
 
 ### Articles
@@ -1079,7 +1081,7 @@ curl -X GET \
 
 ```
 
-获取资讯文章列表
+Get Article List
 
 #### Request URL
 
@@ -1098,15 +1100,15 @@ size |QueryString|No| Per page size, default 20 (>=1, <=20)
 
 Parameter | Description
 --------- | -----------
-id| 文章id
-timestamp|发布时间
-title|标题
-description|文章描述
-author|文章作者
-categories|分类, 逗号分隔
-images|图片链接
-url|block.cc原文链接
-source|来源
+id| Article ID
+timestamp|13-bit Unix Timestamp
+title|Title
+description|Description
+author|Author
+categories|Categories, comma-separated
+images|Cover Image Link
+url|Block.cc Link
+source|Source
 
 
 ### Article
@@ -1136,7 +1138,7 @@ curl -X GET \
   }
 ```
 
-获取单篇资讯文章内容
+Get One Article
 
 #### Request URL
 
@@ -1146,16 +1148,16 @@ curl -X GET \
 
 Parameter | Description
 --------- | -----------
-id| 文章id
+id| Article ID
 
 
 #### Response Parameter
 
-与文章格式与列表相同,多出`btcPrice`字段
+Same as the article list format, with the addition of the `btcPrice` field
 
 Parameter | Description
 --------- | -----------
-btcPrice|发文时比特币价格
+btcPrice|Bitcoin price at launch
 
 
 ### SocialMedia
@@ -1164,7 +1166,7 @@ btcPrice|发文时比特币价格
 curl https://data.block.cc/api/v3/social_media?source=TWITTER
 ```
 
-> 将会返回以下内容:
+> Response:
 
 ```json
 [
@@ -1197,46 +1199,46 @@ curl https://data.block.cc/api/v3/social_media?source=TWITTER
 ]
 ```
 
-获取社交媒体内容
+Get SocialMedia List
 
 <aside class="notice">
-数据来源：Twitter，微博
+Data Source：Twitter，Weibo
 </aside>
 
-#### 请求URL
+#### Request URL
 
 `GET https://data.block.cc/api/v3/social_media`
 
 
-#### 请求参数
+#### Request Parameter
 
-参数名称|传输方式|必选|说明
+Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-source |QueryString|否| 来源: [WEIBO, TWITTER], 默认 WEIBO                                               
-page |QueryString|否| 当前页数，默认 0, (>=0)。
-size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。
+source |QueryString|Yes| Source: [WEIBO, TWITTER], default WEIBO                                               
+page |QueryString|No| Current page, default 0, (>=0)
+size |QueryString|No| Per page size, default is 20 (100>=size>=1)
 
 
 
-#### 返回参数说明
+#### Response Parameter
 
-参数 | 说明
+Parameter | Description
 -------- | :----------
-id | 推文ID
-source | 社交媒体平台
-content |推文内容
-images | 推文图片
-userId |用户ID
-avatar |用户头像
-screenName | 用户名
-timestamp | 发布时间
-retweeted | 是否是转推
-retweet | 被转发推文
-retweet.content | 被转发推文内容
-retweet.images | 被转发推文图片
-retweet.userId | 被转发用户ID
-retweet.avatar | 被转发用户头像
-retweet.screenName | 被转发用户名
+id | SocialMedia ID
+source | SocialMedia Platform
+content |Content
+images | Images Link
+userId | User Id
+avatar | User Avatar
+screenName | User Name (ScreenName)
+timestamp | 13-bit Unix Timestamp
+retweeted | Is Retweeted
+retweet | Retweeted Content
+retweet.content | Retweeted Content
+retweet.images | Retweeted Images Link
+retweet.userId | Retweeted User Id
+retweet.avatar | Retweeted User Avatar
+retweet.screenName | Retweeted User Name (ScreenName)
 
 
 
@@ -1248,13 +1250,13 @@ retweet.screenName | 被转发用户名
 URL: wss://data.block.cc/ws/v3
 </aside>
 
-* 每个链接有效期不超过24小时,请妥善处理断线重连.
-* 每30秒服务端会发送ping帧,客户端应当在30秒内回复pong帧,否则服务端会主动断开链接.
-* 连接时需要将用户对应的API_KEY作为参数传入,`wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]`.
-* 每个链接最多可订阅200个Topic.
-* 每个账户可以建立的链接数根据账户套餐设定, 详情查看 [Pricing](https://data.block.cc/pricing).
-* 服务端不会校验Topic的正确性,若订阅无效Topic不会有响应,并且占用Topic额度.
-* 90秒内不会推送没有变化的数据
+* The validity period of each link does not exceed 24 hours, please properly handle the disconnection and reconnection.
+* The server will send a ping frame every 30 seconds, and the client should reply to the pong frame within 30 seconds, otherwise the server will actively disconnect the link.
+* API_KEY needs to be passed in as a parameter when connecting, `wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]`.
+* One link can subscribe to up to 200 topics.
+* The maximum number of connections for an account is based on its price package, see [Pricing](https://data.block.cc/pricing) for details.
+* The server will not verify the correctness of the topic. If the subscription is invalid, the topic will not respond and occupy the topic subscription quota.
+* The unchanged data will not be pushed within 90 seconds
 
 
 ## Subscribe
@@ -1263,13 +1265,13 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
-> 订阅成功将会返回以下内容: 
+> Response: 
 
 ```json
 {"code":0,"message":"Subscribed"}
 ```
 
-#### 消息格式
+#### Request Parameter
 
 `{"op": "subscribe", "args": ["<topic1>","<topic2>", ...]}`
 
@@ -1295,7 +1297,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {"code":0,"message":"Unsubscribed"}
 ```
 
-#### 消息格式
+#### Request Parameter
 
 `{"op": "unsubscribe", "args": ["<topic1>","<topic2>", ...]}`
 
@@ -1320,7 +1322,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {"code":0,"message":"Success","topics":["price:bitcoin"]}
 ```
 
-#### 消息格式
+#### Request Parameter
 
 `{"op": "topics"}`
 
@@ -1363,7 +1365,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 #### Topic Format
 
-`price:` + [币种](#symbols) slug
+`price:` + [Symbol](#symbols) slug
 
 #### Response Parameter
 
@@ -1410,7 +1412,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 #### Topic Format
 
-`ticker:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
+`ticker:` + MarketPair Desc(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
 #### Response Parameter
 
@@ -1464,7 +1466,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
 #### Topic Format
 
-`orderbook:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
+`orderbook:` + MarketPair Desc(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
 #### Response Parameter
 
