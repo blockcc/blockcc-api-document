@@ -261,6 +261,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2020-10-16" class="toc-h2 toc-link" data-title="2020-10-16">2020-10-16</a>
+                  </li>
+                  <li>
                     <a href="#2020-10-01" class="toc-h2 toc-link" data-title="2020-10-01">2020-10-01</a>
                   </li>
                   <li>
@@ -526,7 +529,11 @@ X-Total-Count →10000
 <td>The previous page link</td>
 </tr>
 </tbody></table>
-<h1 id='changelog'>Changelog</h1><h3 id='2020-10-01'>2020-10-01</h3>
+<h1 id='changelog'>Changelog</h1><h3 id='2020-10-16'>2020-10-16</h3>
+<ul>
+<li>Add request param <code>interval</code> to <a href="#historicalprice">HistoricalPrice</a> </li>
+</ul>
+<h3 id='2020-10-01'>2020-10-01</h3>
 <ul>
 <li>APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.</li>
 </ul>
@@ -1156,10 +1163,18 @@ Data Source: Snapshot of current price and trading volume every 5 minutes.
 <td>No</td>
 <td>End Time，unit: mills，default current timestamp</td>
 </tr>
+<tr>
+<td>interval</td>
+<td>QueryString</td>
+<td>否</td>
+<td>Interval[5m,15m,30m,1h,2h,6h,12h,1d,2d], default calculated based on <code>start</code>, <code>end</code></td>
+</tr>
 </tbody></table>
 
 <ul>
-<li>This API will downsample the returned data, the interval of data points (<code>interval</code>) is set according to the passed parameters <code>end</code>-<code>start</code>, in principle <code>interval</code> = <code>end</code>-<code>start</code> / 1000, each request data return limit is about 1000.</li>
+<li>The data size limit per request is about 1000</li>
+<li>When <code>interval</code> is not blank, it needs to satisfy <code>(end-start) / interval &lt;= 1000</code>, if more than 1000 data points are requested, 400 <code>10010 Duration Limited</code> will be responded.</li>
+<li>When <code>interval</code> is blank, it will downsample the responded data, select the optimal <code>interval</code> to ensure the coverage of data, in principle <code>interval</code> ≈ <code>end</code>-<code>start</code> / 1000.</li>
 </ul>
 <h4 id='response-parameter-5'>Response Parameter</h4>
 <table><thead>
@@ -1657,7 +1672,7 @@ Data Source: From Exchange
 </tbody></table>
 
 <ul>
-<li>maximum of 2000 pieces of data for a single request, <code>(end-start)/interval &lt;= 2000</code>, if the request exceeds 2000 data points, the response will be return &#39;10010 Duration Limited&#39;</li>
+<li>maximum of 2000 pieces of data for a single request, <code>(end-start)/interval &lt;= 2000</code>, if the request exceeds 2000 data points, the response will be return 400 <code>10010 Duration Limited</code></li>
 </ul>
 <h4 id='response-parameter-9'>Response Parameter</h4>
 <table><thead>
