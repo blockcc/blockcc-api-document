@@ -315,7 +315,7 @@
                         </ul>
                   </li>
                   <li>
-                    <a href="#information-data" class="toc-h2 toc-link" data-title="Information data">Information data</a>
+                    <a href="#news-data" class="toc-h2 toc-link" data-title="News data">News data</a>
                         <ul class="toc-list-h3">
                             <li>
                               <a href="#brief" class="toc-h3 toc-link" data-title="REST API">Brief</a>
@@ -907,7 +907,7 @@ Updated: crypto currency update time of 60 seconds, fiat currency update time wa
 </aside>
 
 <aside class="notice">
-Data source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
+Data Source: The crypto currency exchange rate is obtained from the currency price calculated by weighted average.
 </aside>
 <h4 id='request-url-3'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/exchange_rate</code></p>
@@ -981,7 +981,7 @@ Update Time: 5 seconds to 60 seconds, according to the volume size classificatio
 <td>slug</td>
 <td>QueryString</td>
 <td>No</td>
-<td>Currency slug, separated by commas.</td>
+<td>Currency slug, comma-separated</td>
 </tr>
 <tr>
 <td>page</td>
@@ -1125,7 +1125,7 @@ Update Time: 5 seconds to 60 seconds, according to the volume size classificatio
 <p>Get currency historical price</p>
 
 <aside class="notice">
-Data source: snapshot of current price and trading volume every 5 minutes.
+Data Source: Snapshot of current price and trading volume every 5 minutes.
 </aside>
 <h4 id='request-url-5'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/price/history?slug=bitcoin</code></p>
@@ -1142,24 +1142,24 @@ Data source: snapshot of current price and trading volume every 5 minutes.
 <td>slug</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>币种名称.</td>
+<td>Symbol Slug.</td>
 </tr>
 <tr>
 <td>start</td>
 <td>QueryString</td>
-<td>否</td>
-<td>起始时间，单位：毫秒, 默认该币种最早记录的时间</td>
+<td>No</td>
+<td>Start Time，unit: mills, default min timestamp</td>
 </tr>
 <tr>
 <td>end</td>
 <td>QueryString</td>
-<td>否</td>
-<td>截止时间，单位：毫秒，默认当前时间</td>
+<td>No</td>
+<td>End Time，unit: mills，default current timestamp</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>该接口会对返回数据进行下采样(downsampled), 数据点的间隔(<code>interval</code>)根据传递的参数<code>end</code> - <code>start</code>设置, 原则上<code>interval</code> = <code>end</code> - <code>start</code> / 1000, 每次请求数据返回限制大约为1000条。</li>
+<li>This API will downsample the returned data, the interval of data points (<code>interval</code>) is set according to the passed parameters <code>end</code>-<code>start</code>, in principle <code>interval</code> = <code>end</code>-<code>start</code> / 1000, each request data return limit is about 1000.</li>
 </ul>
 <h4 id='response-parameter-5'>Response Parameter</h4>
 <table><thead>
@@ -1230,7 +1230,7 @@ Updated: 1 second to 30 seconds, the impact factor update frequency include: the
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 <aside class="warning">
@@ -1251,31 +1251,31 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <td>market</td>
 <td>QueryString</td>
 <td>No</td>
-<td>Market Slug, comma separated</td>
+<td>Market Slug, comma-separated</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>QueryString</td>
 <td>No</td>
-<td>BaseCurrency Symbol, comma separated</td>
+<td>BaseCurrency Symbol, comma-separated</td>
 </tr>
 <tr>
 <td>slug</td>
 <td>QueryString</td>
 <td>No</td>
-<td>BaseCurrency Slug, comma separated</td>
+<td>BaseCurrency Slug, comma-separated</td>
 </tr>
 <tr>
 <td>currency</td>
 <td>QueryString</td>
 <td>No</td>
-<td>QuoteCurrency Symbol, comma separated</td>
+<td>QuoteCurrency Symbol, comma-separated</td>
 </tr>
 <tr>
 <td>market_pair</td>
 <td>QueryString</td>
 <td>No</td>
-<td>MarketPairDesc, comma separated</td>
+<td>MarketPairDesc, comma-separated</td>
 </tr>
 <tr>
 <td>page</td>
@@ -1298,7 +1298,7 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <li>Ignore market, symbol, slug, currency when market_pair exists.</li>
 </ul>
 
-<p>例如：</p>
+<p>e.g.</p>
 
 <ul>
 <li>Get bitfinex&#39;s BTC Tickers <code>market=bitfinex&amp;symbol=BTC</code></li>
@@ -1420,15 +1420,15 @@ Note: The data center will intercept abnormal data. Please check the time stamp 
 <p>Get OrderBook</p>
 
 <aside class="notice">
-更新时间：1秒-40秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 0.1-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 
 <aside class="warning">
-注意: 数据中心会对异常数据进行拦截.请接入时检查时间戳.
+Note: The data center will intercept abnormal data. Please check the timestamp when accessing.
 </aside>
 <h4 id='request-url-7'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/orderbook</code></p>
@@ -1496,7 +1496,7 @@ Data source: Obtained through the exchange API
 </tbody></table>
 
 <ul>
-<li>数据更新时间一般为交易所接口返回的时间戳,如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
+<li>The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a timestamp, it is the timestamp before request</li>
 </ul>
 <h3 id='trades'>Trades</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'</span>
@@ -1523,14 +1523,14 @@ Data source: Obtained through the exchange API
   </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<p>获取交易对成交记录</p>
+<p>Get Trades</p>
 
 <aside class="notice">
-更新时间：5秒-60秒,影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境.
+Updated: 5-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
 </aside>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 <h4 id='request-url-8'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/trades</code></p>
@@ -1547,13 +1547,13 @@ Data source: Obtained through the exchange API
 <td>desc</td>
 <td>QueryString</td>
 <td>Yes</td>
-<td>交易所的某个交易对.例如：gate-io_BTC_USDT</td>
+<td>Market Pair Desc. e.g.：gate-io_BTC_USDT</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>QueryString</td>
 <td>No</td>
-<td>返回数据量,默认50</td>
+<td>Data Size, default 50 (&lt;=100)</td>
 </tr>
 </tbody></table>
 <h4 id='response-parameter-8'>Response Parameter</h4>
@@ -1565,28 +1565,28 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>T</td>
-<td>交易成交时间戳</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>p</td>
-<td>成交价格</td>
+<td>Price</td>
 </tr>
 <tr>
 <td>v</td>
-<td>成交量</td>
+<td>Base Volume</td>
 </tr>
 <tr>
 <td>s</td>
-<td>成交类型[buy,sell,none],为taker操作方向</td>
+<td>Taker Order Side[buy,sell,none]</td>
 </tr>
 <tr>
 <td>m</td>
-<td>交易对信息</td>
+<td>Market Pair Desc</td>
 </tr>
 </tbody></table>
 
 <ul>
-<li>数据按照交易成交时间戳倒序排序</li>
+<li>Data in reverse order according to transaction timestamp</li>
 </ul>
 <h3 id='kline'>Kline</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&amp;type=15m&amp;start=1573637497000'</span>
@@ -1617,7 +1617,7 @@ Data source: Obtained through the exchange API
 <p>Get Kline Data(OHLCV)</p>
 
 <aside class="notice">
-Data source: Obtained through the exchange API
+Data Source: From Exchange
 </aside>
 <h4 id='request-url-9'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/kline</code></p>
@@ -1691,7 +1691,7 @@ Data source: Obtained through the exchange API
 <td>Volume (unit: baseCurrency)</td>
 </tr>
 </tbody></table>
-<h2 id='information-data'>Information data</h2><h3 id='brief'>Brief</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+<h2 id='news-data'>News data</h2><h3 id='brief'>Brief</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/briefs?locale=zh_CN'</span>
 </code></pre>
 <blockquote>
@@ -1759,11 +1759,11 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>title</td>
-<td>标题</td>
+<td>Title</td>
 </tr>
 <tr>
 <td>content</td>
-<td>内容</td>
+<td>Content</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -1771,19 +1771,19 @@ Data source: Obtained through the exchange API
 </tr>
 <tr>
 <td>importance</td>
-<td>是否是要闻</td>
+<td>Is Importance</td>
 </tr>
 <tr>
 <td>url</td>
-<td>block.cc原文链接</td>
+<td>Block.cc Link</td>
 </tr>
 <tr>
 <td>source</td>
-<td>来源</td>
+<td>Source</td>
 </tr>
 <tr>
 <td>images</td>
-<td>图片链接</td>
+<td>Cover Image Link</td>
 </tr>
 </tbody></table>
 <h3 id='announcements'>Announcements</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1816,10 +1816,11 @@ Data source: Obtained through the exchange API
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<p>获取交易所公告数据
+<p>Get Exchange Announcement List</p>
+
 <aside class="notice">
-数据来源：通过交易所获取
-</aside></p>
+Data Source: From Exchange
+</aside>
 <h4 id='request-url-11'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/announcements?locale=zh_CN</code></p>
 <h4 id='request-parameter-11'>Request Parameter</h4>
@@ -1865,11 +1866,11 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>title</td>
-<td>标题</td>
+<td>Title</td>
 </tr>
 <tr>
 <td>content</td>
-<td>内容</td>
+<td>HTML Content</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -1877,23 +1878,23 @@ Data source: Obtained through the exchange API
 </tr>
 <tr>
 <td>importance</td>
-<td>是否是要闻</td>
+<td>Is Importance</td>
 </tr>
 <tr>
 <td>sourceUrl</td>
-<td>原文链接</td>
+<td>Source Url</td>
 </tr>
 <tr>
 <td>market</td>
-<td>来源</td>
+<td>Market</td>
 </tr>
 <tr>
 <td>url</td>
-<td>block.cc原文链接</td>
+<td>Block.cc Link</td>
 </tr>
 <tr>
 <td>images</td>
-<td>图片链接</td>
+<td>Cover Image Link</td>
 </tr>
 </tbody></table>
 <h3 id='articles'>Articles</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1921,7 +1922,7 @@ Data source: Obtained through the exchange API
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<p>获取资讯文章列表</p>
+<p>Get Article List</p>
 <h4 id='request-url-12'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/articles?locale=zh_CN</code></p>
 <h4 id='request-parameter-12'>Request Parameter</h4>
@@ -1961,39 +1962,39 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>文章id</td>
+<td>Article ID</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>发布时间</td>
+<td>13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>title</td>
-<td>标题</td>
+<td>Title</td>
 </tr>
 <tr>
 <td>description</td>
-<td>文章描述</td>
+<td>Description</td>
 </tr>
 <tr>
 <td>author</td>
-<td>文章作者</td>
+<td>Author</td>
 </tr>
 <tr>
 <td>categories</td>
-<td>分类, 逗号分隔</td>
+<td>Categories, comma-separated</td>
 </tr>
 <tr>
 <td>images</td>
-<td>图片链接</td>
+<td>Cover Image Link</td>
 </tr>
 <tr>
 <td>url</td>
-<td>block.cc原文链接</td>
+<td>Block.cc Link</td>
 </tr>
 <tr>
 <td>source</td>
-<td>来源</td>
+<td>Source</td>
 </tr>
 </tbody></table>
 <h3 id='article'>Article</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -2018,7 +2019,7 @@ Data source: Obtained through the exchange API
     </span><span class="s2">"btcPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">8465.6615</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>获取单篇资讯文章内容</p>
+<p>Get One Article</p>
 <h4 id='request-url-13'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/articles/{id}</code></p>
 <h4 id='request-parameter-13'>Request Parameter</h4>
@@ -2030,11 +2031,11 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>文章id</td>
+<td>Article ID</td>
 </tr>
 </tbody></table>
 <h4 id='response-parameter-13'>Response Parameter</h4>
-<p>与文章格式与列表相同,多出<code>btcPrice</code>字段</p>
+<p>Same as the article list format, with the addition of the <code>btcPrice</code> field</p>
 
 <table><thead>
 <tr>
@@ -2044,13 +2045,13 @@ Data source: Obtained through the exchange API
 </thead><tbody>
 <tr>
 <td>btcPrice</td>
-<td>发文时比特币价格</td>
+<td>Bitcoin price at launch</td>
 </tr>
 </tbody></table>
 <h3 id='socialmedia'>SocialMedia</h3><pre class="highlight shell tab-shell"><code>curl https://data.block.cc/api/v3/social_media?source<span class="o">=</span>TWITTER
 </code></pre>
 <blockquote>
-<p>将会返回以下内容:</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2081,107 +2082,107 @@ Data source: Obtained through the exchange API
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>获取社交媒体内容</p>
+<p>Get SocialMedia List</p>
 
 <aside class="notice">
-数据来源：Twitter，微博
+Data Source：Twitter，Weibo
 </aside>
-<h4 id='url'>请求URL</h4>
+<h4 id='request-url-14'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/social_media</code></p>
-<h4 id='1f9ac54b15'>请求参数</h4>
+<h4 id='request-parameter-14'>Request Parameter</h4>
 <table><thead>
 <tr>
-<th>参数名称</th>
-<th>传输方式</th>
-<th>必选</th>
-<th>说明</th>
+<th>Parameter</th>
+<th>Position</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>source</td>
 <td>QueryString</td>
-<td>否</td>
-<td>来源: [WEIBO, TWITTER], 默认 WEIBO</td>
+<td>Yes</td>
+<td>Source: [WEIBO, TWITTER], default WEIBO</td>
 </tr>
 <tr>
 <td>page</td>
 <td>QueryString</td>
-<td>否</td>
-<td>当前页数，默认 0, (&gt;=0)。</td>
+<td>No</td>
+<td>Current page, default 0, (&gt;=0)</td>
 </tr>
 <tr>
 <td>size</td>
 <td>QueryString</td>
-<td>否</td>
-<td>每页数据量，默认 20 (100&gt;=size&gt;=1)。</td>
+<td>No</td>
+<td>Per page size, default is 20 (100&gt;=size&gt;=1)</td>
 </tr>
 </tbody></table>
-<h4 id='51d2618749'>返回参数说明</h4>
+<h4 id='response-parameter-14'>Response Parameter</h4>
 <table><thead>
 <tr>
-<th>参数</th>
-<th style="text-align: left">说明</th>
+<th>Parameter</th>
+<th style="text-align: left">Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td style="text-align: left">推文ID</td>
+<td style="text-align: left">SocialMedia ID</td>
 </tr>
 <tr>
 <td>source</td>
-<td style="text-align: left">社交媒体平台</td>
+<td style="text-align: left">SocialMedia Platform</td>
 </tr>
 <tr>
 <td>content</td>
-<td style="text-align: left">推文内容</td>
+<td style="text-align: left">Content</td>
 </tr>
 <tr>
 <td>images</td>
-<td style="text-align: left">推文图片</td>
+<td style="text-align: left">Images Link</td>
 </tr>
 <tr>
 <td>userId</td>
-<td style="text-align: left">用户ID</td>
+<td style="text-align: left">User Id</td>
 </tr>
 <tr>
 <td>avatar</td>
-<td style="text-align: left">用户头像</td>
+<td style="text-align: left">User Avatar</td>
 </tr>
 <tr>
 <td>screenName</td>
-<td style="text-align: left">用户名</td>
+<td style="text-align: left">User Name (ScreenName)</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td style="text-align: left">发布时间</td>
+<td style="text-align: left">13-bit Unix Timestamp</td>
 </tr>
 <tr>
 <td>retweeted</td>
-<td style="text-align: left">是否是转推</td>
+<td style="text-align: left">Is Retweeted</td>
 </tr>
 <tr>
 <td>retweet</td>
-<td style="text-align: left">被转发推文</td>
+<td style="text-align: left">Retweeted Content</td>
 </tr>
 <tr>
 <td>retweet.content</td>
-<td style="text-align: left">被转发推文内容</td>
+<td style="text-align: left">Retweeted Content</td>
 </tr>
 <tr>
 <td>retweet.images</td>
-<td style="text-align: left">被转发推文图片</td>
+<td style="text-align: left">Retweeted Images Link</td>
 </tr>
 <tr>
 <td>retweet.userId</td>
-<td style="text-align: left">被转发用户ID</td>
+<td style="text-align: left">Retweeted User Id</td>
 </tr>
 <tr>
 <td>retweet.avatar</td>
-<td style="text-align: left">被转发用户头像</td>
+<td style="text-align: left">Retweeted User Avatar</td>
 </tr>
 <tr>
 <td>retweet.screenName</td>
-<td style="text-align: left">被转发用户名</td>
+<td style="text-align: left">Retweeted User Name (ScreenName)</td>
 </tr>
 </tbody></table>
 <h1 id='websocket-api'>WebSocket API</h1>
@@ -2190,24 +2191,24 @@ URL: wss://data.block.cc/ws/v3
 </aside>
 
 <ul>
-<li>每个链接有效期不超过24小时,请妥善处理断线重连.</li>
-<li>每30秒服务端会发送ping帧,客户端应当在30秒内回复pong帧,否则服务端会主动断开链接.</li>
-<li>连接时需要将用户对应的API_KEY作为参数传入,<code>wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]</code>.</li>
-<li>每个链接最多可订阅200个Topic.</li>
-<li>每个账户可以建立的链接数根据账户套餐设定, 详情查看 <a href="https://data.block.cc/pricing">Pricing</a>.</li>
-<li>服务端不会校验Topic的正确性,若订阅无效Topic不会有响应,并且占用Topic额度.</li>
-<li>90秒内不会推送没有变化的数据</li>
+<li>The validity period of each link does not exceed 24 hours, please properly handle the disconnection and reconnection.</li>
+<li>The server will send a ping frame every 30 seconds, and the client should reply to the pong frame within 30 seconds, otherwise the server will actively disconnect the link.</li>
+<li>API_KEY needs to be passed in as a parameter when connecting, <code>wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]</code>.</li>
+<li>One link can subscribe to up to 200 topics.</li>
+<li>The maximum number of connections for an account is based on its price package, see <a href="https://data.block.cc/pricing">Pricing</a> for details.</li>
+<li>The server will not verify the correctness of the topic. If the subscription is invalid, the topic will not respond and occupy the topic subscription quota.</li>
+<li>The unchanged data will not be pushed within 90 seconds</li>
 </ul>
 <h2 id='subscribe'>Subscribe</h2><pre class="highlight shell tab-shell"><code>wscat -c <span class="s1">'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'</span>
 <span class="gp">&gt; </span><span class="o">{</span><span class="s2">"op"</span>: <span class="s2">"subscribe"</span>, <span class="s2">"args"</span>: <span class="o">[</span><span class="s2">"price:bitcoin"</span><span class="o">]}</span>
 </code></pre>
 <blockquote>
-<p>订阅成功将会返回以下内容: </p>
+<p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Subscribed"</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='19b61b1c63'>消息格式</h4>
+</span></code></pre><h4 id='request-parameter-15'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='response-parameter-14'>Response Parameter</h4>
+<h4 id='response-parameter-15'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2230,9 +2231,9 @@ URL: wss://data.block.cc/ws/v3
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Unsubscribed"</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='19b61b1c63-2'>消息格式</h4>
+</span></code></pre><h4 id='request-parameter-16'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='response-parameter-15'>Response Parameter</h4>
+<h4 id='response-parameter-16'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2256,9 +2257,9 @@ URL: wss://data.block.cc/ws/v3
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="s2">"topics"</span><span class="p">:[</span><span class="s2">"price:bitcoin"</span><span class="p">]}</span><span class="w">
-</span></code></pre><h4 id='19b61b1c63-3'>消息格式</h4>
+</span></code></pre><h4 id='request-parameter-17'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;topics&quot;}</code></p>
-<h4 id='response-parameter-16'>Response Parameter</h4>
+<h4 id='response-parameter-17'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2303,8 +2304,8 @@ URL: wss://data.block.cc/ws/v3
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format'>Topic Format</h4>
-<p><code>price:</code> + <a href="#symbols">币种</a> slug</p>
-<h4 id='response-parameter-17'>Response Parameter</h4>
+<p><code>price:</code> + <a href="#symbols">Symbol</a> slug</p>
+<h4 id='response-parameter-18'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2354,8 +2355,8 @@ URL: wss://data.block.cc/ws/v3
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format-2'>Topic Format</h4>
-<p><code>ticker:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='response-parameter-18'>Response Parameter</h4>
+<p><code>ticker:</code> + MarketPair Desc(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
+<h4 id='response-parameter-19'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2411,8 +2412,8 @@ URL: wss://data.block.cc/ws/v3
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format-3'>Topic Format</h4>
-<p><code>orderbook:</code> + 交易对(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='response-parameter-19'>Response Parameter</h4>
+<p><code>orderbook:</code> + MarketPair Desc(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
+<h4 id='response-parameter-20'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
