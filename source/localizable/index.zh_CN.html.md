@@ -157,6 +157,11 @@ prev | 上一页的链接
 
 # Changelog
 
+### 2020-10-16
+
+- [HistoricalPrice](#historicalprice) 新增请求参数 `interval`
+
+
 ### 2020-10-01
 
 - APIv1不再为免费用户提供, APIv3已稳定为用户服务了1年多的时间, 建议更新到APIv3获得更好的体验.
@@ -586,8 +591,11 @@ curl -X GET \
 slug |QueryString|是| 币种名称。
 start |QueryString|否| 起始时间，单位：毫秒, 默认该币种最早记录的时间
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
+interval |QueryString|否| 数据点间隔[5m,15m,30m,1h,2h,6h,12h,1d,2d], 默认情况下根据 `start`,`end` 计算
 
-- 该接口会对返回数据进行下采样(downsampled), 数据点的间隔(`interval`)根据传递的参数`end` - `start`设置, 原则上`interval` = `end` - `start` / 1000, 每次请求数据返回限制大约为1000条。
+- 每次请求的数据量限制大约为1000条
+- `interval`不为空的情况下, 需要满足 `(end - start) / interval <= 1000`, 如果请求超过1000个数据点则会响应400 `10010 Duration Limited`.
+- `interval`为空的情况下, 该接口会对返回数据进行下采样(downsampled), 选择最优的`interval`, 确保数据点的覆盖, 原则上`interval` ≈ `end` - `start` / 1000。
 
 #### 返回参数说明
 
@@ -907,7 +915,7 @@ interval |QueryString|否| K线类型 (数据点间隔)[1m,5m,15m,30m,1h,6h,1d,7
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
 
-- 单次请求最大可获取2000条数据，`(end - start) / interval <= 2000`, 如果请求超过2000个数据点则会响应400 `10010 Duration Limited`
+- 单次请求最大可获取2000条数据, 传入参数需满足 `(end - start) / interval <= 2000`, 如果请求超过2000个数据点则会响应400 `10010 Duration Limited`
 
 #### 返回参数说明
 
