@@ -155,6 +155,12 @@ prev | The previous page link
 
 # Changelog
 
+### 2020-10-16
+
+- Add request param `interval` to [HistoricalPrice](#historicalprice) 
+
+
+
 ### 2020-10-01
 
 - APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.
@@ -584,8 +590,11 @@ Parameter | Position | Required | Description
 slug |QueryString|Yes| Symbol Slug.
 start |QueryString|No| Start Time，unit: mills, default min timestamp
 end |QueryString|No| End Time，unit: mills，default current timestamp
+interval |QueryString|否| Interval[5m,15m,30m,1h,2h,6h,12h,1d,2d], default calculated based on `start`, `end`
 
-- This API will downsample the returned data, the interval of data points (`interval`) is set according to the passed parameters `end`-`start`, in principle `interval` = `end`-`start` / 1000, each request data return limit is about 1000.
+- The data size limit per request is about 1000
+- When `interval` is not blank, it needs to satisfy `(end-start) / interval <= 1000`, if more than 1000 data points are requested, 400 `10010 Duration Limited` will be responded.
+- When `interval` is blank, it will downsample the responded data, select the optimal `interval` to ensure the coverage of data, in principle `interval` ≈ `end`-`start` / 1000.
 
 #### Response Parameter
 
@@ -905,7 +914,7 @@ interval |QueryString|No| interval [1m,5m,15m,30m,1h,6h,1d,7d], default: 5m
 end |QueryString|No| End Time，unit: mills，default current time
 start |QueryString|No| Start Time，unit: mills，default `end - (1000 * interval)`
 
-- maximum of 2000 pieces of data for a single request, `(end-start)/interval <= 2000`, if the request exceeds 2000 data points, the response will be return '10010 Duration Limited'
+- maximum of 2000 pieces of data for a single request, `(end-start)/interval <= 2000`, if the request exceeds 2000 data points, the response will be return 400 `10010 Duration Limited`
 
 #### Response Parameter
 
