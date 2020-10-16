@@ -1252,8 +1252,8 @@ URL: wss://data.block.cc/ws/v3
 * 每30秒服务端会发送ping帧，客户端应当在30秒内回复pong帧，否则服务端会主动断开链接。
 * 连接时需要将用户对应的API_KEY作为参数传入，`wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]`。
 * 每个链接最多可订阅200个Topic。
-* 每个账户可以建立的链接数根据账户套餐设定, 详情查看 [Pricing](https://data.mifengcha.com/pricing)。
-* 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic额度。
+* 每个账户的最大连接数根据账户套餐设定, 详情查看 [Pricing](https://data.mifengcha.com/pricing)。
+* 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic订阅额度。
 * 90秒内不会推送没有变化的数据
 
 
