@@ -242,6 +242,8 @@ URL: https://data.block.cc/api/v3
 
 `GET https://data.block.cc/api/v3/markets`
 
+`GET https://data.block.cc/api/v3/markets/{slug}`
+
 #### 请求参数
 
 参数|传输方式|必选|说明
