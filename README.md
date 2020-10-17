@@ -6,14 +6,14 @@
 
 <p align="center"><em>This repo above was fork from Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
 
-Git Repo
+Repository URL
 -----------
 
 - Github: [https://github.com/blockcc/blockcc-api-document](https://github.com/blockcc/blockcc-api-document).
 
 - Gitee: [https://gitee.com/blockcc/blockcc-api-document](https://gitee.com/blockcc/blockcc-api-document).
 
-Document Url
+Document URL
 ------------
 
 - GithubPages: [https://blockcc.github.io/blockcc-api-document](https://blockcc.github.io/blockcc-api-document)
@@ -23,6 +23,8 @@ Document Url
 - CodingPages: [https://l130vk.coding-pages.com](https://l130vk.coding-pages.com)
 
 ---
+
+- Github中文文档: [https://blockcc.github.io/blockcc-api-document/zh_CN](https://blockcc.github.io/blockcc-api-document/zh_CN)
 
 - Gitee中文文档: [https://blockcc.gitee.io/blockcc-api-document/zh_CN](https://blockcc.gitee.io/blockcc-api-document/zh_CN)
 
