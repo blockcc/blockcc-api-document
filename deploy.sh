@@ -76,6 +76,9 @@ main() {
 
   repo=origin2
   main_internal "$@"
+
+  repo=origin3
+  main_internal "$@"
 }
 
 main_internal() {

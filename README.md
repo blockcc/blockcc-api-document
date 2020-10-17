@@ -9,20 +9,24 @@
 Git Repo
 -----------
 
-Github: [https://github.com/blockcc/blockcc-api-document](https://github.com/blockcc/blockcc-api-document).
+- Github: [https://github.com/blockcc/blockcc-api-document](https://github.com/blockcc/blockcc-api-document).
 
-Coding: [https://blockcc-dev.coding.net/p/blockcc-api-document](https://blockcc-dev.coding.net/p/blockcc-api-document).
+- Gitee: [https://gitee.com/blockcc/blockcc-api-document](https://gitee.com/blockcc/blockcc-api-document).
 
 Document Url
 ------------
 
-[GithubPages](https://blockcc.github.io/blockcc-api-document/en_US).
+- GithubPages: [https://blockcc.github.io/blockcc-api-document](https://blockcc.github.io/blockcc-api-document)
 
-[CodingPages](https://l130vk.coding-pages.com/en_US).
+- GiteePages: [https://blockcc.gitee.io/blockcc-api-document](https://blockcc.gitee.io/blockcc-api-document)
+
+- CodingPages: [https://l130vk.coding-pages.com](https://l130vk.coding-pages.com)
 
 ---
 
-[中文文档](https://l130vk.coding-pages.com/zh_CN).
+- Gitee中文文档: [https://blockcc.gitee.io/blockcc-api-document/zh_CN](https://blockcc.gitee.io/blockcc-api-document/zh_CN)
+
+- Coding中文文档: [https://l130vk.coding-pages.com/zh_CN](https://l130vk.coding-pages.com/zh_CN)
 
 
 Features
