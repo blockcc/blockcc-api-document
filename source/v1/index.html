@@ -324,7 +324,7 @@
               <a href="#symbol" class="toc-h3 toc-link" data-title="概述">交易货币 Symbol</a>
             </li>
             <li>
-              <a href="#currency" class="toc-h3 toc-link" data-title="概述">基础货币 Currency</a>
+              <a href="#currency" class="toc-h3 toc-link" data-title="概述">计价货币 Currency</a>
             </li>
             <li>
               <a href="#symbolpair" class="toc-h3 toc-link" data-title="概述">交易对 SymbolPair</a>
@@ -528,8 +528,8 @@
     </aside>
 
     <p>通过 <a href="#symbols">Symbols API</a> 可以获取币种列表。</p>
-    <h3 id='currency'>基础货币 Currency</h3>
-    <p>Currency 为基础货币, 以货币符号表示(如:USD)。 包含法币以及作为普遍作为基础货币的数组货币(如: USDT,BTC,ETH)。</p>
+    <h3 id='currency'>计价货币 Currency</h3>
+    <p>Currency 为计价货币, 以货币符号表示(如:USD)。 包含法币以及作为普遍作为计价货币的数组货币(如: USDT,BTC,ETH)。</p>
 
     <p>通过 <a href="#currencies">Currencies API</a> 可以获取币种列表。</p>
     <h3 id='symbolpair'>交易对 SymbolPair</h3>
@@ -1069,7 +1069,7 @@
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-    <p>获取所有支持的基础货币列表</p>
+    <p>获取所有支持的计价货币列表</p>
     <h4 id='url-3'>请求URL</h4>
     <p><code>GET https://data.block.cc/api/v1/currencies</code></p>
     <h4 id='1f9ac54b15-3'>请求参数</h4>
@@ -1660,7 +1660,7 @@
       </tr>
       <tr>
         <td>rates</td>
-        <td>目标兑换货币以及汇率，如基础货币为USD，CNY下的数字为USDCNY的汇率。</td>
+        <td>目标兑换货币以及汇率，如计价货币为USD，CNY下的数字为USDCNY的汇率。</td>
       </tr>
       </tbody>
     </table>
@@ -2364,7 +2364,7 @@
       </tr>
       <tr>
         <td>base_volume</td>
-        <td>24小时基础货币交易量</td>
+        <td>24小时计价货币交易量</td>
       </tr>
       <tr>
         <td>change_daily</td>
@@ -2396,8 +2396,8 @@
     <ul>
       <li>数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
       <li>如涨幅为1%，则返回值为0.01</li>
-      <li>last bid ask high low 的单位为基础货币.</li>
-      <li>usd_rate为基础货币转换到美元的汇率.</li>
+      <li>last bid ask high low 的单位为计价货币.</li>
+      <li>usd_rate为计价货币转换到美元的汇率.</li>
       <li>获取最新美元价格为 last * usd_rate</li>
       <li>获取24小时美元交易量为 base_volume * usd_rate</li>
     </ul>
@@ -2602,7 +2602,7 @@
         <td>currency</td>
         <td>QueryString</td>
         <td>否</td>
-        <td>基础货币，可传多个，逗号分割</td>
+        <td>计价货币，可传多个，逗号分割</td>
       </tr>
       <tr>
         <td>market_pair</td>
