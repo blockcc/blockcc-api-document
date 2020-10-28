@@ -594,6 +594,8 @@ URL: https://data.block.cc/api/v3
 <p>获取所有支持的交易所列表</p>
 <h4 id='url'>请求URL</h4>
 <p><code>GET https://data.block.cc/api/v3/markets</code></p>
+
+<p><code>GET https://data.block.cc/api/v3/markets/{slug}</code></p>
 <h4 id='1f9ac54b15'>请求参数</h4>
 <table><thead>
 <tr>
@@ -927,7 +929,7 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>r</td>
-<td>目标兑换汇率,如基础货币为USD，CNY下的数字为USDCNY的汇率。</td>
+<td>目标兑换汇率,如计价货币为USD，CNY下的数字为USDCNY的汇率。</td>
 </tr>
 </tbody></table>
 <h3 id='price'>Price</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
@@ -1280,7 +1282,7 @@ URL: https://data.block.cc/api/v3
 <td>currency</td>
 <td>QueryString</td>
 <td>否</td>
-<td>基础货币，可传多个，逗号分割</td>
+<td>计价货币，可传多个，逗号分割</td>
 </tr>
 <tr>
 <td>market_pair</td>
@@ -1329,27 +1331,27 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>c</td>
-<td>最新价格(单位：基础货币)</td>
+<td>最新价格(单位：计价货币)</td>
 </tr>
 <tr>
 <td>b</td>
-<td>买一价(单位：基础货币)</td>
+<td>买一价(单位：计价货币)</td>
 </tr>
 <tr>
 <td>a</td>
-<td>卖一价(单位：基础货币)</td>
+<td>卖一价(单位：计价货币)</td>
 </tr>
 <tr>
 <td>o</td>
-<td>开盘价(单位：基础货币)</td>
+<td>开盘价(单位：计价货币)</td>
 </tr>
 <tr>
 <td>h</td>
-<td>24小时最高价(单位：基础货币)</td>
+<td>24小时最高价(单位：计价货币)</td>
 </tr>
 <tr>
 <td>l</td>
-<td>24小时最低价(单位：基础货币)</td>
+<td>24小时最低价(单位：计价货币)</td>
 </tr>
 <tr>
 <td>bv</td>
@@ -1357,7 +1359,7 @@ URL: https://data.block.cc/api/v3
 </tr>
 <tr>
 <td>qv</td>
-<td>24小时基础货币交易量</td>
+<td>24小时计价货币交易量</td>
 </tr>
 <tr>
 <td>C</td>
@@ -1384,9 +1386,9 @@ URL: https://data.block.cc/api/v3
 <ul>
 <li>数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
 <li>如涨幅为1%，则返回值为0.01</li>
-<li>r为基础货币转换到美元的汇率.</li>
+<li>r为计价货币转换到美元的汇率.</li>
 <li>获取最新美元价格为： 最新价(c) * 基础转货币转美元的汇率(r)</li>
-<li>获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
+<li>获取24小时美元交易量为： 24小时计价货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
 </ul>
 <h3 id='orderbook'>Orderbook</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
