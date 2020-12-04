@@ -910,7 +910,7 @@ Data Source: From Exchange
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
 desc |QueryString|Yes| MarketPair Desc e.g. gate-io_BTC_USDT
-interval |QueryString|No| interval [1m,5m,15m,30m,1h,6h,1d,7d], default: 5m
+interval |QueryString|No| interval [1m,5m,15m,30m,1h,6h,1d], default: 5m
 end |QueryString|No| End Time，unit: mills，default current time
 start |QueryString|No| Start Time，unit: mills，default `end - (1000 * interval)`
 
