@@ -913,7 +913,7 @@ curl -X GET \
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
-interval |QueryString|否| K线类型 (数据点间隔)[1m,5m,15m,30m,1h,6h,1d,7d],默认5m
+interval |QueryString|否| K线类型 (数据点间隔)[1m,5m,15m,30m,1h,6h,1d],默认5m
 end |QueryString|否| 截止时间，单位：毫秒，默认当前时间
 start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * interval)`, 即表示 `end` 之前1000条数据
 
