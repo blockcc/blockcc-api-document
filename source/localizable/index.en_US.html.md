@@ -159,11 +159,17 @@ prev | The previous page link
 
 - Add request param `interval` to [HistoricalPrice](#historicalprice) 
 
-
-
 ### 2020-10-01
 
 - APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.
+
+### 2020-05-25
+
+Add SocialMedia API [SocialMedia](#socialmedia)
+
+### 2020-04-16
+ 
+Add kline 1min interval [Kline](#kline) 
 
 ### 2020-04-09
 
@@ -179,14 +185,6 @@ Add fields to [Price](#price)
 - Lowest monthly price
 - Highest price in history
 - Lowest price in history
-
-### 2020-04-16
-
-Add kline 1min interval [Kline](#kline) 
-
-### 2020-05-25
-
-Add SocialMedia API [SocialMedia](#socialmedia)
 
 # REST API 
 
