@@ -31,6 +31,14 @@ under the License.
   src: font-url('DINPro-Medium.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'JetBrainsMono-Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: font-url('JetBrainsMono-Medium.woff2') format('woff2');
+}
+
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -40,7 +48,6 @@ html, body {
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
-  font-family: 'DINPro-Medium', 'Helvetica', 'Microsoft YaHei', 'PingFangSC-Regular', 'Arial', sans-serif !important;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
