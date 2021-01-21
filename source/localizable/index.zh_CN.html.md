@@ -5,8 +5,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a target="_blank" href='https://data.mifengcha.com/login'>登陆data.mifengcha.com</a>
+  - <a target="_blank" href='https://data.mifengcha.com/register?lang=zh_CN'>创建API KEY</a>
   - <a href='../v1/'>查看v1文档</a>
+  - <a href='https://data.mifengcha.com/contactus'>问题反馈</a>
   - <br>
   - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
@@ -14,90 +15,236 @@ search: false
 code_clipboard: true
 ---
 
-# 概述
+# 更新日志
+<table>
+	<tr>
+		<th width="110px">生效时间(UTC+8)</th>
+		<th width="50px">变化</th>
+		<th>更新内容</th>
+	</tr>
+	<tr>
+		<td>2021.01.21</td>
+		<td>新增</td>
+		<td>
+			新增<a href="#SDK">SDK</a>
+		</td>
+	</tr>
+	<tr>
+		<td>2020.10.16</td>
+		<td>新增</td>
+		<td><a href="#获取币种历史价格">HistoricalPrice</a> 新增请求参数 interval</td>
+	</tr>
+	<tr>
+		<td>2020.10.01</td>
+		<td>优化</td>
+		<td>API v1不再为免费用户提供, APIv3已稳定为用户服务了1年多的时间, 建议更新到APIv3获得更好的体验.</td>
+	</tr>
+	<tr>
+		<td>2020.05.25</td>
+		<td>新增</td>
+		<td>新增社交媒体API <a href="#获取社交媒体内容">SocialMedia</a></td>
+	</tr>
+	<tr>
+		<td>2020.04.16</td>
+		<td>新增</td>
+		<td>K线新增1分钟类型 <a href="#获取交易对K线数据">Kline</a></td>
+	</tr>
+	<tr>
+		<td>2020.04.09</td>
+		<td>新增</td>
+		<td><a href="#获取币种价格">Price</a> 新增字段：24小时最高价、24小时最低价、1周涨跌幅、1周最高价、1周最低价、1月涨跌幅、1月最高价、1月最低价、历史最高价、历史最低价</td>
+	</tr>
+</table>
 
-## 简介
 
-[Block.cc](https://block.cc) (中文站:[蜜蜂查](mifengcha.com))是专业的区块链产业信息服务平台，提供数字货币行情、数据、资讯等一站式区块链产业服务，追求更及时、更全面、更专业、更准确的行情数据，致力为区块链爱好者和数字货币投资者提供最权威最流畅的产品和服务。
+# 简介
+欢迎您选择蜜蜂查API服务！
 
-第三方应用开发者可以借助该服务，快速构建稳定高效的数字货币行情系统，为实时业务需求和产品运营提供技术支持。
+此文档是蜜蜂查的唯一官方文档，蜜蜂查API提供的功能和服务会在此文档持续更新。
 
-## Access URLs
+蜜蜂查提供了丰富的API接口供开发者使用，接入简单，使用方便。第三方应用开发者可以借助该服务，快速构建稳定高效的数字货币行情系统，为实时业务需求和产品运营提供技术支持。
+<br>
+<br>
 
-您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。
 
-其中，data.mifengcha.com域名对中国大陆的用户做了一定的链路延迟优化。
 
-#### REST API
+**如何阅读本文档**
 
-https://data.block.cc/api/v3
+文档左侧是目录 ，中间是正文，右侧是请求参数和响应结果的示例。
 
-https://data.mifengcha.com/api/v3
 
-#### Websocket Feed
 
-wss://data.block.cc/ws/v3
+以下是蜜蜂查API文档各章节主要内容
+<br>
+<br>
 
-wss://data.mifengcha.com/ws/v3
+第一部分是概要介绍：
 
-## 当前版本
+- **快速入门：** 该章节对蜜蜂查API做了简单且全方位的介绍，适合第一次使用蜜蜂查API的用户。
 
-<aside class="success">
-Version: v3.0.0
-</aside>
+- **联系我们：** 该章节介绍遇到问题，如何联系我们。
+<br>
+<br>
 
-## 认证
 
-### 获取API密钥
+第二部分是每个接口类的详细介绍，每个接口类一个章节，每个章节分为如下内容：
 
-针对Block.cc API发出的所有请求都必须使用API密钥进行验证。 如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/register)。
+- **简介：** 对该接口类进行简单介绍，包括一些注意事项和说明。
 
-### 使用您的密钥
+- **具体接口：** 介绍每个接口的用途、限频、请求、参数、返回等详细信息。
 
-> Api Key请求示例:
+- **常见问题：** 介绍该接口类下常见问题和解答。
 
-```shell
-curl -X GET \
-   -H 'X-API-KEY: [YOUR_API_KEY]' \
-  'https://data.block.cc/api/v3/markets'
-  
-curl -X GET \
-  'https://data.block.cc/api/v3/markets?api_key=[YOUR_API_KEY]'
-  
-wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 
-```
-
+# 快速入门
+## 接入准备
+如需使用蜜蜂查API，请先登录账号，完成API Key的申请，再根据本文档详情进行开发。
+如果您还没有API密钥，请[点击注册](https://data.mifengcha.com/register  
+)。
 
 您可以通过以下方式在REST API调用中提供API密钥：
 
-1.首选方法：通过名为`X-API-KEY`的自定义请求头
+1. 首选方法：通过名为`X-API-KEY`的自定义请求头
+2. 便捷方法：通过名为`api_key` 的查询字符串参数
 
-2.便捷方法：通过名为`api_key` 的查询字符串参数
+在Websocket API中只能通过名为api_key 的查询字符串参数提供API密钥
 
-在Websocket API中只能通过名为`api_key` 的查询字符串参数提供API密钥
+<h2 id="SDK">SDK</h2>
+<a href="https://github.com/blockcc/blockcc-api-client-java" target="_blank">JAVA</a>
+
+## 接口类型
+蜜蜂查API为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行行情查询。
+
+##### REST API
+REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
+
+##### WebSocket API
+WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信，通过一次简单的握手就可以建立客户端和服务器连接，服务器可以根据业务规则主动推送信息给客户端。
+
+## 接入URLS
+您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。其中，data.mifengcha.com域名对中国大陆的用户做了一定的链路延迟优化。
+
+##### REST API
+https://data.block.cc/api
+
+https://data.mifengcha.com/api
+
+##### Websocket Feed
+wss://data.block.cc/ws
+
+wss://data.mifengcha.com/ws
+
+# 接入说明
+## 接口概览
 
 
+<table>
+    <tr>
+        <td><strong>接口数据类型</strong></td>
+        <td><strong>描述</strong></td>
+        <td><strong>接口数据类型</strong></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="4" style="vertical-align: middle;">基础数据</td>
+        <td>获取所有支持的交易所列表</td>
+        <td>/v3/markets</td>
+    </tr>
+    <tr>
+        <td>获取指定交易所信息</td>
+        <td>/v3/markets/{slug}</td>
+    </tr>
+    <tr>
+        <td>获取所有支持的币种列表</td>
+        <td>/v3/symbols</td>
+    </tr>
+    <tr>
+        <td>获取单个币种信息</td>
+        <td>/v3/symbols/{slug}</td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="7" style="vertical-align: middle;">行情数据</td>
+        <td>获取汇率</td>
+        <td>/v3/exchange_rate</td>
+    </tr>
+    <tr>
+        <td>获取币种价格</td>
+        <td>/v3/price</td>
+    </tr>
+    <tr>
+        <td>获取币种历史价格</td>
+        <td>/v3/price/history?slug=bitcoin</td>
+    </tr>
+    <tr>
+        <td>批量获取交易对Tickers</td>
+        <td>/v3/tickers</td>
+    </tr>
+    <tr>
+        <td>获取交易对深度</td>
+        <td>/v3/orderbook</td>
+    </tr>
+    <tr>
+        <td>获取交易对成交记录</td>
+        <td>/v3/trades</td>
+    </tr>
+    <tr>
+        <td>获取交易对K线数据</td>
+        <td>/v3/kline</td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="5" style="vertical-align: middle;">资讯数据</td>
+        <td>获取快讯数据</td>
+        <td>/v3/briefs?locale=zh_CN</td>
+    </tr>
+    <tr>
+        <td>获取交易所公告数据</td>
+        <td>/v3/announcements?locale=zh_CN</td>
+    </tr>
+    <tr>
+        <td>获取资讯文章列表</td>
+        <td>/v3/articles?locale=zh_CN</td>
+    </tr>
+    <tr>
+        <td>获取单篇资讯文章内容</td>
+        <td>/v3/articles/{id}</td>
+    </tr>
+    <tr>
+        <td>获取社交媒体内容</td>
+        <td>/v3/social_media</td>
+    </tr>
+</table>
 ## 请求限制
-
-```json
-{
-  "code": 429,
-  "message": "Rate Limited"
-}
-```
-
 为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
 
-> 您随时可以通过响应头查看你的剩余次数:
+版本 |  调用次数(次/月)| 每秒查询率（次/秒) | WebSocket连接数 | Webhook Supper[Beta]
+---|:---:|:---:|:---:|:---:
+体验版 | 10,000 | 1 | × | ×
+基础版 | 300,000 | 4 |1 | ×
+专业版 | 900,000 | 8 | 3 | ×
+企业版 | 4,000,000 | 16 | 15 | √
+旗舰版 | 8,000,000 | 32 |45 | √
 
-```
-X-RateLimit-Limit：10000 
-X-RateLimit-Remaining：9999 
-```
+## 请求格式
+所有的API请求都是restful，目前只有一种方法：GET
 
+## 返回格式
+所有的接口都是JSON格式。
+
+## 数据类型
+本文档对JSON格式中数据类型的描述做如下约定：
+
+- `string`: 字符串类型，用双引号（"）引用
+- `int`: 32位整数，主要涉及到状态码、大小、次数等
+- `long`: 64位整数，主要涉及到Id和时间戳
+- `double`: 浮点数，主要涉及到金额和价格，建议程序中使用高精度浮点型
+- `object`: 对象，包含一个子对象{}
+- `array`: 数组，包含多个对象
+
+## 最佳实践
+##### 公共类
+- 不建议在中国大陆境内使用临时域名以及代理的方式访问蜜蜂查API，此类方式访问API连接的稳定性很难保证。
+- 建议使用香港云服务器进行访问。
+ 
 ## 错误码
-
 > 错误码响应内容示例:
 
 ```json
@@ -109,31 +256,23 @@ X-RateLimit-Remaining：9999
 
 HTTP 状态码|错误码 | 错误信息
 --------- | -----------| -----------
-400 | 10010| Duration Limited, 请求获取的数据区间太大
-400 | 10030| Param Required
-400 | 10050| Empty Resource
-400 | 10070| Unavailable Resource
-429 | 10040| Rate Limited
-414 | 10090| Url Too Long
-500 | 10020| Internal Server Error
+400 | 10010| Duration Limited, 请求获取的数据区间太大 请求获取的数据区间太大
+400 | 10030| Param Required, 请求参数缺失
+400 | 10050| Empty Resource, 空资源
+400 | 10070| Unavailable Resource, 该资源已停用
+429 | 10040| Rate Limited, 请求并发过高或者请求次已达上限
+414 | 10090| Url Too Long, url太长
+500 | 10020| Internal Server Error, 服务器错误 请联系客服反馈
 404 | 404| Not Found
 
 ## 分页
-
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/markets?page=0&size=100'
 ```
-
-
-
 默认情况下，返回多个条目的请求将被按照每页20条进行分页。您可以使用`?page`参数指定其他页面。还可以使用`?size`参数设置最大100的自定义页面大小。请注意，出于技术原因，并非所有API都遵守`?size`，请参阅对于API参数说明。
-
 请注意，页码是从0开始，缺省page参数将返回第一页 0。
-
-
-### 响应头
-
+##### 响应头
 该响应头包括分页信息：
 
 ```
@@ -155,53 +294,33 @@ last | 最后一页的链接
 first | 第一页的链接
 prev | 上一页的链接
 
-# Changelog
+# 联系我们
+使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
 
-### 2020-10-16
+- 点击[这里](https://data.mifengcha.com/contactus)提交表单。
+- 发邮件至[support@mifengcha.com](mailto:support@mifengcha.com)联系工作人员。
 
-- [HistoricalPrice](#historicalprice) 新增请求参数 `interval`
 
+如您遇到API错误，请按照以下模板向我们反馈问题
 
-### 2020-10-01
+1. 问题描述
+2. 问题发生的用户账号（邮箱）
+3. 完整的URL请求
+4. 完整的返回结果
+5. 问题出现时间和频率（如何时开始出现，是否可以重现）
+ 
 
-- APIv1不再为免费用户提供, APIv3已稳定为用户服务了1年多的时间, 建议更新到APIv3获得更好的体验.
-
-### 2020-05-25
-
-新增社交媒体API [SocialMedia](#socialmedia)
-
-### 2020-04-16
-
-K线新增1分钟类型 [Kline](#kline) 
-
-### 2020-04-09
-
-[Price](#price) 新增字段
-
-- 24小时最高价 
-- 24小时最低价 
-- 1周涨跌幅
-- 1周最高价 
-- 1周最低价
-- 1月涨跌幅
-- 1月最高价 
-- 1月最低价
-- 历史最高价 
-- 历史最低价
 
 # REST API 
+## 基础数据
+### 简介
+基础数据一般作为请求行情数据的参数。
 
-<aside class="success">
-URL: https://data.block.cc/api/v3
-</aside>
-
-
-## 元数据
-
-元数据为基础数据，一般作为请求行情数据的参数.
-
-### Markets
-
+### 获取所有支持的交易所列表
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/markets'
+```
 > 将会返回以下内容:
 
 ```json
@@ -235,24 +354,20 @@ URL: https://data.block.cc/api/v3
   ]
 ```
 
-获取所有支持的交易所列表
 
-#### 请求URL
-
+##### 请求URL
 `GET https://data.block.cc/api/v3/markets`
 
-`GET https://data.block.cc/api/v3/markets/{slug}`
+##### 请求参数
 
-#### 请求参数
-
-参数|传输方式|必选|说明
---------- |---------|--------- | -----------
-slug | URL Path|否| 获取指定交易所信息，例如:/api/v3/markets/gate-io
-page |QueryString|否| 当前页数，默认 0, (>=0)。注意：只有slug不存在时，该值才有效
-size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。 注意：只有slug不存在时，该值才有效
+参数|必选|说明
+--------- |--------- | -----------
+page |否| 当前页数，默认 0, (>=0)。注意：只有slug不存在时，该值才有效
+size |否| 每页数据量，默认 20 (100>=size>=1)。 注意：只有slug不存在时，该值才有效
 
 
-#### 返回参数说明
+
+##### 返回参数说明
 参数 | 说明
 --------- | -----------
 slug | 交易所名称(ID)
@@ -266,17 +381,66 @@ kline | 是否接入K线数据
 spot | 是否支持现货
 futures | 是否支持期货
 
-### Symbols
+### 获取指定交易所信息
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/markets/binance'
+```
+> 将会返回以下内容:
 
+```json
+    {
+      "slug": "binance",
+      "fullname": "Binance",
+      "websiteUrl": "https://www.binance.com/",
+      "volume": 2490122366.2343,
+      "reportedVolume":2490122366.2343,
+      "expectedVolume": 2490122366.2343,
+      "monthlyVisits":19386372.159024935,
+      "status": "enable",
+      "kline": true,
+      "spot":true,
+      "futures":false
+    }
+```
+
+
+##### 请求URL
+`GET https://data.block.cc/api/v3/markets/{slug}`
+
+##### 请求参数
+<table>
+	<tr>
+        <td>参数</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td>slug</td>
+        <td>交易所名称(ID)</td>
+    </tr>
+</table>
+
+
+##### 返回参数说明
+参数 | 说明
+--------- | -----------
+slug | 交易所名称(ID)
+fullname | 交易所全称
+websiteUrl | 交易所官网链接
+volume | (旧)通过人工干预统计的交易量(USD)
+reportedVolume | 交易所上报交易量(USD)
+expectedVolume | 推测交易量(USD)
+status | 状态: [enable, disable]. disable为停止更新数据
+kline | 是否接入K线数据
+spot | 是否支持现货
+futures | 是否支持期货
+
+<h3 id="获取所有支持的币种列表">获取所有支持的币种列表</h3>
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/symbols'
 ```
 
-```shell
-curl -X GET \
-  'https://data.block.cc/api/v3/symbols/bitcoin'
-```
 
 > 将会返回以下内容:
 
@@ -304,69 +468,28 @@ curl -X GET \
       "algorithm": "SHA256",
       "proof": "POW",
       "issueDate": "2008-10-31T16:00:00Z",
-      "details" : [ {
-            "locale" : "zh_CN",
-            "fullName" : "比特币",
-            "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值。基于密码学的设计可以使比特币只能被真实的拥有者转移或支付。这同样确保了货币所有权与流通交易的匿名性。比特币与其他虚拟货币最大的不同，是其总数量非常有限，具有极强的稀缺性。该货币系统曾在4年内只有不超过1050万个，之后的总数量将被永久限制在2100万个。 比特，是一种计算机专业术语，是信息量单位，是由英文BIT音译而来。二进制数的一位所包含的信息就是一比特，如二进制数0100就是4比特。那么，比特这个概念和货币联系到一起，不难看出，比特币非现实货币，而是一种计算机电子虚拟货币，存储在你的电脑上。目前，这种崭新的虚拟货币不受任何政府、任何银行控制。因此，它还未被合法化。"
-          }
-      ]
+      "details" : null
     }
   ]
 
 ```
 
-```json
-{
-  "slug": "bitcoin",
-  "symbol": "BTC",
-  "fullname" : "Bitcoin",
-  "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
-  "volumeUsd": 4463819005.1846,
-  "status": "enable",
-  "marketCapUsd":157081834083.0375,
-  "availableSupply":18039125,
-  "totalSupply":18039125,
-  "maxSupply":21000000,
-  "website":"https://bitcoin.org/en/",
-  "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
-  "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
-  "githubId": "bitcoin",
-  "twitterId": "btc",
-  "facebookId": "bitcoins",
-  "telegramId": "www_bitcoin_com",
-  "redditId": "bitcoin",
-  "algorithm": "SHA256",
-  "proof": "POW",
-  "issueDate": "2008-10-31T16:00:00Z",
-  "details" : [ {
-        "locale" : "zh_CN",
-        "fullName" : "比特币",
-        "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值。基于密码学的设计可以使比特币只能被真实的拥有者转移或支付。这同样确保了货币所有权与流通交易的匿名性。比特币与其他虚拟货币最大的不同，是其总数量非常有限，具有极强的稀缺性。该货币系统曾在4年内只有不超过1050万个，之后的总数量将被永久限制在2100万个。 比特，是一种计算机专业术语，是信息量单位，是由英文BIT音译而来。二进制数的一位所包含的信息就是一比特，如二进制数0100就是4比特。那么，比特这个概念和货币联系到一起，不难看出，比特币非现实货币，而是一种计算机电子虚拟货币，存储在你的电脑上。目前，这种崭新的虚拟货币不受任何政府、任何银行控制。因此，它还未被合法化。"
-      }
-  ]
-}
-```
-
-获取所有支持的币种列表
-
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/symbols`
 
-`GET https://data.block.cc/api/v3/symbols/{slug}`
 
-#### 请求参数
+##### 请求参数
 
 参数|传输方式|必选|说明
 --------- |---------|--------- | -----------
-slug | URL Path|否| 获取单个币种信息时使用
 details |QueryString|否| 是否获取币种详情介绍，取值为1(是)，0(否)，默认为0
 page |QueryString|否| 当前页数，默认 0, (>=0)。注意：只有slug不存在时，该值才有效
 size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。 注意：只有slug不存在时，该值才有效
 
 
 
-#### 返回参数说明
+##### 返回参数说明
 参数 | 说明
 --------- | -----------
 slug | 币种名称（ID）
@@ -391,10 +514,84 @@ proof |激励机制
 issueDate |上市时间
 details |币种介绍, 默认不返回
 
+### 获取单个币种信息
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/symbols/bitcoin'
+```
+
+> 将会返回以下内容:
+
+```json
+{
+  "slug": "bitcoin",
+  "symbol": "BTC",
+  "fullname" : "Bitcoin",
+  "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
+  "volumeUsd": 4463819005.1846,
+  "status": "enable",
+  "marketCapUsd":157081834083.0375,
+  "availableSupply":18039125,
+  "totalSupply":18039125,
+  "maxSupply":21000000,
+  "website":"https://bitcoin.org/en/",
+  "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
+  "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
+  "githubId": "bitcoin",
+  "twitterId": "btc",
+  "facebookId": "bitcoins",
+  "telegramId": "www_bitcoin_com",
+  "redditId": "bitcoin",
+  "algorithm": "SHA256",
+  "proof": "POW",
+  "issueDate": "2008-10-31T16:00:00Z",
+  "details" : null
+}
+```
+
+##### 请求URL
+
+`GET https://data.block.cc/api/v3/symbols/{slug}`
+
+##### 请求参数
+
+参数|传输方式|必选|说明
+--------- |---------|--------- | -----------
+slug | URL Path|否| 获取单个币种信息时使用
+details |QueryString|否| 是否获取币种详情介绍，取值为1(是)，0(否)，默认为0
+
+
+
+##### 返回参数说明
+参数 | 说明
+--------- | -----------
+slug | 币种名称（ID）
+symbol | 币种符号
+fullname | 币种全称
+logoUrl| 图标链接
+volumeUsd | 通过人工干预统计的交易量(USD)
+status | 状态: [enable, disable]. disable为停止更新数据
+marketCapUsd |币种市值
+availableSupply |流通量
+totalSupply |发行总量
+maxSupply |最大发行量
+website |官网链接
+explorerUrls |区块浏览器链接
+whitePaperUrls |白皮书
+githubId |Github
+twitterId |Twitter
+facebookId |FaceBook
+telegramId |Telegram
+algorithm |核心算法
+proof |激励机制
+issueDate |上市时间
+details |币种介绍, 默认不返回
+
+
+
 ## 行情数据
-
-### ExchangeRate
-
+### 获取汇率
+该接口的汇率都是以`USD`为基础兑换货币
 
 ```shell
 curl -X GET \
@@ -428,9 +625,6 @@ curl -X GET \
   ]
 
 ```
-
-获取汇率,该接口的汇率都是以`USD`为基础兑换货币
-
 <aside class="notice">
 更新时间：数字货币更新时间为60秒，法币更新时间为4小时。
 </aside>
@@ -439,22 +633,22 @@ curl -X GET \
 数据来源：数字货币汇率从加权平均计算的币种价格获取， 法币汇率由外汇交易所以及各大银行牌价结合。 
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/exchange_rate`
 
-#### 请求参数
+##### 请求参数
 
-None
+此接口不接受任何参数。
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
 c | 目标兑换货币
-r | 目标兑换汇率,如计价货币为USD，CNY下的数字为USDCNY的汇率。
+r | 目标兑换汇率,如基础货币为USD，CNY下的数字为USDCNY的汇率。
 
-### Price
+<h3 id="获取币种价格">获取币种价格</h3>
 
 ```shell
 curl -X GET \
@@ -491,26 +685,25 @@ curl -X GET \
   ]
 ```
 
-获取币种价格
-
 <aside class="notice">
 更新时间：5秒-60秒，按照交易量大小分级，交易量最大的币种5秒更新一次价格。
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/price`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 slug |QueryString|否| 币种名称,可传多个币种,逗号分割。
 page |QueryString|否| 当前页数，默认 0, (>=0)。注意：只有slug和symbol两者皆不存在，该值才有效
 size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。 注意：只有slug和symbol两者皆不存在，该值才有效
+
 注意：若slug和symbol两者皆存在，优先级 slug > symbol， 按照交易量大小降序返回。
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -536,7 +729,8 @@ lm | 1月最低价
 ha | 历史最高价 
 la | 历史最低价
 
-### HistoricalPrice
+
+<h3 id="获取币种历史价格">获取币种历史价格</h3>
 
 ```shell
 curl -X GET \
@@ -574,18 +768,16 @@ curl -X GET \
       }
   ]
 ```
-
-获取币种历史价格
-
 <aside class="notice">
-数据来源：每5分钟快照一次当前价格，交易量。
+ 数据来源：每5分钟快照一次当前价格，交易量。
 </aside>
+ 
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/price/history?slug=bitcoin`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -598,7 +790,7 @@ interval |QueryString|否| 数据点间隔[5m,15m,30m,1h,2h,6h,12h,1d,2d], 默�
 - `interval`不为空的情况下, 需要满足 `(end - start) / interval <= 1000`, 如果请求超过1000个数据点则会响应400 `10010 Duration Limited`.
 - `interval`为空的情况下, 该接口会对返回数据进行下采样(downsampled), 选择最优的`interval`, 确保数据点的覆盖, 原则上`interval` ≈ `end` - `start` / 1000。
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -609,8 +801,7 @@ v | 交易量(单位: USD)
 a | 交易量(单位: 当前币种)
 m | 市值(unit: USD)
 
-
-### Tickers
+### 批量获取交易对Tickers
 
 ```shell
 curl -X GET \
@@ -645,8 +836,6 @@ curl -X GET \
 
 ```
 
-批量获取交易对Tickers
-
 <aside class="notice">
 更新时间：1秒-30秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
 </aside>
@@ -659,18 +848,18 @@ curl -X GET \
 注意: 数据中心会对异常数据进行拦截。请接入时检查时间戳。
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/tickers`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
 market |QueryString|否| 交易所名称，可传多个，逗号分割
 symbol |QueryString|否| 币种符号，可传多个，逗号分割
 slug |QueryString|否| 币种名称，可传多个，逗号分割
-currency |QueryString|否| 计价货币，可传多个，逗号分割
+currency |QueryString|否| 基础货币，可传多个，逗号分割
 market_pair |QueryString|否| 交易所的交易对名称，可传多个，逗号分割
 page |QueryString|否| 当前页数，默认 0, (>=0)
 size |QueryString|否| 每页数据量，默认 20 (>=1)
@@ -686,19 +875,19 @@ size |QueryString|否| 每页数据量，默认 20 (>=1)
 * 获取bitfinex与binance的BTC和ETH交易对Ticker `market=bitfinex,binance&symbol=BTC,ETH`
 * 获取gate-io_BTC_USDT与binance_ETH_BTC的Ticker `market_pair=gate-io_BTC_USDT,binance_ETH_BTC`
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
 T | 数据更新时间
-c | 最新价格(单位：计价货币)
-b | 买一价(单位：计价货币)
-a | 卖一价(单位：计价货币)
-o | 开盘价(单位：计价货币)
-h | 24小时最高价(单位：计价货币)
-l | 24小时最低价(单位：计价货币)
+c | 最新价格(单位：基础货币)
+b | 买一价(单位：基础货币)
+a | 卖一价(单位：基础货币)
+o | 开盘价(单位：基础货币)
+h | 24小时最高价(单位：基础货币)
+l | 24小时最低价(单位：基础货币)
 bv | 24小时交易货币交易量
-qv | 24小时计价货币交易量
+qv | 24小时基础货币交易量
 C | 24小时涨幅
 m | 交易所的交易对名称
 p | 纯度
@@ -707,12 +896,12 @@ s | 点差
 
 * 数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳
 * 如涨幅为1%，则返回值为0.01
-* r为计价货币转换到美元的汇率.
+* r为基础货币转换到美元的汇率.
 * 获取最新美元价格为： 最新价(c) * 基础转货币转美元的汇率(r)
-* 获取24小时美元交易量为： 24小时计价货币交易量(qv) * 基础转货币转美元的汇率(r)
+* 获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)
 
 
-### Orderbook
+<h3 id="获取交易对深度">获取交易对深度</h3>
 
 ```shell
 curl -X GET \
@@ -757,7 +946,7 @@ curl -X GET \
 
 ```
 
-获取交易对深度
+
 
 <aside class="notice">
 更新时间：1秒-40秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
@@ -771,11 +960,11 @@ curl -X GET \
 注意: 数据中心会对异常数据进行拦截。请接入时检查时间戳。
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/orderbook`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -783,7 +972,7 @@ desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
 limit |QueryString|否| 深度档位，默认25。
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -801,7 +990,7 @@ b/a | 说明
 * 数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳
 
 
-### Trades
+### 获取交易对成交记录
 
 ```shell
 curl -X GET \
@@ -831,7 +1020,6 @@ curl -X GET \
 
 ```
 
-获取交易对成交记录
 
 <aside class="notice">
 更新时间：5秒-60秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
@@ -841,11 +1029,11 @@ curl -X GET \
 数据来源：通过交易所API获取
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/trades`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -853,7 +1041,7 @@ desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
 limit |QueryString|否| 返回数据量，默认50
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -866,8 +1054,8 @@ m|交易对信息
 * 数据按照交易成交时间戳倒序排序
 
 
-### Kline
 
+<h3 id="获取交易对K线数据">获取交易对K线数据</h3>
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
@@ -897,17 +1085,16 @@ curl -X GET \
 
 ```
 
-获取交易对K线数据(OHLCV)
 
 <aside class="notice">
 数据来源：通过交易所API获取
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/kline`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -918,7 +1105,7 @@ start |QueryString|否| 起始时间，单位：毫秒，默认`end - (1000 * in
 
 - 单次请求最大可获取2000条数据, 传入参数需满足 `(end - start) / interval <= 2000`, 如果请求超过2000个数据点则会响应400 `10010 Duration Limited`
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -929,11 +1116,9 @@ l|最低价
 h|最高价
 v|交易量
 
+
 ## 资讯数据
-
-
-### Brief
-
+### 获取快讯数据
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/briefs?locale=zh_CN'
@@ -965,13 +1150,12 @@ curl -X GET \
 
 ```
 
-获取快讯数据
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/briefs?locale=zh_CN`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -979,8 +1163,7 @@ locale |QueryString|是| 语言，支持zh_CN(中文),en_US(英文),ko_KR(韩文
 page |QueryString|否| 当前页数，默认 0, (>=0)
 size |QueryString|否| 每页数据量，默认 20 (>=1)
 
-
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -993,7 +1176,7 @@ source|来源
 images|图片链接
 
 
-### Announcements
+### 获取交易所公告数据
 
 ```shell
 curl -X GET \
@@ -1028,15 +1211,14 @@ curl -X GET \
 
 ```
 
-获取交易所公告数据
 <aside class="notice">
 数据来源：通过交易所获取
 </aside>
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/announcements?locale=zh_CN`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -1046,7 +1228,7 @@ size |QueryString|否| 每页数据量，默认 20 (>=1)
 market |QueryString|否| 获取指定的交易所公告
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1060,7 +1242,7 @@ url|mifengcha.com原文链接
 images|图片链接
 
 
-### Articles
+### 获取资讯文章列表
 
 ```shell
 curl -X GET \
@@ -1090,13 +1272,12 @@ curl -X GET \
 
 ```
 
-获取资讯文章列表
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/articles?locale=zh_CN`
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -1105,7 +1286,7 @@ page |QueryString|否| 当前页数，默认 0, (>=0)
 size |QueryString|否| 每页数据量，默认 20 (>=1, <=20)
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1120,7 +1301,7 @@ url|mifengcha.com原文链接
 source|来源
 
 
-### Article
+### 获取单篇资讯文章内容
 
 ```shell
 curl -X GET \
@@ -1147,20 +1328,19 @@ curl -X GET \
   }
 ```
 
-获取单篇资讯文章内容
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/articles/{id}`
 
-#### 请求参数
+##### 请求参数
 
 参数 | 说明
 --------- | -----------
 id| 文章id
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 与文章格式与列表相同，多出`btcPrice`字段
 
@@ -1168,10 +1348,12 @@ id| 文章id
 --------- | -----------
 btcPrice|发文时比特币价格
 
-### SocialMedia
+
+<h3 id="获取社交媒体内容">获取社交媒体内容</h3>
 
 ```shell
-curl https://data.mifengcha.com/api/v3/social_media?source=TWITTER
+curl -X GET \
+ 'https://data.mifengcha.com/api/v3/social_media?source=TWITTER'
 ```
 
 > 将会返回以下内容:
@@ -1207,18 +1389,17 @@ curl https://data.mifengcha.com/api/v3/social_media?source=TWITTER
 ]
 ```
 
-获取社交媒体内容
 
 <aside class="notice">
 数据来源：Twitter，微博
 </aside>
 
-#### 请求URL
+##### 请求URL
 
 `GET https://data.block.cc/api/v3/social_media`
 
 
-#### 请求参数
+##### 请求参数
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
@@ -1228,7 +1409,7 @@ size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。
 
 
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 -------- | :----------
@@ -1248,11 +1429,9 @@ retweet.userId | 被转发用户ID
 retweet.avatar | 被转发用户头像
 retweet.screenName | 被转发用户名
 
-
-
 # WebSocket API
 
-
+##### 请求URL
 <aside class="success">
 URL: wss://data.block.cc/ws/v3
 </aside>
@@ -1264,7 +1443,7 @@ URL: wss://data.block.cc/ws/v3
 * 每个账户的最大连接数根据账户套餐设定, 详情查看 [Pricing](https://data.mifengcha.com/pricing)。
 * 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic订阅额度。
 * 90秒内不会推送没有变化的数据
-
+ 
 
 ## 订阅
 ```shell
@@ -1278,11 +1457,11 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {"code":0,"message":"Subscribed"}
 ```
 
-#### 消息格式
+##### 消息格式
 
 `{"op": "subscribe", "args": ["<topic1>","<topic2>", ...]}`
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1304,11 +1483,11 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {"code":0,"message":"Unsubscribed"}
 ```
 
-#### 消息格式
+##### 消息格式
 
 `{"op": "unsubscribe", "args": ["<topic1>","<topic2>", ...]}`
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1329,11 +1508,11 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 {"code":0,"message":"Success","topics":["price:bitcoin"]}
 ```
 
-#### 消息格式
+##### 消息格式
 
 `{"op": "topics"}`
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1370,17 +1549,17 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 }
 ```
 
-#### Topic格式
+##### Topic格式
 
-`price:` + [币种](#symbols) slug
+`price:` + [币种](#获取所有支持的币种列表) slug
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
 code| Message Code
 message| Message
-data| [Price](#price)
+data| [Price](#获取币种价格)
 
 
 ## Topic: Ticker
@@ -1417,11 +1596,11 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 }
 ```
 
-#### Topic格式
+##### Topic格式
 
 `ticker:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
@@ -1471,31 +1650,32 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 }
 ```
 
-#### Topic格式
+##### Topic格式
 
 `orderbook:` + 交易对(`binance_BNB_USDT`, `huobipro_HT_USDT`)
 
-#### 返回参数说明
+##### 返回参数说明
 
 参数 | 说明
 --------- | -----------
 code| Message Code
 message| Message
-data| [Orderbook](#orderbook)
-
-
-
+data| [Orderbook](#获取交易对深度)
 
 # 交易所收录
 
 API 建议
 
-1. 请使用QueryString或者URLParams方式传参。
+1. 请使用QueryString或者URLParams方式传参
 2. 请提供批量获取ticker的接口，以便批量更新价格和交易对。
 3. 如果暂时不能提供批量获取ticker的接口, 请提供获取所有交易对的接口。(不推荐,请求频率高,更新速度慢)
 4. 交易对请尽量使用符号分割或者固定长度。
 5. 正常情况下每分钟请求次数为10次左右。
 6. 接口数据保证稳定真实。
-  
+ 
 
 [点此连接](http://cn.mikecrm.com/TNFyHPJ) 进入交易所收录表单
+
+[点此连接](http://mifengcha.mikecrm.com/Zha7vqZ) 进入币种收录表单
+
+
