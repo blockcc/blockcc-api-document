@@ -363,13 +363,12 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#f0e2f84a59" class="toc-h1 toc-link" data-title="交易所收录">交易所收录</a>
-          </li>
       </ul>
         <ul class="toc-footer">
             <li><a target="_blank" href='https://data.mifengcha.com/register?lang=zh_CN'>创建API KEY</a></li>
             <li><a href='../v1/'>查看v1文档</a></li>
+            <li><a href="http://cn.mikecrm.com/TNFyHPJ">交易所收录</a></li>
+            <li><a href="http://mifengcha.mikecrm.com/Zha7vqZ">币种收录</a></li>
             <li><a href='https://data.mifengcha.com/contactus'>问题反馈</a></li>
             <li><br></li>
             <li><a class="locale-button" href='../zh_CN'><img src="../images/flags/zh_CN-8d23d3a4.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="../images/flags/en_US-47772e90.svg" alt="English"/></a></li>
@@ -389,13 +388,13 @@
         <td>2021.01.21</td>
         <td>新增</td>
         <td>
-            新增<a href="#SDK">SDK</a>
+            新增JAVA SDK
         </td>
     </tr>
     <tr>
         <td>2020.10.16</td>
         <td>新增</td>
-        <td><a href="#获取币种历史价格">HistoricalPrice</a> 新增请求参数 interval</td>
+        <td>历史价格接口新增时间间隔请求参数 </td>
     </tr>
     <tr>
         <td>2020.10.01</td>
@@ -405,17 +404,17 @@
     <tr>
         <td>2020.05.25</td>
         <td>新增</td>
-        <td>新增社交媒体API <a href="#获取社交媒体内容">SocialMedia</a></td>
+        <td>新增社交媒体API</td>
     </tr>
     <tr>
         <td>2020.04.16</td>
         <td>新增</td>
-        <td>K线新增1分钟类型 <a href="#获取交易对K线数据">Kline</a></td>
+        <td>K线新增1分钟类型</td>
     </tr>
     <tr>
         <td>2020.04.09</td>
         <td>新增</td>
-        <td><a href="#获取币种价格">Price</a> 新增字段：24小时最高价、24小时最低价、1周涨跌幅、1周最高价、1周最低价、1月涨跌幅、1月最高价、1月最低价、历史最高价、历史最低价</td>
+        <td>价格新增字段：24小时最高价、24小时最低价、1周涨跌幅、1周最高价、1周最低价、1月涨跌幅、1月最高价、1月最低价、历史最高价、历史最低价</td>
     </tr>
 </table>
 <h1 id='5ea2e0cde2'>简介</h1>
@@ -423,7 +422,7 @@
 
 <p>此文档是蜜蜂查的唯一官方文档，蜜蜂查API提供的功能和服务会在此文档持续更新。</p>
 
-<p>蜜蜂查提供了丰富的API接口供开发者使用，接入简单，使用方便。第三方应用开发者可以借助该服务，快速构建稳定高效的数字货币行情系统，为实时业务需求和产品运营提供技术支持。
+<p>蜜蜂查提供了丰富的API接口供开发者使用，接入简单，使用方便。第三方应用开发者可以借助该服务，快速构建稳定高效的数字货币行情系统，为实时业务和产品运营提供技术支持。
 <br>
 <br></p>
 
@@ -466,7 +465,7 @@
 
 <h2 id="SDK">SDK</h2>
 
-<p><a href="https://github.com/blockcc/blockcc-api-client-java" target="_blank">JAVA</a></p>
+<p>蜜蜂查API SDK：<a href="https://github.com/blockcc/blockcc-api-client-java" target="_blank">JAVA</a></p>
 <h2 id='5076603a3e'>接口类型</h2>
 <p>蜜蜂查API为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行行情查询。</p>
 <h5 id='rest-api'>REST API</h5>
@@ -2791,21 +2790,6 @@ URL: wss://data.block.cc/ws/v3
 <td><a href="#获取交易对深度">Orderbook</a></td>
 </tr>
 </tbody></table>
-<h1 id='f0e2f84a59'>交易所收录</h1>
-<p>API 建议</p>
-
-<ol>
-<li>请使用QueryString或者URLParams方式传参</li>
-<li>请提供批量获取ticker的接口，以便批量更新价格和交易对。</li>
-<li>如果暂时不能提供批量获取ticker的接口, 请提供获取所有交易对的接口。(不推荐,请求频率高,更新速度慢)</li>
-<li>交易对请尽量使用符号分割或者固定长度。</li>
-<li>正常情况下每分钟请求次数为10次左右。</li>
-<li>接口数据保证稳定真实。</li>
-</ol>
-
-<p><a href="http://cn.mikecrm.com/TNFyHPJ">点此连接</a> 进入交易所收录表单</p>
-
-<p><a href="http://mifengcha.mikecrm.com/Zha7vqZ">点此连接</a> 进入币种收录表单</p>
 
       </div>
       <div class="dark-box">
