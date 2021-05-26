@@ -24,6 +24,13 @@ code_clipboard: true
 		<th width="50px">变化</th>
 		<th>更新内容</th>
 	</tr>
+<tr>
+		<td>2021.05.26</td>
+		<td>新增</td>
+		<td>
+			币种新增 platforms 字段
+		</td>
+	</tr>
 	<tr>
 		<td>2021.01.21</td>
 		<td>新增</td>
@@ -447,32 +454,44 @@ curl -X GET \
 > 将会返回以下内容:
 
 ```json
- [
-    {
-      "slug": "bitcoin",
-      "symbol": "BTC",
-      "fullname" : "Bitcoin",
-      "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
-      "volumeUsd": 4463819005.1846,
-      "status": "enable",
-      "marketCapUsd":157081834083.0375,
-      "availableSupply":18039125,
-      "totalSupply":18039125,
-      "maxSupply":21000000,
-      "website":"https://bitcoin.org/en/",
-      "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
-      "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
-      "githubId": "bitcoin",
-      "twitterId": "btc",
-      "facebookId": "bitcoins",
-      "telegramId": "www_bitcoin_com",
-      "redditId": "bitcoin",
-      "algorithm": "SHA256",
-      "proof": "POW",
-      "issueDate": "2008-10-31T16:00:00Z",
-      "details" : null
-    }
-  ]
+[
+  {
+    "slug": "ethereum",
+    "symbol": "ETH",
+    "fullname": "Ethereum",
+    "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
+    "volumeUsd": 48535287645.18,
+    "status": "enable",
+    "marketCapUsd": 330065744723.0739,
+    "availableSupply": 116017188.1865,
+    "totalSupply": 116017188.1865,
+    "maxSupply": 116017188.1865,
+    "websiteUrl": "https://www.ethereum.org/",
+    "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
+    "whitePaperUrls": null,
+    "githubId": "ethereum",
+    "twitterId": "ethereum",
+    "facebookId": "ethereumproject",
+    "telegramId": null,
+    "redditId": "ethereum",
+    "algorithm": null,
+    "proof": null,
+    "platforms": [
+      {
+        "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+        "platform": "BSC",
+        "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+      },
+      {
+        "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
+        "platform": "HECO",
+        "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+      }
+    ],
+    "issueDate": "2015-07-29T16:00:00Z",
+    "details": null
+  }
+]
 
 ```
 
@@ -504,7 +523,7 @@ marketCapUsd |币种市值
 availableSupply |流通量
 totalSupply |发行总量
 maxSupply |最大发行量
-website |官网链接
+websiteUrl |官网链接
 explorerUrls |区块浏览器链接
 whitePaperUrls |白皮书
 githubId |Github
@@ -513,41 +532,54 @@ facebookId |FaceBook
 telegramId |Telegram
 algorithm |核心算法
 proof |激励机制
+platforms | 平台信息
 issueDate |上市时间
 details |币种介绍, 默认不返回
 
 ### 获取单个币种信息
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/symbols/bitcoin'
+  'https://data.block.cc/api/v3/symbols/ethereum'
 ```
 
 > 将会返回以下内容:
 
 ```json
 {
-  "slug": "bitcoin",
-  "symbol": "BTC",
-  "fullname" : "Bitcoin",
-  "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
-  "volumeUsd": 4463819005.1846,
+  "slug": "ethereum",
+  "symbol": "ETH",
+  "fullname": "Ethereum",
+  "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
+  "volumeUsd": 48535287645.18,
   "status": "enable",
-  "marketCapUsd":157081834083.0375,
-  "availableSupply":18039125,
-  "totalSupply":18039125,
-  "maxSupply":21000000,
-  "website":"https://bitcoin.org/en/",
-  "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
-  "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
-  "githubId": "bitcoin",
-  "twitterId": "btc",
-  "facebookId": "bitcoins",
-  "telegramId": "www_bitcoin_com",
-  "redditId": "bitcoin",
-  "algorithm": "SHA256",
-  "proof": "POW",
-  "issueDate": "2008-10-31T16:00:00Z",
-  "details" : null
+  "marketCapUsd": 330065744723.0739,
+  "availableSupply": 116017188.1865,
+  "totalSupply": 116017188.1865,
+  "maxSupply": 116017188.1865,
+  "websiteUrl": "https://www.ethereum.org/",
+  "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
+  "whitePaperUrls": null,
+  "githubId": "ethereum",
+  "twitterId": "ethereum",
+  "facebookId": "ethereumproject",
+  "telegramId": null,
+  "redditId": "ethereum",
+  "algorithm": null,
+  "proof": null,
+  "platforms": [
+    {
+      "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+      "platform": "BSC",
+      "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+    },
+    {
+      "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
+      "platform": "HECO",
+      "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+    }
+  ],
+  "issueDate": "2015-07-29T16:00:00Z",
+  "details": null
 }
 ```
 
@@ -577,7 +609,7 @@ marketCapUsd |币种市值
 availableSupply |流通量
 totalSupply |发行总量
 maxSupply |最大发行量
-website |官网链接
+websiteUrl |官网链接
 explorerUrls |区块浏览器链接
 whitePaperUrls |白皮书
 githubId |Github
@@ -586,6 +618,7 @@ facebookId |FaceBook
 telegramId |Telegram
 algorithm |核心算法
 proof |激励机制
+platforms | 平台信息
 issueDate |上市时间
 details |币种介绍, 默认不返回
 
