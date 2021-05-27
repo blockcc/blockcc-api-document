@@ -155,13 +155,18 @@ prev | The previous page link
 
 # Changelog
 
+### 2021-05-26
+
+- Add `platforms` field to [Symbols](#symbols)
+
 ### 2020-10-16
 
-- Add request param `interval` to [HistoricalPrice](#historicalprice) 
+- Add request param `interval` to [HistoricalPrice](#historicalprice)
 
 ### 2020-10-01
 
-- APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.
+- APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to
+  update to APIv3 for a better experience.
 
 ### 2020-05-25
 
@@ -272,76 +277,90 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/symbols/bitcoin'
+  'https://data.block.cc/api/v3/symbols/ethereum'
 ```
 
 > Response:
 
 ```json
  [
-    {
-      "slug": "bitcoin",
-      "symbol": "BTC",
-      "fullname" : "Bitcoin",
-      "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
-      "volumeUsd": 4463819005.1846,
-      "status": "enable",
-      "marketCapUsd":157081834083.0375,
-      "availableSupply":18039125,
-      "totalSupply":18039125,
-      "maxSupply":21000000,
-      "website":"https://bitcoin.org/en/",
-      "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
-      "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
-      "githubId": "bitcoin",
-      "twitterId": "btc",
-      "facebookId": "bitcoins",
-      "telegramId": "www_bitcoin_com",
-      "redditId": "bitcoin",
-      "algorithm": "SHA256",
-      "proof": "POW",
-      "issueDate": "2008-10-31T16:00:00Z",
-      "details" : [ {
-            "locale" : "zh_CN",
-            "fullName" : "比特币",
-            "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出,根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络.比特币是一种P2P形式的数字货币.点对点的传输意味着一个去中心化的支付系统.与大多数货币不同,比特币不依靠特定货币机构发行,它依据特定算法,通过大量的计算产生,比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为,并使用密码学的设计来确保货币流通各个环节安全性.p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值.基于密码学的设计可以使比特币只能被真实的拥有者转移或支付.这同样确保了货币所有权与流通交易的匿名性.比特币与其他虚拟货币最大的不同,是其总数量非常有限,具有极强的稀缺性.该货币系统曾在4年内只有不超过1050万个,之后的总数量将被永久限制在2100万个. 比特,是一种计算机专业术语,是信息量单位,是由英文BIT音译而来.二进制数的一位所包含的信息就是一比特,如二进制数0100就是4比特.那么,比特这个概念和货币联系到一起,不难看出,比特币非现实货币,而是一种计算机电子虚拟货币,存储在你的电脑上.目前,这种崭新的虚拟货币不受任何政府、任何银行控制.因此,它还未被合法化."
-          }
-      ]
-    }
-  ]
+  {
+    "slug": "ethereum",
+    "symbol": "ETH",
+    "fullname": "Ethereum",
+    "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
+    "volumeUsd": 48535287645.18,
+    "status": "enable",
+    "marketCapUsd": 330065744723.0739,
+    "availableSupply": 116017188.1865,
+    "totalSupply": 116017188.1865,
+    "maxSupply": 116017188.1865,
+    "websiteUrl": "https://www.ethereum.org/",
+    "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
+    "whitePaperUrls": null,
+    "githubId": "ethereum",
+    "twitterId": "ethereum",
+    "facebookId": "ethereumproject",
+    "telegramId": null,
+    "redditId": "ethereum",
+    "algorithm": null,
+    "proof": null,
+    "platforms": [
+      {
+        "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+        "platform": "BSC",
+        "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+      },
+      {
+        "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
+        "platform": "HECO",
+        "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+      }
+    ],
+    "issueDate": "2015-07-29T16:00:00Z",
+    "details": null
+  }
+]
 
 ```
 
 ```json
-{
-  "slug": "bitcoin",
-  "symbol": "BTC",
-  "fullname" : "Bitcoin",
-  "logoUrl" : "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png",
-  "volumeUsd": 4463819005.1846,
-  "status": "enable",
-  "marketCapUsd":157081834083.0375,
-  "availableSupply":18039125,
-  "totalSupply":18039125,
-  "maxSupply":21000000,
-  "website":"https://bitcoin.org/en/",
-  "explorerUrls": "https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/",
-  "whitePaperUrls":"https://bitcoin.org/bitcoin.pdf",
-  "githubId": "bitcoin",
-  "twitterId": "btc",
-  "facebookId": "bitcoins",
-  "telegramId": "www_bitcoin_com",
-  "redditId": "bitcoin",
-  "algorithm": "SHA256",
-  "proof": "POW",
-  "issueDate": "2008-10-31T16:00:00Z",
-  "details" : [ {
-        "locale" : "zh_CN",
-        "fullName" : "比特币",
-        "description" : "比特币（BitCoin）的概念最初由中本聪在2008年提出,根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络.比特币是一种P2P形式的数字货币.点对点的传输意味着一个去中心化的支付系统.与大多数货币不同,比特币不依靠特定货币机构发行,它依据特定算法,通过大量的计算产生,比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为,并使用密码学的设计来确保货币流通各个环节安全性.p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值.基于密码学的设计可以使比特币只能被真实的拥有者转移或支付.这同样确保了货币所有权与流通交易的匿名性.比特币与其他虚拟货币最大的不同,是其总数量非常有限,具有极强的稀缺性.该货币系统曾在4年内只有不超过1050万个,之后的总数量将被永久限制在2100万个. 比特,是一种计算机专业术语,是信息量单位,是由英文BIT音译而来.二进制数的一位所包含的信息就是一比特,如二进制数0100就是4比特.那么,比特这个概念和货币联系到一起,不难看出,比特币非现实货币,而是一种计算机电子虚拟货币,存储在你的电脑上.目前,这种崭新的虚拟货币不受任何政府、任何银行控制.因此,它还未被合法化."
+  {
+    "slug": "ethereum",
+    "symbol": "ETH",
+    "fullname": "Ethereum",
+    "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
+    "volumeUsd": 48535287645.18,
+    "status": "enable",
+    "marketCapUsd": 330065744723.0739,
+    "availableSupply": 116017188.1865,
+    "totalSupply": 116017188.1865,
+    "maxSupply": 116017188.1865,
+    "websiteUrl": "https://www.ethereum.org/",
+    "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
+    "whitePaperUrls": null,
+    "githubId": "ethereum",
+    "twitterId": "ethereum",
+    "facebookId": "ethereumproject",
+    "telegramId": null,
+    "redditId": "ethereum",
+    "algorithm": null,
+    "proof": null,
+    "platforms": [
+      {
+        "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+        "platform": "BSC",
+        "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+      },
+      {
+        "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
+        "platform": "HECO",
+        "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
       }
-  ]
-}
+    ],
+    "issueDate": "2015-07-29T16:00:00Z",
+    "details": null
+  }
 ```
 
 Get a list of all supported currencies
@@ -385,6 +404,7 @@ facebookId | FaceBook
 telegramId| Telegram
 algorithm | Core Algorithm
 proof | Proof
+platforms | platform information
 issueDate | Time to issue
 details | Currency introduction, not returned by default
 
