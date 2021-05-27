@@ -157,6 +157,10 @@ prev | The previous page link
 
 ### 2021-05-26
 
+- trade interface maintenance
+
+### 2021-05-26
+
 - Add `platforms` field to [Symbols](#symbols)
 
 ### 2020-10-16
@@ -816,70 +820,6 @@ b/a | Description
 
 * The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a timestamp, it is the timestamp before request
 
-
-### Trades
-
-```shell
-curl -X GET \
-  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'
-```
-
-> Response:
-
-```json
- [
-    {
-      "T": 1573721951113,
-      "p": 8634,
-      "v": 5,
-      "s": "buy",
-      "m": "gate-io_BTC_USDT"
-
-    },
-    {
-      "T": 1573721944964,
-      "p": 8634,
-      "v": 0.001519,
-      "s": "sell",
-      "m": "gate-io_BTC_USDT"
-    }
-  ]
-
-```
-
-Get Trades
-
-<aside class="notice">
-Updated: 5-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
-</aside>
-
-<aside class="notice">
-Data Source: From Exchange
-</aside>
-
-#### Request URL
-
-`GET https://data.block.cc/api/v3/trades`
-
-#### Request Parameter
-
-Parameter | Position | Required | Description
---------- |---------|--------- | -----------
-desc |QueryString|Yes| Market Pair Desc. e.g.：gate-io_BTC_USDT
-limit |QueryString|No| Data Size, default 50 (<=100)
-
-
-#### Response Parameter
-
-Parameter | Description
---------- | -----------
-T|13-bit Unix Timestamp
-p|Price
-v|Base Volume
-s|Taker Order Side[buy,sell,none]
-m|Market Pair Desc
-
-* Data in reverse order according to transaction timestamp
 
 
 ### Kline
