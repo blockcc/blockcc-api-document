@@ -26,6 +26,13 @@ code_clipboard: true
 	</tr>
 <tr>
 		<td>2021.05.26</td>
+		<td>维护</td>
+		<td>
+			获取交易对成交记录接口维护
+		</td>
+	</tr>
+<tr>
+		<td>2021.05.26</td>
 		<td>新增</td>
 		<td>
 			币种新增 platforms 字段
@@ -171,7 +178,7 @@ wss://data.mifengcha.com/ws
         <td>/v3/symbols/{slug}</td>
     </tr>
     <tr>
-        <td align="center" rowspan="7" style="vertical-align: middle;">行情数据</td>
+        <td align="center" rowspan="6" style="vertical-align: middle;">行情数据</td>
         <td>获取汇率</td>
         <td>/v3/exchange_rate</td>
     </tr>
@@ -190,10 +197,6 @@ wss://data.mifengcha.com/ws
     <tr>
         <td>获取交易对深度</td>
         <td>/v3/orderbook</td>
-    </tr>
-    <tr>
-        <td>获取交易对成交记录</td>
-        <td>/v3/trades</td>
     </tr>
     <tr>
         <td>获取交易对K线数据</td>
@@ -1025,68 +1028,7 @@ b/a | 说明
 * 数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳
 
 
-### 获取交易对成交记录
 
-```shell
-curl -X GET \
-  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'
-```
-
-> 将会返回以下内容:
-
-```json
- [
-    {
-      "T": 1573721951113,
-      "p": 8634,
-      "v": 5,
-      "s": "buy",
-      "m": "gate-io_BTC_USDT"
-
-    },
-    {
-      "T": 1573721944964,
-      "p": 8634,
-      "v": 0.001519,
-      "s": "sell",
-      "m": "gate-io_BTC_USDT"
-    }
-  ]
-
-```
-
-
-<aside class="notice">
-更新时间：5秒-60秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
-</aside>
-
-<aside class="notice">
-数据来源：通过交易所API获取
-</aside>
-
-##### 请求URL
-
-`GET https://data.block.cc/api/v3/trades`
-
-##### 请求参数
-
-参数名称|传输方式|必选|说明
---------- |---------|--------- | -----------
-desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
-limit |QueryString|否| 返回数据量，默认50
-
-
-##### 返回参数说明
-
-参数 | 说明
---------- | -----------
-T|交易成交时间戳
-p|成交价格
-v|成交量
-s|成交类型[buy,sell,none]，为taker操作方向
-m|交易对信息
-
-* 数据按照交易成交时间戳倒序排序
 
 
 
