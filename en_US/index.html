@@ -261,6 +261,12 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-05-26" class="toc-h2 toc-link" data-title="2021-05-26">2021-05-26</a>
+                  </li>
+                  <li>
+                    <a href="#2021-05-26-2" class="toc-h2 toc-link" data-title="2021-05-26">2021-05-26</a>
+                  </li>
+                  <li>
                     <a href="#2020-10-16" class="toc-h2 toc-link" data-title="2020-10-16">2020-10-16</a>
                   </li>
                   <li>
@@ -308,9 +314,6 @@
                             </li>
                             <li>
                               <a href="#orderbook" class="toc-h3 toc-link" data-title="REST API">Orderbook</a>
-                            </li>
-                            <li>
-                              <a href="#trades" class="toc-h3 toc-link" data-title="REST API">Trades</a>
                             </li>
                             <li>
                               <a href="#kline" class="toc-h3 toc-link" data-title="REST API">Kline</a>
@@ -529,13 +532,22 @@ X-Total-Count →10000
 <td>The previous page link</td>
 </tr>
 </tbody></table>
-<h1 id='changelog'>Changelog</h1><h3 id='2020-10-16'>2020-10-16</h3>
+<h1 id='changelog'>Changelog</h1><h3 id='2021-05-26'>2021-05-26</h3>
 <ul>
-<li>Add request param <code>interval</code> to <a href="#historicalprice">HistoricalPrice</a> </li>
+<li>trade interface maintenance</li>
+</ul>
+<h3 id='2021-05-26-2'>2021-05-26</h3>
+<ul>
+<li>Add <code>platforms</code> field to <a href="#symbols">Symbols</a></li>
+</ul>
+<h3 id='2020-10-16'>2020-10-16</h3>
+<ul>
+<li>Add request param <code>interval</code> to <a href="#historicalprice">HistoricalPrice</a></li>
 </ul>
 <h3 id='2020-10-01'>2020-10-01</h3>
 <ul>
-<li>APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to update to APIv3 for a better experience.</li>
+<li>APIv1 is not available for free users. APIv3 has been stable for users for more than a year. It is recommended to
+update to APIv3 for a better experience.</li>
 </ul>
 <h3 id='2020-05-25'>2020-05-25</h3>
 <p>Add SocialMedia API <a href="#socialmedia">SocialMedia</a></p>
@@ -679,72 +691,86 @@ URL: https://data.block.cc/api/v3
 <h3 id='symbols'>Symbols</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/symbols'</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/symbols/bitcoin'</span>
+  <span class="s1">'https://data.block.cc/api/v3/symbols/ethereum'</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fullname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"logoUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"volumeUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">4463819005.1846</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"marketCapUsd"</span><span class="p">:</span><span class="mf">157081834083.0375</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"availableSupply"</span><span class="p">:</span><span class="mi">18039125</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"totalSupply"</span><span class="p">:</span><span class="mi">18039125</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"maxSupply"</span><span class="p">:</span><span class="mi">21000000</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"website"</span><span class="p">:</span><span class="s2">"https://bitcoin.org/en/"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"explorerUrls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"whitePaperUrls"</span><span class="p">:</span><span class="s2">"https://bitcoin.org/bitcoin.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"githubId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"twitterId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"facebookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoins"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"telegramId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www_bitcoin_com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"redditId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHA256"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"proof"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POW"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2008-10-31T16:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"locale"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zh_CN"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fullName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"比特币"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"比特币（BitCoin）的概念最初由中本聪在2008年提出,根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络.比特币是一种P2P形式的数字货币.点对点的传输意味着一个去中心化的支付系统.与大多数货币不同,比特币不依靠特定货币机构发行,它依据特定算法,通过大量的计算产生,比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为,并使用密码学的设计来确保货币流通各个环节安全性.p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值.基于密码学的设计可以使比特币只能被真实的拥有者转移或支付.这同样确保了货币所有权与流通交易的匿名性.比特币与其他虚拟货币最大的不同,是其总数量非常有限,具有极强的稀缺性.该货币系统曾在4年内只有不超过1050万个,之后的总数量将被永久限制在2100万个. 比特,是一种计算机专业术语,是信息量单位,是由英文BIT音译而来.二进制数的一位所包含的信息就是一比特,如二进制数0100就是4比特.那么,比特这个概念和货币联系到一起,不难看出,比特币非现实货币,而是一种计算机电子虚拟货币,存储在你的电脑上.目前,这种崭新的虚拟货币不受任何政府、任何银行控制.因此,它还未被合法化."</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-
-</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fullname"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logoUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/bitcoin.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"volumeUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">4463819005.1846</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"marketCapUsd"</span><span class="p">:</span><span class="mf">157081834083.0375</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"availableSupply"</span><span class="p">:</span><span class="mi">18039125</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"totalSupply"</span><span class="p">:</span><span class="mi">18039125</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"maxSupply"</span><span class="p">:</span><span class="mi">21000000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"website"</span><span class="p">:</span><span class="s2">"https://bitcoin.org/en/"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"explorerUrls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://live.blockcypher.com/btc/,http://blockchain.info,https://blockchair.com/bitcoin/,https://explorer.viabtc.com/btc,https://blockexplorer.com/,https://btc.com/"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"whitePaperUrls"</span><span class="p">:</span><span class="s2">"https://bitcoin.org/bitcoin.pdf"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"githubId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"twitterId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"facebookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoins"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"telegramId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www_bitcoin_com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"redditId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHA256"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"proof"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POW"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2008-10-31T16:00:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"locale"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zh_CN"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fullName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"比特币"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"比特币（BitCoin）的概念最初由中本聪在2008年提出,根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络.比特币是一种P2P形式的数字货币.点对点的传输意味着一个去中心化的支付系统.与大多数货币不同,比特币不依靠特定货币机构发行,它依据特定算法,通过大量的计算产生,比特币经济使用整个p2p网络中众多节点构成的分布式数据库来确认并记录所有的交易行为,并使用密码学的设计来确保货币流通各个环节安全性.p2p的去中心化特性与算法本身可以确保无法通过大量制造比特币来人为操控币值.基于密码学的设计可以使比特币只能被真实的拥有者转移或支付.这同样确保了货币所有权与流通交易的匿名性.比特币与其他虚拟货币最大的不同,是其总数量非常有限,具有极强的稀缺性.该货币系统曾在4年内只有不超过1050万个,之后的总数量将被永久限制在2100万个. 比特,是一种计算机专业术语,是信息量单位,是由英文BIT音译而来.二进制数的一位所包含的信息就是一比特,如二进制数0100就是4比特.那么,比特这个概念和货币联系到一起,不难看出,比特币非现实货币,而是一种计算机电子虚拟货币,存储在你的电脑上.目前,这种崭新的虚拟货币不受任何政府、任何银行控制.因此,它还未被合法化."</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volumeUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">48535287645.18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"marketCapUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">330065744723.0739</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"availableSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.ethereum.org/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"explorerUrls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"whitePaperUrls"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"githubId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twitterId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"facebookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereumproject"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telegramId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redditId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proof"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platforms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"contractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x2170ed0880ac9a755fd29b2688956bd959f933f8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BSC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"contractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HECO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-29T16:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logoUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volumeUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">48535287645.18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"marketCapUsd"</span><span class="p">:</span><span class="w"> </span><span class="mf">330065744723.0739</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"availableSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxSupply"</span><span class="p">:</span><span class="w"> </span><span class="mf">116017188.1865</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.ethereum.org/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"explorerUrls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"whitePaperUrls"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"githubId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twitterId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"facebookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereumproject"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"telegramId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redditId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethereum"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proof"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platforms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"contractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x2170ed0880ac9a755fd29b2688956bd959f933f8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BSC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"contractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HECO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-29T16:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get a list of all supported currencies</p>
 <h4 id='request-url-2'>Request URL</h4>
@@ -867,6 +893,10 @@ URL: https://data.block.cc/api/v3
 <tr>
 <td>proof</td>
 <td>Proof</td>
+</tr>
+<tr>
+<td>platforms</td>
+<td>platform information</td>
 </tr>
 <tr>
 <td>issueDate</td>
@@ -1513,96 +1543,6 @@ Note: The data center will intercept abnormal data. Please check the timestamp w
 <ul>
 <li>The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a timestamp, it is the timestamp before request</li>
 </ul>
-<h3 id='trades'>Trades</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'</span>
-</code></pre>
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721951113</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
-
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721944964</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-
-</span></code></pre>
-<p>Get Trades</p>
-
-<aside class="notice">
-Updated: 5-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
-</aside>
-
-<aside class="notice">
-Data Source: From Exchange
-</aside>
-<h4 id='request-url-8'>Request URL</h4>
-<p><code>GET https://data.block.cc/api/v3/trades</code></p>
-<h4 id='request-parameter-8'>Request Parameter</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Position</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>desc</td>
-<td>QueryString</td>
-<td>Yes</td>
-<td>Market Pair Desc. e.g.：gate-io_BTC_USDT</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>QueryString</td>
-<td>No</td>
-<td>Data Size, default 50 (&lt;=100)</td>
-</tr>
-</tbody></table>
-<h4 id='response-parameter-8'>Response Parameter</h4>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>T</td>
-<td>13-bit Unix Timestamp</td>
-</tr>
-<tr>
-<td>p</td>
-<td>Price</td>
-</tr>
-<tr>
-<td>v</td>
-<td>Base Volume</td>
-</tr>
-<tr>
-<td>s</td>
-<td>Taker Order Side[buy,sell,none]</td>
-</tr>
-<tr>
-<td>m</td>
-<td>Market Pair Desc</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>Data in reverse order according to transaction timestamp</li>
-</ul>
 <h3 id='kline'>Kline</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&amp;type=15m&amp;start=1573637497000'</span>
 </code></pre>
@@ -1634,9 +1574,9 @@ Data Source: From Exchange
 <aside class="notice">
 Data Source: From Exchange
 </aside>
-<h4 id='request-url-9'>Request URL</h4>
+<h4 id='request-url-8'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/kline</code></p>
-<h4 id='request-parameter-9'>Request Parameter</h4>
+<h4 id='request-parameter-8'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1674,7 +1614,7 @@ Data Source: From Exchange
 <ul>
 <li>maximum of 2000 pieces of data for a single request, <code>(end-start)/interval &lt;= 2000</code>, if the request exceeds 2000 data points, the response will be return 400 <code>10010 Duration Limited</code></li>
 </ul>
-<h4 id='response-parameter-9'>Response Parameter</h4>
+<h4 id='response-parameter-8'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1735,9 +1675,9 @@ Data Source: From Exchange
 
 </span></code></pre>
 <p>Get Briefs</p>
-<h4 id='request-url-10'>Request URL</h4>
+<h4 id='request-url-9'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/briefs?locale=zh_CN</code></p>
-<h4 id='request-parameter-10'>Request Parameter</h4>
+<h4 id='request-parameter-9'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1765,7 +1705,7 @@ Data Source: From Exchange
 <td>Per page size, default 20 (&gt;=1)</td>
 </tr>
 </tbody></table>
-<h4 id='response-parameter-10'>Response Parameter</h4>
+<h4 id='response-parameter-9'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1836,9 +1776,9 @@ Data Source: From Exchange
 <aside class="notice">
 Data Source: From Exchange
 </aside>
-<h4 id='request-url-11'>Request URL</h4>
+<h4 id='request-url-10'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/announcements?locale=zh_CN</code></p>
-<h4 id='request-parameter-11'>Request Parameter</h4>
+<h4 id='request-parameter-10'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1872,7 +1812,7 @@ Data Source: From Exchange
 <td>Market slug</td>
 </tr>
 </tbody></table>
-<h4 id='response-parameter-11'>Response Parameter</h4>
+<h4 id='response-parameter-10'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1938,9 +1878,9 @@ Data Source: From Exchange
 
 </span></code></pre>
 <p>Get Article List</p>
-<h4 id='request-url-12'>Request URL</h4>
+<h4 id='request-url-11'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/articles?locale=zh_CN</code></p>
-<h4 id='request-parameter-12'>Request Parameter</h4>
+<h4 id='request-parameter-11'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1968,7 +1908,7 @@ Data Source: From Exchange
 <td>Per page size, default 20 (&gt;=1, &lt;=20)</td>
 </tr>
 </tbody></table>
-<h4 id='response-parameter-12'>Response Parameter</h4>
+<h4 id='response-parameter-11'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2035,9 +1975,9 @@ Data Source: From Exchange
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get One Article</p>
-<h4 id='request-url-13'>Request URL</h4>
+<h4 id='request-url-12'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/articles/{id}</code></p>
-<h4 id='request-parameter-13'>Request Parameter</h4>
+<h4 id='request-parameter-12'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2049,7 +1989,7 @@ Data Source: From Exchange
 <td>Article ID</td>
 </tr>
 </tbody></table>
-<h4 id='response-parameter-13'>Response Parameter</h4>
+<h4 id='response-parameter-12'>Response Parameter</h4>
 <p>Same as the article list format, with the addition of the <code>btcPrice</code> field</p>
 
 <table><thead>
@@ -2102,9 +2042,9 @@ Data Source: From Exchange
 <aside class="notice">
 Data Source：Twitter，Weibo
 </aside>
-<h4 id='request-url-14'>Request URL</h4>
+<h4 id='request-url-13'>Request URL</h4>
 <p><code>GET https://data.block.cc/api/v3/social_media</code></p>
-<h4 id='request-parameter-14'>Request Parameter</h4>
+<h4 id='request-parameter-13'>Request Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2132,7 +2072,7 @@ Data Source：Twitter，Weibo
 <td>Per page size, default is 20 (100&gt;=size&gt;=1)</td>
 </tr>
 </tbody></table>
-<h4 id='response-parameter-14'>Response Parameter</h4>
+<h4 id='response-parameter-13'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2221,9 +2161,9 @@ URL: wss://data.block.cc/ws/v3
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Subscribed"</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='request-parameter-15'>Request Parameter</h4>
+</span></code></pre><h4 id='request-parameter-14'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='response-parameter-15'>Response Parameter</h4>
+<h4 id='response-parameter-14'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2246,9 +2186,9 @@ URL: wss://data.block.cc/ws/v3
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Unsubscribed"</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='request-parameter-16'>Request Parameter</h4>
+</span></code></pre><h4 id='request-parameter-15'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
-<h4 id='response-parameter-16'>Response Parameter</h4>
+<h4 id='response-parameter-15'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2272,9 +2212,9 @@ URL: wss://data.block.cc/ws/v3
 <p>Response: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="s2">"topics"</span><span class="p">:[</span><span class="s2">"price:bitcoin"</span><span class="p">]}</span><span class="w">
-</span></code></pre><h4 id='request-parameter-17'>Request Parameter</h4>
+</span></code></pre><h4 id='request-parameter-16'>Request Parameter</h4>
 <p><code>{&quot;op&quot;: &quot;topics&quot;}</code></p>
-<h4 id='response-parameter-17'>Response Parameter</h4>
+<h4 id='response-parameter-16'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2320,7 +2260,7 @@ URL: wss://data.block.cc/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format'>Topic Format</h4>
 <p><code>price:</code> + <a href="#symbols">Symbol</a> slug</p>
-<h4 id='response-parameter-18'>Response Parameter</h4>
+<h4 id='response-parameter-17'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2371,7 +2311,7 @@ URL: wss://data.block.cc/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format-2'>Topic Format</h4>
 <p><code>ticker:</code> + MarketPair Desc(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='response-parameter-19'>Response Parameter</h4>
+<h4 id='response-parameter-18'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2428,7 +2368,7 @@ URL: wss://data.block.cc/ws/v3
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='topic-format-3'>Topic Format</h4>
 <p><code>orderbook:</code> + MarketPair Desc(<code>binance_BNB_USDT</code>, <code>huobipro_HT_USDT</code>)</p>
-<h4 id='response-parameter-20'>Response Parameter</h4>
+<h4 id='response-parameter-19'>Response Parameter</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
