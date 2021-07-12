@@ -1086,7 +1086,7 @@ m|交易对信息
 
 ```shell
 curl -X GET \
-  'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
+  'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USDT&interval=15m'
 ```
 
 > 将会返回以下内容:

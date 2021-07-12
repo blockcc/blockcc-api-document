@@ -882,7 +882,7 @@ m|Market Pair Desc
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
+  'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&interval=15m'
 ```
 
 > Response:
