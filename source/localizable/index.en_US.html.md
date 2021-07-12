@@ -157,6 +157,14 @@ prev | The previous page link
 
 # Changelog
 
+### 2021-07-12
+
+- trade interface maintenance finish
+
+### 2021-05-26
+
+- trade interface maintenance
+
 ### 2021-05-26
 
 - Add `platforms` field to [Symbols](#symbols)
