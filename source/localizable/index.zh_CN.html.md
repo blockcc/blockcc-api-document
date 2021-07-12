@@ -25,7 +25,21 @@ code_clipboard: true
 		<th width="50px">变化</th>
 		<th>更新内容</th>
 	</tr>
-<tr>
+  <tr>
+		<td>2021.07.12</td>
+		<td>恢复</td>
+		<td>
+			获取交易对成交记录接口维护完成
+		</td>
+	</tr>
+  <tr>
+		<td>2021.05.26</td>
+		<td>维护</td>
+		<td>
+			获取交易对成交记录接口维护
+		</td>
+	</tr>
+  <tr>
 		<td>2021.05.26</td>
 		<td>新增</td>
 		<td>
