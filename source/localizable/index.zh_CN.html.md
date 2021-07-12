@@ -182,7 +182,7 @@ wss://data.mifengcha.com/ws
     </tr>
     <tr>
         <td>获取币种历史价格</td>
-        <td>/v3/price/history?slug=bitcoin</td>
+        <td>/v3/price/history</td>
     </tr>
     <tr>
         <td>批量获取交易对Tickers</td>
@@ -203,15 +203,15 @@ wss://data.mifengcha.com/ws
     <tr>
         <td align="center" rowspan="5" style="vertical-align: middle;">资讯数据</td>
         <td>获取快讯数据</td>
-        <td>/v3/briefs?locale=zh_CN</td>
+        <td>/v3/briefs</td>
     </tr>
     <tr>
         <td>获取交易所公告数据</td>
-        <td>/v3/announcements?locale=zh_CN</td>
+        <td>/v3/announcements</td>
     </tr>
     <tr>
         <td>获取资讯文章列表</td>
-        <td>/v3/articles?locale=zh_CN</td>
+        <td>/v3/articles</td>
     </tr>
     <tr>
         <td>获取单篇资讯文章内容</td>
@@ -811,7 +811,7 @@ curl -X GET \
 
 ##### 请求URL
 
-`GET https://data.mifengcha.com/api/v3/price/history?slug=bitcoin`
+`GET https://data.mifengcha.com/api/v3/price/history`
 
 ##### 请求参数
 
@@ -1181,7 +1181,7 @@ curl -X GET \
 
 ##### 请求URL
 
-`GET https://data.mifengcha.com/api/v3/briefs?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/briefs`
 
 ##### 请求参数
 
@@ -1244,7 +1244,7 @@ curl -X GET \
 </aside>
 ##### 请求URL
 
-`GET https://data.mifengcha.com/api/v3/announcements?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/announcements`
 
 ##### 请求参数
 
@@ -1303,7 +1303,7 @@ curl -X GET \
 
 ##### 请求URL
 
-`GET https://data.mifengcha.com/api/v3/articles?locale=zh_CN`
+`GET https://data.mifengcha.com/api/v3/articles`
 
 ##### 请求参数
 

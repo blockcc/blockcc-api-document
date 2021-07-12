@@ -601,7 +601,7 @@ Data Source: Snapshot of current price and trading volume every 5 minutes.
 
 #### Request URL
 
-`GET https://data.block.cc/api/v3/price/history?slug=bitcoin`
+`GET https://data.block.cc/api/v3/price/history`
 
 #### Request Parameter
 
@@ -981,7 +981,7 @@ Get Briefs
 
 #### Request URL
 
-`GET https://data.block.cc/api/v3/briefs?locale=zh_CN`
+`GET https://data.block.cc/api/v3/briefs`
 
 #### Request Parameter
 
@@ -1048,7 +1048,7 @@ Data Source: From Exchange
 
 #### Request URL
 
-`GET https://data.block.cc/api/v3/announcements?locale=zh_CN`
+`GET https://data.block.cc/api/v3/announcements`
 
 #### Request Parameter
 
@@ -1108,7 +1108,7 @@ Get Article List
 
 #### Request URL
 
-`GET https://data.block.cc/api/v3/articles?locale=zh_CN`
+`GET https://data.block.cc/api/v3/articles`
 
 #### Request Parameter
 
@@ -1186,7 +1186,8 @@ btcPrice|Bitcoin price at launch
 ### SocialMedia
 
 ```shell
-curl https://data.block.cc/api/v3/social_media?source=TWITTER
+curl -X GET \
+  'https://data.block.cc/api/v3/social_media?source=TWITTER'
 ```
 
 > Response:
