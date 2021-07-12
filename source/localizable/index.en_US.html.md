@@ -1,14 +1,16 @@
 ---
-title: Block.cc APIv3 Developer Documentation 
+title: Block.cc APIv3 Developer Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+
+- shell
 
 
 toc_footers:
-  - <a target="_blank" href='https://data.block.cc/login'>Login data.block.cc</a>
-  - <br>
-  - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
+
+- <a target="_blank" href='https://data.block.cc/login'>Login data.block.cc</a>
+- <br>
+- <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: true
 code_clipboard: true
@@ -157,10 +159,6 @@ prev | The previous page link
 
 ### 2021-05-26
 
-- trade interface maintenance
-
-### 2021-05-26
-
 - Add `platforms` field to [Symbols](#symbols)
 
 ### 2020-10-16
@@ -177,12 +175,12 @@ prev | The previous page link
 Add SocialMedia API [SocialMedia](#socialmedia)
 
 ### 2020-04-16
- 
-Add kline 1min interval [Kline](#kline) 
+
+Add kline 1min interval [Kline](#kline)
 
 ### 2020-04-09
 
-Add fields to [Price](#price) 
+Add fields to [Price](#price)
 
 - Highest daily price
 - Lowest daily price
@@ -195,7 +193,7 @@ Add fields to [Price](#price)
 - Highest price in history
 - Lowest price in history
 
-# REST API 
+# REST API
 
 <aside class="success">
 URL: https://data.block.cc/api/v3
@@ -817,10 +815,68 @@ b/a | Description
 0|Price
 1|Amount
 
+* The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a
+  timestamp, it is the timestamp before request
 
-* The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a timestamp, it is the timestamp before request
+### Trades
 
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'
+```
 
+> Response:
+
+```json
+ [
+    {
+      "T": 1573721951113,
+      "p": 8634,
+      "v": 5,
+      "s": "buy",
+      "m": "gate-io_BTC_USDT"
+    },
+    {
+      "T": 1573721944964,
+      "p": 8634,
+      "v": 0.001519,
+      "s": "sell",
+      "m": "gate-io_BTC_USDT"
+    }
+  ]
+
+```
+
+Get Trades
+
+<aside class="notice">
+Updated: 5-40 seconds, the influence update frequency factor comprising: a support Websocket and network environment.
+</aside>
+
+<aside class="notice">
+Data Source: From Exchange
+</aside>
+
+#### Request URL
+
+`GET https://data.block.cc/api/v3/trades`
+
+#### Request Parameter
+
+Parameter | Position | Required | Description
+--------- |---------|--------- | -----------
+desc |QueryString|Yes| Market Pair Desc. e.g.：gate-io_BTC_USDT
+limit |QueryString|No| Data Size, 0<limit<=50
+
+#### Response Parameter
+
+Parameter | Description
+--------- | -----------
+T|13-bit Unix Timestamp
+p|Price
+v|Base Volume
+s|Taker Order Side[buy,sell,none]
+m|Market Pair Desc
 
 ### Kline
 
@@ -833,23 +889,23 @@ curl -X GET \
 
 ```json
  [
-    {
-      "T": 1573680600000,
-      "o": 8789,
-      "h": 8795.3,
-      "l": 8778.4,
-      "c": 8791.2,
-      "v": 14.16106481
-    },
-    {
-      "T": 1573676100000,
-      "o": 8806.3,
-      "h": 8818.6,
-      "l": 8802.8,
-      "c": 8817.7,
-      "v": 11.33948342
-    }
-  ]
+  {
+    "T": 1573680600000,
+    "o": 8789,
+    "h": 8795.3,
+    "l": 8778.4,
+    "c": 8791.2,
+    "v": 14.16106481
+  },
+  {
+    "T": 1573676100000,
+    "o": 8806.3,
+    "h": 8818.6,
+    "l": 8802.8,
+    "c": 8817.7,
+    "v": 11.33948342
+  }
+]
 
 ```
 
@@ -916,7 +972,7 @@ curl -X GET \
     "title": "工信部将从推动云计算与区块链等技术融合创新等入手推动云计算产业快速发展",
     "content": "工信部信软司副司长董大健表示,下一步,工信部将从五方面入手推动云计算产业快速发展.一是持续优化发展环境,规范云计算市场,培育龙头骨干企业；二是加快突破核心技术,加快云计算在自主基础软硬件平台上的适配迁移,推动云计算以5G、工业互联网、大数据、人工智能、区块链等技术融合创新；三是深入推动企业上云应用云；四是完善云计算的标准体系；五是打造安全保障体系.（c114）",
     "url": "https://m.block.cc/news/5df7238e07a014563b8269b4"
-  }   
+  }
 ]
 
 ```
@@ -940,7 +996,7 @@ size |QueryString|No| Per page size, default 20 (>=1)
 
 Parameter | Description
 --------- | -----------
-title|Title 
+title|Title
 content|Content
 timestamp|13-bit Unix Timestamp
 importance|Is Importance
@@ -968,8 +1024,8 @@ curl -X GET \
     "url" : "https://m.block.cc/news/5dfc3a0cc3af0a649f3f4563",
     "market" : "bikicoin",
     "sourceUrl" : "https://www.biki.com/noticeInfo/2007",
-    "images" : [ ]
-  }, 
+    "images": []
+  },
   {
     "title" : "Binance战略投资FTX并上市FTX Token（FTT）",
     "content" : "亲爱的用户： \n\nBinance已完成对FTX的战略投资（投资详情）,现已上线FTX Token（FTT）,开通FTT/BNB、FTT/BTC、FTT/USDT 交易市场,邀您体验！FTT充值通道现已开放,立即充值. \n\nFTT的上币费用为0 BNB. \n\n声明：Binance已从对FTX的投资中获得了一部分FTT代币. 其中绝大多数FTT锁定期为两年. 我们致力于帮助FTT和FTX生态系统实现长期,可持续的发展. \n\n规则说明： \n\n- 关于FTX Token (FTT)\n- 费率说明\n- 交易规则 \n\n风险提示：数字货币是一种高风险的投资方式,请投资者谨慎购买,并注意投资风险.Binance会遴选优质币种,但不对投资行为承担担保、赔偿等责任. \n\n  \n\n感谢您对Binance的支持！ \n\n  \n\nBinance团队 \n\n2019年12月20日 \n\n  \n\nBinance社群 \n\n微博： https://weibo.com/u/7336825507  \n\nTelegram： https://t.me/BinanceChinese \n\nFacebook： https://www.facebook.com/BinanceChinese \n\nTwitter： https://twitter.com/binance",
@@ -1029,7 +1085,7 @@ curl -X GET \
 
 ```json
 [
-    {
+  {
     "id": "5e1d96a5aeae8770b7ff34ac",
     "timestamp": 1578997412000,
     "title": "主流币种普涨势头将迎考验,平台币示弱DASH迫近中线强阻",
@@ -1089,20 +1145,20 @@ curl -X GET \
 
 ```json
   {
-    "id": "5e1d96a5aeae8770b7ff34ac",
-    "timestamp": 1578997412000,
-    "title": "主流币种普涨势头将迎考验,平台币示弱DASH迫近中线强阻",
-    "description": "白盘主流币种继续扩大涨势,DASH冲高至近三个半月新高,不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近.",
-    "author": "小葱区块链",
-    "categories": "资讯",
-    "images": [],
-    "url": "https://m.block.cc/news/5e1d96a5aeae8770b7ff34ac",
-    "source": "火星财经",
-    "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
-    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
-    "content": "<html value>",
-    "btcPrice": 8465.6615
-  }
+  "id": "5e1d96a5aeae8770b7ff34ac",
+  "timestamp": 1578997412000,
+  "title": "主流币种普涨势头将迎考验,平台币示弱DASH迫近中线强阻",
+  "description": "白盘主流币种继续扩大涨势,DASH冲高至近三个半月新高,不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近.",
+  "author": "小葱区块链",
+  "categories": "资讯",
+  "images": [],
+  "url": "https://m.block.cc/news/5e1d96a5aeae8770b7ff34ac",
+  "source": "火星财经",
+  "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
+  "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+  "content": "<html value>",
+  "btcPrice": 8465.6615
+}
 ```
 
 Get One Article
@@ -1137,7 +1193,7 @@ curl https://data.block.cc/api/v3/social_media?source=TWITTER
 
 ```json
 [
-    {
+  {
     "id": "1264806231472046080",
     "source": "TWITTER",
     "content": "The ability to recognize humor is a defining characteristic of intelligence.\n\nI use it constantly to cull my followers by placing the burden of culling upon themselves.",
@@ -1148,13 +1204,13 @@ curl https://data.block.cc/api/v3/social_media?source=TWITTER
     "timestamp": 1590388279000,
     "retweeted": false,
     "retweet": null
-    },
-    {
+  },
+  {
     "id": "1264805947861536771",
     "source": "TWITTER",
     "content": "⚡ @cartesiproject Listing + Contest ⚡\n\n$CTSI/USDT trading starts today at 5 PM IST on #WazirX.\n\nWe're giving away 378 #CTSI worth ₹1,000 each to 5 lucky people who:\n\n1. Retweet this tweet\n2. Reply to this tweet &amp; mention 3 friends in the reply\n\nValid for 24 hrs! https://t.co/MIhccc43AI",
     "images": [
-    "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"
+      "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"
     ],
     "userId": "955744720092835841",
     "avatar": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/WazirXIndia.jpg",
@@ -1162,7 +1218,7 @@ curl https://data.block.cc/api/v3/social_media?source=TWITTER
     "timestamp": 1590388211000,
     "retweeted": false,
     "retweet": null
-    }
+  }
 ]
 ```
 
@@ -1181,7 +1237,7 @@ Data Source：Twitter，Weibo
 
 Parameter | Position | Required | Description
 --------- |---------|--------- | -----------
-source |QueryString|Yes| Source: [WEIBO, TWITTER], default WEIBO                                               
+source |QueryString|Yes| Source: [WEIBO, TWITTER], default WEIBO
 page |QueryString|No| Current page, default 0, (>=0)
 size |QueryString|No| Per page size, default is 20 (100>=size>=1)
 
@@ -1232,7 +1288,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
-> Response: 
+> Response:
 
 ```json
 {"code":0,"message":"Subscribed"}
@@ -1258,7 +1314,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "unsubscribe", "args": ["price:bitcoin"]}
 ```
 
-> Response: 
+> Response:
 
 ```json
 {"code":0,"message":"Unsubscribed"}
@@ -1283,7 +1339,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "topics"}
 ```
 
-> Response: 
+> Response:
 
 ```json
 {"code":0,"message":"Success","topics":["price:bitcoin"]}
@@ -1456,5 +1512,5 @@ API recommendations
 4. Please use symbol splitting or fixed length for trading pairs as much as possible.
 5. Under normal circumstances, the number of requests per minute is about 10 times.
 6. The interface data is guaranteed to be stable and true.
-  
+
 [Click Here](http://cn.mikecrm.com/TNFyHPJ) Submit the exchange acceptance form

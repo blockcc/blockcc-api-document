@@ -2,16 +2,17 @@
 title: Block.cc APIv3 开发者文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+- shell
 
 toc_footers:
-  - <a target="_blank" href='https://data.mifengcha.com/register?lang=zh_CN'>创建API KEY</a>
-  - <a href='../v1/'>查看v1文档</a>
-  - <a href="http://cn.mikecrm.com/TNFyHPJ">交易所收录</a>
-  - <a href="http://mifengcha.mikecrm.com/Zha7vqZ">币种收录</a>
-  - <a href='https://data.mifengcha.com/contactus'>问题反馈</a>
-  - <br>
-  - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
+
+- <a target="_blank" href='https://data.mifengcha.com/register?lang=zh_CN'>创建API KEY</a>
+- <a href='../v1/'>查看v1文档</a>
+- <a href="http://cn.mikecrm.com/TNFyHPJ">交易所收录</a>
+- <a href="http://mifengcha.mikecrm.com/Zha7vqZ">币种收录</a>
+- <a href='https://data.mifengcha.com/contactus'>问题反馈</a>
+- <br>
+- <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: false
 code_clipboard: true
@@ -23,13 +24,6 @@ code_clipboard: true
 		<th width="110px">生效时间(UTC+8)</th>
 		<th width="50px">变化</th>
 		<th>更新内容</th>
-	</tr>
-<tr>
-		<td>2021.05.26</td>
-		<td>维护</td>
-		<td>
-			获取交易对成交记录接口维护
-		</td>
 	</tr>
 <tr>
 		<td>2021.05.26</td>
@@ -99,8 +93,8 @@ code_clipboard: true
 - **快速入门：** 该章节对蜜蜂查API做了简单且全方位的介绍，适合第一次使用蜜蜂查API的用户。
 
 - **联系我们：** 该章节介绍遇到问题，如何联系我们。
-<br>
-<br>
+  <br>
+  <br>
 
 
 第二部分是每个接口类的详细介绍，每个接口类一个章节，每个章节分为如下内容：
@@ -178,7 +172,7 @@ wss://data.mifengcha.com/ws
         <td>/v3/symbols/{slug}</td>
     </tr>
     <tr>
-        <td align="center" rowspan="6" style="vertical-align: middle;">行情数据</td>
+        <td align="center" rowspan="7" style="vertical-align: middle;">行情数据</td>
         <td>获取汇率</td>
         <td>/v3/exchange_rate</td>
     </tr>
@@ -197,6 +191,10 @@ wss://data.mifengcha.com/ws
     <tr>
         <td>获取交易对深度</td>
         <td>/v3/orderbook</td>
+    </tr>
+    <tr>
+        <td>获取交易对成交记录</td>
+        <td>/v3/trades</td>
     </tr>
     <tr>
         <td>获取交易对K线数据</td>
@@ -255,7 +253,7 @@ wss://data.mifengcha.com/ws
 ##### 公共类
 - 不建议在中国大陆境内使用临时域名以及代理的方式访问蜜蜂查API，此类方式访问API连接的稳定性很难保证。
 - 建议使用香港云服务器进行访问。
- 
+
 ## 错误码
 > 错误码响应内容示例:
 
@@ -320,10 +318,8 @@ prev | 上一页的链接
 3. 完整的URL请求
 4. 完整的返回结果
 5. 问题出现时间和频率（如何时开始出现，是否可以重现）
- 
 
-
-# REST API 
+# REST API
 ## 基础数据
 ### 简介
 基础数据一般作为请求行情数据的参数。
@@ -759,12 +755,12 @@ c | 24小时涨跌幅
 h | 24小时最高价
 l | 24小时最低价
 cw | 1周涨跌幅
-hw | 1周最高价 
+hw | 1周最高价
 lw | 1周最低价
 cm | 1月涨跌幅
-hm | 1月最高价 
+hm | 1月最高价
 lm | 1月最低价
-ha | 历史最高价 
+ha | 历史最高价
 la | 历史最低价
 
 
@@ -809,7 +805,7 @@ curl -X GET \
 <aside class="notice">
  数据来源：每5分钟快照一次当前价格，交易量。
 </aside>
- 
+
 
 ##### 请求URL
 
@@ -1024,15 +1020,68 @@ b/a | 说明
 0|价格
 1|挂单量
 
-
 * 数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳
 
+### 获取交易对成交记录
 
+```shell
+curl -X GET \
+  'https://data.block.cc/api/v3/trades?desc=gate-io_BTC_USDT'
+```
 
+> 将会返回以下内容:
 
+```json
+ [
+  {
+    "T": 1573721951113,
+    "p": 8634,
+    "v": 5,
+    "s": "buy",
+    "m": "gate-io_BTC_USDT"
+  },
+  {
+    "T": 1573721944964,
+    "p": 8634,
+    "v": 0.001519,
+    "s": "sell",
+    "m": "gate-io_BTC_USDT"
+  }
+]
 
+```
+
+<aside class="notice">
+更新时间：5秒-60秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
+</aside>
+
+<aside class="notice">
+数据来源：通过交易所API获取
+</aside>
+
+##### 请求URL
+
+`GET https://data.block.cc/api/v3/trades`
+
+##### 请求参数
+
+参数名称|传输方式|必选|说明
+--------- |---------|--------- | -----------
+desc |QueryString|是| 交易所的某个交易对。例如：gate-io_BTC_USDT
+limit |QueryString|否| 返回数据量，0<limit<=50
+
+##### 返回参数说明
+
+参数 | 说明
+--------- | -----------
+T|交易成交时间戳
+p|成交价格
+v|成交量
+s|成交类型[buy,sell,none]，为taker操作方向
+m|交易对信息
 
 <h3 id="获取交易对K线数据">获取交易对K线数据</h3>
+
 ```shell
 curl -X GET \
   'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&type=15m&start=1573637497000'
@@ -1042,23 +1091,23 @@ curl -X GET \
 
 ```json
  [
-    {
-      "T": 1573680600000,
-      "o": 8789,
-      "h": 8795.3,
-      "l": 8778.4,
-      "c": 8791.2,
-      "v": 14.16106481
-    },
-    {
-      "T": 1573676100000,
-      "o": 8806.3,
-      "h": 8818.6,
-      "l": 8802.8,
-      "c": 8817.7,
-      "v": 11.33948342
-    }
-  ]
+  {
+    "T": 1573680600000,
+    "o": 8789,
+    "h": 8795.3,
+    "l": 8778.4,
+    "c": 8791.2,
+    "v": 14.16106481
+  },
+  {
+    "T": 1573676100000,
+    "o": 8806.3,
+    "h": 8818.6,
+    "l": 8802.8,
+    "c": 8817.7,
+    "v": 11.33948342
+  }
+]
 
 ```
 
@@ -1122,7 +1171,7 @@ curl -X GET \
     "title": "工信部将从推动云计算与区块链等技术融合创新等入手推动云计算产业快速发展",
     "content": "工信部信软司副司长董大健表示，下一步，工信部将从五方面入手推动云计算产业快速发展。一是持续优化发展环境，规范云计算市场，培育龙头骨干企业；二是加快突破核心技术，加快云计算在自主基础软硬件平台上的适配迁移，推动云计算以5G、工业互联网、大数据、人工智能、区块链等技术融合创新；三是深入推动企业上云应用云；四是完善云计算的标准体系；五是打造安全保障体系。（c114）",
     "url": "https://m.mifengcha.com/news/5df7238e07a014563b8269b4"
-  }   
+  }
 ]
 
 ```
@@ -1172,8 +1221,8 @@ curl -X GET \
     "url" : "https://m.mifengcha.com/news/5dfc3a0cc3af0a649f3f4563",
     "market" : "bikicoin",
     "sourceUrl" : "https://www.biki.com/noticeInfo/2007",
-    "images" : [ ]
-  }, 
+    "images": []
+  },
   {
     "title" : "Binance战略投资FTX并上市FTX Token（FTT）",
     "content" : "亲爱的用户： \n\nBinance已完成对FTX的战略投资（投资详情），现已上线FTX Token（FTT），开通FTT/BNB、FTT/BTC、FTT/USDT 交易市场，邀您体验！FTT充值通道现已开放，立即充值。 \n\nFTT的上币费用为0 BNB。 \n\n声明：Binance已从对FTX的投资中获得了一部分FTT代币。 其中绝大多数FTT锁定期为两年。 我们致力于帮助FTT和FTX生态系统实现长期，可持续的发展。 \n\n规则说明： \n\n- 关于FTX Token (FTT)\n- 费率说明\n- 交易规则 \n\n风险提示：数字货币是一种高风险的投资方式，请投资者谨慎购买，并注意投资风险。Binance会遴选优质币种，但不对投资行为承担担保、赔偿等责任。 \n\n  \n\n感谢您对Binance的支持！ \n\n  \n\nBinance团队 \n\n2019年12月20日 \n\n  \n\nBinance社群 \n\n微博： https://weibo.com/u/7336825507  \n\nTelegram： https://t.me/BinanceChinese \n\nFacebook： https://www.facebook.com/BinanceChinese \n\nTwitter： https://twitter.com/binance",
@@ -1230,7 +1279,7 @@ curl -X GET \
 
 ```json
 [
-    {
+  {
     "id": "5e1d96a5aeae8770b7ff34ac",
     "timestamp": 1578997412000,
     "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
@@ -1289,20 +1338,20 @@ curl -X GET \
 
 ```json
   {
-    "id": "5e1d96a5aeae8770b7ff34ac",
-    "timestamp": 1578997412000,
-    "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
-    "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",
-    "author": "小葱区块链",
-    "categories": "资讯",
-    "images": [],
-    "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
-    "source": "火星财经",
-    "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
-    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
-    "content": "<html value>",
-    "btcPrice": 8465.6615
-  }
+  "id": "5e1d96a5aeae8770b7ff34ac",
+  "timestamp": 1578997412000,
+  "title": "主流币种普涨势头将迎考验，平台币示弱DASH迫近中线强阻",
+  "description": "白盘主流币种继续扩大涨势，DASH冲高至近三个半月新高，不过这个短期“风向标”币种已经走到了一个至关重要的多空分界线附近。",
+  "author": "小葱区块链",
+  "categories": "资讯",
+  "images": [],
+  "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
+  "source": "火星财经",
+  "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
+  "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+  "content": "<html value>",
+  "btcPrice": 8465.6615
+}
 ```
 
 
@@ -1337,7 +1386,7 @@ curl -X GET \
 
 ```json
 [
-    {
+  {
     "id": "1264806231472046080",
     "source": "TWITTER",
     "content": "The ability to recognize humor is a defining characteristic of intelligence.\n\nI use it constantly to cull my followers by placing the burden of culling upon themselves.",
@@ -1348,13 +1397,13 @@ curl -X GET \
     "timestamp": 1590388279000,
     "retweeted": false,
     "retweet": null
-    },
-    {
+  },
+  {
     "id": "1264805947861536771",
     "source": "TWITTER",
     "content": "⚡ @cartesiproject Listing + Contest ⚡\n\n$CTSI/USDT trading starts today at 5 PM IST on #WazirX.\n\nWe're giving away 378 #CTSI worth ₹1,000 each to 5 lucky people who:\n\n1. Retweet this tweet\n2. Reply to this tweet &amp; mention 3 friends in the reply\n\nValid for 24 hrs! https://t.co/MIhccc43AI",
     "images": [
-    "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"
+      "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/media/bdc36e0a6a2ad8f6be9bcabf3dead476.jpg"
     ],
     "userId": "955744720092835841",
     "avatar": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/twitter/screen_name/WazirXIndia.jpg",
@@ -1362,7 +1411,7 @@ curl -X GET \
     "timestamp": 1590388211000,
     "retweeted": false,
     "retweet": null
-    }
+  }
 ]
 ```
 
@@ -1380,7 +1429,7 @@ curl -X GET \
 
 参数名称|传输方式|必选|说明
 --------- |---------|--------- | -----------
-source |QueryString|否| 来源: [WEIBO, TWITTER], 默认 WEIBO                                               
+source |QueryString|否| 来源: [WEIBO, TWITTER], 默认 WEIBO
 page |QueryString|否| 当前页数，默认 0, (>=0)。
 size |QueryString|否| 每页数据量，默认 20 (100>=size>=1)。
 
@@ -1420,7 +1469,6 @@ URL: wss://data.block.cc/ws/v3
 * 每个账户的最大连接数根据账户套餐设定, 详情查看 [Pricing](https://data.mifengcha.com/pricing)。
 * 服务端不会校验Topic的正确性，若订阅无效Topic不会有响应，并且占用Topic订阅额度。
 * 90秒内不会推送没有变化的数据
- 
 
 ## 订阅
 ```shell
@@ -1428,7 +1476,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "subscribe", "args": ["price:bitcoin"]}
 ```
 
-> 订阅成功将会返回以下内容: 
+> 订阅成功将会返回以下内容:
 
 ```json
 {"code":0,"message":"Subscribed"}
@@ -1454,7 +1502,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "unsubscribe", "args": ["price:bitcoin"]}
 ```
 
-> 取消订阅成功将会返回以下内容: 
+> 取消订阅成功将会返回以下内容:
 
 ```json
 {"code":0,"message":"Unsubscribed"}
@@ -1479,7 +1527,7 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 > {"op": "topics"}
 ```
 
-> 将会返回以下内容: 
+> 将会返回以下内容:
 
 ```json
 {"code":0,"message":"Success","topics":["price:bitcoin"]}
