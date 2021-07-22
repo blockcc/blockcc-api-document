@@ -237,7 +237,22 @@ wss://data.mifengcha.com/ws
     </tr>
 </table>
 ## 请求限制
+
 为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
+
+##### 响应头
+
+响应头包含剩余次数和总次数
+
+Header | 描述
+--------- | -----------
+X-RateLimit-Remaining | 剩余次数
+X-RateLimit-Total | 总次数(每月1号刷新)
+
+```
+X-RateLimit-Remaining →9999
+X-RateLimit-Total →10000
+```
 
 版本 |  调用次数(次/月)| 每秒查询率（次/秒) | WebSocket连接数 | Webhook Supper[Beta]
 ---|:---:|:---:|:---:|:---:
