@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Block.cc APIv3 开发者文档</title>
 
-    <style>
+    <style media="screen">
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
@@ -146,47 +146,36 @@
 }
 .highlight .vc {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
-  background-color: #272822;
-}
-.highlight .nl {
-  color: #ffffff;
-  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nv, .highlight .vm {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
-  background-color: #272822;
+}
+.highlight .nl {
+  color: #f92672;
 }
 .highlight .ow {
   color: #f92672;
@@ -207,9 +196,99 @@
   color: #f92672;
 }
     </style>
-    <link href="../stylesheets/screen-d6edf745.css" rel="stylesheet" media="screen" />
-    <link href="../stylesheets/print-caa8d305.css" rel="stylesheet" media="print" />
-      <script src="../javascripts/all_nosearch-c7f2c45b.js"></script>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="../stylesheets/screen-504cf5e5.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print-063cde9c.css" rel="stylesheet" media="print" />
+      <script src="../javascripts/all-5da4154c.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
   </head>
 
   <body class="zh_CN zh_CN_index" data-languages="[&quot;shell&quot;]">
@@ -224,6 +303,10 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
@@ -2353,9 +2436,9 @@ X-Total-Count →10000
     </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"火星财经"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://news.huoxing24.com/20200114182213991739.html"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="w">
+    </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html value&gt;"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"..."</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
@@ -2450,7 +2533,7 @@ X-Total-Count →10000
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"火星财经"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://news.huoxing24.com/20200114182213991739.html"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="w">
+  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;html value&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"btcPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">8465.6615</span><span class="w">
 </span><span class="p">}</span><span class="w">
