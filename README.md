@@ -20,7 +20,7 @@ Document URL
 
 - GiteePages: [https://blockcc.gitee.io/blockcc-api-document](https://blockcc.gitee.io/blockcc-api-document)
 
-- CodingPages: [https://l130vk.coding-pages.com](https://l130vk.coding-pages.com)
+- CloudflarePages: [https://blockcc-api-document.pages.dev](https://blockcc-api-document.pages.dev)
 
 ---
 
@@ -28,7 +28,7 @@ Document URL
 
 - Gitee中文文档: [https://blockcc.gitee.io/blockcc-api-document/zh_CN](https://blockcc.gitee.io/blockcc-api-document/zh_CN)
 
-- Coding中文文档: [https://l130vk.coding-pages.com/zh_CN](https://l130vk.coding-pages.com/zh_CN)
+- Cloudflare中文文档: [https://blockcc-api-document.pages.dev/zh_CN](https://blockcc-api-document.pages.dev/zh_CN)
 
 
 Features
