@@ -14,7 +14,7 @@ toc_footers:
 - <br>
 - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
-search: false
+search: true
 code_clipboard: true
 ---
 
@@ -1321,9 +1321,9 @@ curl -X GET \
     "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
     "source": "火星财经",
     "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
-    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+    "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目",
     "content": "<html value>"
-  }
+  },
   "..."
 ]
 
@@ -1379,7 +1379,7 @@ curl -X GET \
   "url": "https://m.mifengcha.com/news/5e1d96a5aeae8770b7ff34ac",
   "source": "火星财经",
   "sourceUrl": "https://news.huoxing24.com/20200114182213991739.html",
-  "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目"
+  "keywords": "dash,币种,中线,势头,平台,阻力,ht,行情,btc,指标,区域,圆弧底,bsv,bnb,过程,延续性,均线,关键,观点,涨幅,涨势,整数,结构,效应,形态,小时,双顶,阶段,市场,二度,全数,仔细观察,撰文,风向标,风向,横盘,标记,时段,时间,分水岭,士气,情况,力图,点位,所处,盲目",
   "content": "<html value>",
   "btcPrice": 8465.6615
 }
