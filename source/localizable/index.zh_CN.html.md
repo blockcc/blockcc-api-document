@@ -14,7 +14,7 @@ toc_footers:
 - <br>
 - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
-search: true
+search: false
 code_clipboard: true
 ---
 
