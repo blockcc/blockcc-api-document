@@ -157,6 +157,10 @@ prev | The previous page link
 
 # Changelog
 
+### 2021-12-01
+
+- Add the following DEXs data: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap
+
 ### 2021-07-12
 
 - trade interface maintenance finish

@@ -26,6 +26,13 @@ code_clipboard: true
 		<th>更新内容</th>
 	</tr>
   <tr>
+		<td>2021.12.01</td>
+		<td>新增</td>
+		<td>
+			新增DEX数据: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap
+		</td>
+  </tr>
+  <tr>
 		<td>2021.07.12</td>
 		<td>恢复</td>
 		<td>
