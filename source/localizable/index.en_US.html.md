@@ -159,7 +159,7 @@ prev | The previous page link
 
 ### 2021-12-01
 
-- Add the following DEXs data: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap
+- Add the following DEXs data: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap/QuickSwap/Raydium
 
 ### 2021-07-12
 
