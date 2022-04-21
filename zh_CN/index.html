@@ -317,7 +317,7 @@
                     <a href="#c1ae0a8486" class="toc-h2 toc-link" data-title="接入准备">接入准备</a>
                   </li>
                   <li>
-                    <a href="#SDK" class="toc-h2 toc-link" data-title="SDK">SDK</a>
+                    <a href="#sdk" class="toc-h2 toc-link" data-title="SDK">SDK</a>
                   </li>
                   <li>
                     <a href="#5076603a3e" class="toc-h2 toc-link" data-title="接口类型">接口类型</a>
@@ -375,7 +375,7 @@
                               <a href="#b0eab1be76" class="toc-h3 toc-link" data-title="REST API">获取指定交易所信息</a>
                             </li>
                             <li>
-                              <a href="#获取所有支持的币种列表" class="toc-h3 toc-link" data-title="REST API">获取所有支持的币种列表</a>
+                              <a href="#bcd4037af8" class="toc-h3 toc-link" data-title="REST API">获取所有支持的币种列表</a>
                             </li>
                             <li>
                               <a href="#17ec47fd86" class="toc-h3 toc-link" data-title="REST API">获取单个币种信息</a>
@@ -389,22 +389,22 @@
                               <a href="#1cc2931276" class="toc-h3 toc-link" data-title="REST API">获取汇率</a>
                             </li>
                             <li>
-                              <a href="#获取币种价格" class="toc-h3 toc-link" data-title="REST API">获取币种价格</a>
+                              <a href="#89485959d4" class="toc-h3 toc-link" data-title="REST API">获取币种价格</a>
                             </li>
                             <li>
-                              <a href="#获取币种历史价格" class="toc-h3 toc-link" data-title="REST API">获取币种历史价格</a>
+                              <a href="#2c546b76ae" class="toc-h3 toc-link" data-title="REST API">获取币种历史价格</a>
                             </li>
                             <li>
                               <a href="#tickers" class="toc-h3 toc-link" data-title="REST API">批量获取交易对Tickers</a>
                             </li>
                             <li>
-                              <a href="#获取交易对深度" class="toc-h3 toc-link" data-title="REST API">获取交易对深度</a>
+                              <a href="#1df2a14721" class="toc-h3 toc-link" data-title="REST API">获取交易对深度</a>
                             </li>
                             <li>
-                              <a href="#8e81669d67" class="toc-h3 toc-link" data-title="REST API">获取交易对成交记录</a>
+                              <a href="#k" class="toc-h3 toc-link" data-title="REST API">获取交易对K线数据</a>
                             </li>
                             <li>
-                              <a href="#获取交易对K线数据" class="toc-h3 toc-link" data-title="REST API">获取交易对K线数据</a>
+                              <a href="#0061ba8597" class="toc-h3 toc-link" data-title="REST API"><del>获取交易对成交记录</del></a>
                             </li>
                         </ul>
                   </li>
@@ -424,7 +424,7 @@
                               <a href="#7e3f8d7d34" class="toc-h3 toc-link" data-title="REST API">获取单篇资讯文章内容</a>
                             </li>
                             <li>
-                              <a href="#获取社交媒体内容" class="toc-h3 toc-link" data-title="REST API">获取社交媒体内容</a>
+                              <a href="#929949353c" class="toc-h3 toc-link" data-title="REST API">获取社交媒体内容</a>
                             </li>
                         </ul>
                   </li>
@@ -580,9 +580,7 @@
 </ol>
 
 <p>在Websocket API中只能通过名为api_key 的查询字符串参数提供API密钥</p>
-
-<h2 id="SDK">SDK</h2>
-
+<h2 id='sdk'>SDK</h2>
 <p>蜜蜂查API SDK：<a href="https://github.com/blockcc/blockcc-api-client-java" target="_blank">JAVA</a></p>
 <h2 id='5076603a3e'>接口类型</h2>
 <p>蜜蜂查API为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行行情查询。</p>
@@ -646,12 +644,12 @@
         <td>/v3/orderbook</td>
     </tr>
     <tr>
-        <td>获取交易对成交记录</td>
-        <td>/v3/trades</td>
-    </tr>
-    <tr>
         <td>获取交易对K线数据</td>
         <td>/v3/kline</td>
+    </tr>
+    <tr>
+        <td><del>获取交易对成交记录</del></td>
+        <td><del>/v3/trades</del></td>
     </tr>
     <tr>
         <td align="center" rowspan="5" style="vertical-align: middle;">资讯数据</td>
@@ -677,6 +675,8 @@
 </table>
 <h2 id='62fdb855e5'>请求限制</h2>
 <p>为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 <a href="https://data.mifengcha.com/pricing">Pricing</a></p>
+
+<p><strong>除了套餐限制以外，单个IP并发数达到200将会触发DDoS防御机制，并且封禁24小时。</strong></p>
 <h5 id='d68c8cad07'>响应头</h5>
 <p>响应头包含剩余次数和总次数</p>
 
@@ -701,40 +701,40 @@ X-RateLimit-Total →10000
 <table><thead>
 <tr>
 <th>版本</th>
-<th style="text-align: center">调用次数(次/月)</th>
-<th style="text-align: center">每秒查询率（次/秒)</th>
-<th style="text-align: left">WebSocket连接数</th>
+<th>调用次数(次/月)</th>
+<th>每秒查询率（次/秒)</th>
+<th>WebSocket连接数</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>体验版</td>
-<td style="text-align: center">10,000</td>
-<td style="text-align: center">1</td>
-<td style="text-align: left">×</td>
+<td>10,000</td>
+<td>1</td>
+<td>×</td>
 </tr>
 <tr>
 <td>基础版</td>
-<td style="text-align: center">300,000</td>
-<td style="text-align: center">2</td>
-<td style="text-align: left">1</td>
+<td>300,000</td>
+<td>2</td>
+<td>1</td>
 </tr>
 <tr>
 <td>专业版</td>
-<td style="text-align: center">900,000</td>
-<td style="text-align: center">3</td>
-<td style="text-align: left">3</td>
+<td>900,000</td>
+<td>3</td>
+<td>3</td>
 </tr>
 <tr>
 <td>企业版</td>
-<td style="text-align: center">4,000,000</td>
-<td style="text-align: center">5</td>
-<td style="text-align: left">15</td>
+<td>4,000,000</td>
+<td>5</td>
+<td>15</td>
 </tr>
 <tr>
 <td>旗舰版</td>
-<td style="text-align: center">8,000,000</td>
-<td style="text-align: center">8</td>
-<td style="text-align: left">45</td>
+<td>8,000,000</td>
+<td>8</td>
+<td>45</td>
 </tr>
 </tbody></table>
 <h2 id='21d67c3c4c'>请求格式</h2>
@@ -817,7 +817,8 @@ X-RateLimit-Total →10000
 <h2 id='88b6b4f79a'>分页</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/markets?page=0&amp;size=100'</span>
 </code></pre></div>
-<p>默认情况下，返回多个条目的请求将被按照每页20条进行分页。您可以使用<code>?page</code>参数指定其他页面。还可以使用<code>?size</code>参数设置最大100的自定义页面大小。请注意，出于技术原因，并非所有API都遵守<code>?size</code>，请参阅对于API参数说明。
+<p>默认情况下，返回多个条目的请求将被按照每页20条进行分页。您可以使用<code>?page</code>参数指定其他页面。还可以使用<code>?size</code>参数设置最大100的自定义页面大小。请注意，出于技术原因，并非所有API都遵守<code>?size</code>
+，请参阅对于API参数说明。
 请注意，页码是从0开始，缺省page参数将返回第一页 0。</p>
 <h5 id='d68c8cad07-2'>响应头</h5>
 <p>该响应头包括分页信息：</p>
@@ -880,33 +881,33 @@ X-Total-Count →10000
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.binance.com/"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"spot"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"futures"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"okex"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OKEX"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.okex.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"spot"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"futures"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.binance.com/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="w"> </span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"spot"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"futures"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"okex"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OKEX"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.okex.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="w"> </span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"spot"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"futures"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div><h5 id='url'>请求URL</h5>
 <p><code>GET https://data.mifengcha.com/api/v3/markets</code></p>
 <h5 id='1f9ac54b15'>请求参数</h5>
@@ -983,18 +984,18 @@ X-Total-Count →10000
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.binance.com/"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"spot"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"futures"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"websiteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.binance.com/"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reportedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expectedVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">2490122366.2343</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"monthlyVisits"</span><span class="p">:</span><span class="w"> </span><span class="mf">19386372.159024935</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enable"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"kline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"spot"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"futures"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h5 id='url-2'>请求URL</h5>
 <p><code>GET https://data.mifengcha.com/api/v3/markets/{slug}</code></p>
 <h5 id='1f9ac54b15-2'>请求参数</h5>
@@ -1056,9 +1057,7 @@ X-Total-Count →10000
 <td>是否支持期货</td>
 </tr>
 </tbody></table>
-
-<h3 id="获取所有支持的币种列表">获取所有支持的币种列表</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='bcd4037af8'>获取所有支持的币种列表</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/symbols'</span>
 </code></pre></div>
 <blockquote>
@@ -1400,27 +1399,27 @@ X-Total-Count →10000
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.6729</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AFN"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mf">78.31899</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mf">111.601841</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMD"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mf">477.853793</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 
 </span></code></pre></div>
 <aside class="notice">
@@ -1450,39 +1449,37 @@ X-Total-Count →10000
 <td>目标兑换汇率,如基础货币为USD，CNY下的数字为USDCNY的汇率。</td>
 </tr>
 </tbody></table>
-
-<h3 id="获取币种价格">获取币种价格</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='89485959d4'>获取币种价格</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/price?slug=bitcoin,filecoin'</span>
 </code></pre></div>
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">   </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">663551832.77</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"cw"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"hw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"cm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"hm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ha"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"la"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564201016247</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">10254.613</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">66180.407</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">663551832.77</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ra"</span><span class="p">:</span><span class="w"> </span><span class="mf">68260.277</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rv"</span><span class="p">:</span><span class="w"> </span><span class="mi">684890110</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">182193710000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cw"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lw"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0111</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lm"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ha"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"la"</span><span class="p">:</span><span class="w"> </span><span class="mi">10254</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
 更新时间：5秒-60秒，按照交易量大小分级，交易量最大的币种5秒更新一次价格。
@@ -1611,41 +1608,39 @@ X-Total-Count →10000
 <td>历史最低价</td>
 </tr>
 </tbody></table>
-
-<h3 id="获取币种历史价格">获取币种历史价格</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='2c546b76ae'>获取币种历史价格</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/price/history?slug=bitcoin'</span>
 </code></pre></div>
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-   </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577758200000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7260.6657</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1501274.4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.087066438855E10</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"m"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.087066438855E10</span><span class="w">
-      </span><span class="p">},</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577691000000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7397.4515</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1495078.8</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.09867723397E10</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"m"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="w">
-      </span><span class="p">},</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">  
-        </span><span class="nl">"T"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1577724600000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"u"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">7253.9142</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"b"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"a"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1559626.1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"v"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"m"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1577758200000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">7260.6657</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">1501274.4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.087066438855E10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.087066438855E10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1577691000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">7397.4515</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">1495078.8</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.09867723397E10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1577724600000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"u"</span><span class="p">:</span><span class="w"> </span><span class="mf">7253.9142</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mf">1559626.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.132314561458E10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
  数据来源：每5分钟快照一次当前价格，交易量。
@@ -1731,26 +1726,26 @@ X-Total-Count →10000
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10250</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"A"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">10205.5</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"B"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0215</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"bv"</span><span class="p">:</span><span class="w"> </span><span class="mi">252242</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"qv"</span><span class="p">:</span><span class="w"> </span><span class="mi">2574378787</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566546506486</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"o"</span><span class="p">:</span><span class="w"> </span><span class="mf">9991.19</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="mi">9860</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="mi">10250</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="mi">10206</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"A"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="mf">10205.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"B"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0215</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bv"</span><span class="p">:</span><span class="w"> </span><span class="mi">252242</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"qv"</span><span class="p">:</span><span class="w"> </span><span class="mi">2574378787</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 
 
 </span></code></pre></div>
@@ -1906,46 +1901,44 @@ X-Total-Count →10000
 <li>获取最新美元价格为： 最新价(c) * 基础转货币转美元的汇率(r)</li>
 <li>获取24小时美元交易量为： 24小时基础货币交易量(qv) * 基础转货币转美元的汇率(r)</li>
 </ul>
-
-<h3 id="获取交易对深度">获取交易对深度</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='1df2a14721'>获取交易对深度</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/orderbook?desc=gate-io_BTC_USD'</span>
 </code></pre></div>
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
-        </span><span class="mf">4.99792</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8221.2</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1.212</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8220.6</span><span class="p">,</span><span class="w">
-        </span><span class="mf">0.04144752</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1526706175469</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"b"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8221.6</span><span class="p">,</span><span class="w">
+      </span><span class="mf">4.99792</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8221.7</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1.10182386</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8222.1</span><span class="p">,</span><span class="w">
-        </span><span class="mf">2.78535112</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">8223.2</span><span class="p">,</span><span class="w">
-        </span><span class="mf">4.21445703</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8221.2</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1.212</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8220.6</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.04144752</span><span class="w">
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"a"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8221.7</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1.10182386</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8222.1</span><span class="p">,</span><span class="w">
+      </span><span class="mf">2.78535112</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mf">8223.2</span><span class="p">,</span><span class="w">
+      </span><span class="mf">4.21445703</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
 <aside class="notice">
@@ -2027,92 +2020,7 @@ X-Total-Count →10000
 <ul>
 <li>数据更新时间一般为交易所接口返回的时间戳，如果交易所接口未返回时间戳则为发出请求前的时间戳</li>
 </ul>
-<h3 id='8e81669d67'>获取交易对成交记录</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
-  <span class="s1">'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USDT'</span>
-</code></pre></div>
-<blockquote>
-<p>将会返回以下内容:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721951113</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721944964</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-
-</span></code></pre></div>
-<aside class="notice">
-更新时间：5秒-60秒，影响更新频率的因数包括: 交易所是否支持批量接口,是否支持Websocket以及网络环境。
-</aside>
-
-<aside class="notice">
-数据来源：通过交易所API获取
-</aside>
-<h5 id='url-10'>请求URL</h5>
-<p><code>GET https://data.mifengcha.com/api/v3/trades</code></p>
-<h5 id='1f9ac54b15-10'>请求参数</h5>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>传输方式</th>
-<th>必选</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>desc</td>
-<td>QueryString</td>
-<td>是</td>
-<td>交易所的某个交易对。例如：gate-io_BTC_USDT</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>QueryString</td>
-<td>否</td>
-<td>返回数据量，0&lt;limit&lt;=50</td>
-</tr>
-</tbody></table>
-<h5 id='51d2618749-10'>返回参数说明</h5>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>T</td>
-<td>交易成交时间戳</td>
-</tr>
-<tr>
-<td>p</td>
-<td>成交价格</td>
-</tr>
-<tr>
-<td>v</td>
-<td>成交量</td>
-</tr>
-<tr>
-<td>s</td>
-<td>成交类型[buy,sell,none]，为taker操作方向</td>
-</tr>
-<tr>
-<td>m</td>
-<td>交易对信息</td>
-</tr>
-</tbody></table>
-
-<h3 id="获取交易对K线数据">获取交易对K线数据</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='k'>获取交易对K线数据</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.mifengcha.com/api/v3/kline?desc=gate-io_BTC_USDT&amp;interval=15m'</span>
 </code></pre></div>
 <blockquote>
@@ -2141,9 +2049,9 @@ X-Total-Count →10000
 <aside class="notice">
 数据来源：通过交易所API获取
 </aside>
-<h5 id='url-11'>请求URL</h5>
+<h5 id='url-10'>请求URL</h5>
 <p><code>GET https://data.mifengcha.com/api/v3/kline</code></p>
-<h5 id='1f9ac54b15-11'>请求参数</h5>
+<h5 id='1f9ac54b15-10'>请求参数</h5>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -2181,7 +2089,7 @@ X-Total-Count →10000
 <ul>
 <li>单次请求最大可获取2000条数据, 传入参数需满足 <code>(end - start) / interval &lt;= 2000</code>, 如果请求超过2000个数据点则会响应400 <code>10010 Duration Limited</code></li>
 </ul>
-<h5 id='51d2618749-11'>返回参数说明</h5>
+<h5 id='51d2618749-10'>返回参数说明</h5>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2211,6 +2119,81 @@ X-Total-Count →10000
 <tr>
 <td>v</td>
 <td>交易量</td>
+</tr>
+</tbody></table>
+<h3 id='0061ba8597'><del>获取交易对成交记录</del></h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+  <span class="s1">'https://data.mifengcha.com/api/v3/trades?desc=gate-io_BTC_USDT'</span>
+</code></pre></div>
+<blockquote>
+<p>将会返回以下内容:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721951113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573721944964</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">8634</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001519</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate-io_BTC_USDT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre></div><h5 id='url-11'>请求URL</h5>
+<p><del><code>GET https://data.mifengcha.com/api/v3/trades</code></del></p>
+<h5 id='1f9ac54b15-11'>请求参数</h5>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>传输方式</th>
+<th>必选</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>desc</td>
+<td>QueryString</td>
+<td>是</td>
+<td>交易所的某个交易对。例如：gate-io_BTC_USDT</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>QueryString</td>
+<td>否</td>
+<td>返回数据量 <strong>0&lt;limit&lt;=50</strong></td>
+</tr>
+</tbody></table>
+<h5 id='51d2618749-11'>返回参数说明</h5>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>T</td>
+<td>交易成交时间戳</td>
+</tr>
+<tr>
+<td>p</td>
+<td>成交价格</td>
+</tr>
+<tr>
+<td>v</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td>s</td>
+<td>成交类型[buy,sell,none]，为taker操作方向</td>
+</tr>
+<tr>
+<td>m</td>
+<td>交易对信息</td>
 </tr>
 </tbody></table>
 <h2 id='70308e4193'>资讯数据</h2><h3 id='fc025991ee'>获取快讯数据</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
@@ -2314,24 +2297,24 @@ X-Total-Count →10000
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"关于杠杆交易上线LTC/USDT、EOS/USDT、TRX/USDT的公告（1220）"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"尊敬的用户： </span><span class="se">\n\n\n</span><span class="s2"> BiKi平台将于2019年12月20日18:00开放LTC/USDT、EOS/USDT、TRX/USDT杠杆交易。 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">提示：</span><span class="se">\n</span><span class="s2"> 1、合理操作杠杆交易，可以提高收益。但同时考虑到加密货币市场目前的波动性，它也会为交易者带来更大的风险。</span><span class="se">\n</span><span class="s2"> 2、杠杆交易受市场风险、波动性和复杂性的影响较大，请您务必充分了解杠杆交易的风险后审慎使用，BiKi平台不对因杠杆交易造成的损失负责。</span><span class="se">\n</span><span class="s2">  </span><span class="se">\n</span><span class="s2"> 感谢您对BiKi平台的支持，BiKi团队期待您的宝贵意见。</span><span class="se">\n</span><span class="s2"> BiKi团队</span><span class="se">\n</span><span class="s2"> 2019-12-20"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1576811020489</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"importance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5dfc3a0cc3af0a649f3f4563"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"market"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bikicoin"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.biki.com/noticeInfo/2007"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"关于杠杆交易上线LTC/USDT、EOS/USDT、TRX/USDT的公告（1220）"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"尊敬的用户： </span><span class="se">\n\n\n</span><span class="s2"> BiKi平台将于2019年12月20日18:00开放LTC/USDT、EOS/USDT、TRX/USDT杠杆交易。 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">提示：</span><span class="se">\n</span><span class="s2"> 1、合理操作杠杆交易，可以提高收益。但同时考虑到加密货币市场目前的波动性，它也会为交易者带来更大的风险。</span><span class="se">\n</span><span class="s2"> 2、杠杆交易受市场风险、波动性和复杂性的影响较大，请您务必充分了解杠杆交易的风险后审慎使用，BiKi平台不对因杠杆交易造成的损失负责。</span><span class="se">\n</span><span class="s2">  </span><span class="se">\n</span><span class="s2"> 感谢您对BiKi平台的支持，BiKi团队期待您的宝贵意见。</span><span class="se">\n</span><span class="s2"> BiKi团队</span><span class="se">\n</span><span class="s2"> 2019-12-20"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576811020489</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"importance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5dfc3a0cc3af0a649f3f4563"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bikicoin"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.biki.com/noticeInfo/2007"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance战略投资FTX并上市FTX Token（FTT）"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"亲爱的用户： </span><span class="se">\n\n</span><span class="s2">Binance已完成对FTX的战略投资（投资详情），现已上线FTX Token（FTT），开通FTT/BNB、FTT/BTC、FTT/USDT 交易市场，邀您体验！FTT充值通道现已开放，立即充值。 </span><span class="se">\n\n</span><span class="s2">FTT的上币费用为0 BNB。 </span><span class="se">\n\n</span><span class="s2">声明：Binance已从对FTX的投资中获得了一部分FTT代币。 其中绝大多数FTT锁定期为两年。 我们致力于帮助FTT和FTX生态系统实现长期，可持续的发展。 </span><span class="se">\n\n</span><span class="s2">规则说明： </span><span class="se">\n\n</span><span class="s2">- 关于FTX Token (FTT)</span><span class="se">\n</span><span class="s2">- 费率说明</span><span class="se">\n</span><span class="s2">- 交易规则 </span><span class="se">\n\n</span><span class="s2">风险提示：数字货币是一种高风险的投资方式，请投资者谨慎购买，并注意投资风险。Binance会遴选优质币种，但不对投资行为承担担保、赔偿等责任。 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">感谢您对Binance的支持！ </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">Binance团队 </span><span class="se">\n\n</span><span class="s2">2019年12月20日 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">Binance社群 </span><span class="se">\n\n</span><span class="s2">微博： https://weibo.com/u/7336825507  </span><span class="se">\n\n</span><span class="s2">Telegram： https://t.me/BinanceChinese </span><span class="se">\n\n</span><span class="s2">Facebook： https://www.facebook.com/BinanceChinese </span><span class="se">\n\n</span><span class="s2">Twitter： https://twitter.com/binance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1576810511000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"importance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5dfc3a03c3af0a649f3f4416"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"market"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://binance.zendesk.com/hc/zh-cn/articles/360038147271-Binance%E6%88%98%E7%95%A5%E6%8A%95%E8%B5%84FTX%E5%B9%B6%E4%B8%8A%E5%B8%82FTX-Token-FTT-"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"images"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Binance战略投资FTX并上市FTX Token（FTT）"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"亲爱的用户： </span><span class="se">\n\n</span><span class="s2">Binance已完成对FTX的战略投资（投资详情），现已上线FTX Token（FTT），开通FTT/BNB、FTT/BTC、FTT/USDT 交易市场，邀您体验！FTT充值通道现已开放，立即充值。 </span><span class="se">\n\n</span><span class="s2">FTT的上币费用为0 BNB。 </span><span class="se">\n\n</span><span class="s2">声明：Binance已从对FTX的投资中获得了一部分FTT代币。 其中绝大多数FTT锁定期为两年。 我们致力于帮助FTT和FTX生态系统实现长期，可持续的发展。 </span><span class="se">\n\n</span><span class="s2">规则说明： </span><span class="se">\n\n</span><span class="s2">- 关于FTX Token (FTT)</span><span class="se">\n</span><span class="s2">- 费率说明</span><span class="se">\n</span><span class="s2">- 交易规则 </span><span class="se">\n\n</span><span class="s2">风险提示：数字货币是一种高风险的投资方式，请投资者谨慎购买，并注意投资风险。Binance会遴选优质币种，但不对投资行为承担担保、赔偿等责任。 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">感谢您对Binance的支持！ </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">Binance团队 </span><span class="se">\n\n</span><span class="s2">2019年12月20日 </span><span class="se">\n\n</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">Binance社群 </span><span class="se">\n\n</span><span class="s2">微博： https://weibo.com/u/7336825507  </span><span class="se">\n\n</span><span class="s2">Telegram： https://t.me/BinanceChinese </span><span class="se">\n\n</span><span class="s2">Facebook： https://www.facebook.com/BinanceChinese </span><span class="se">\n\n</span><span class="s2">Twitter： https://twitter.com/binance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576810511000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"importance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://m.mifengcha.com/news/5dfc3a03c3af0a649f3f4416"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://binance.zendesk.com/hc/zh-cn/articles/360038147271-Binance%E6%88%98%E7%95%A5%E6%8A%95%E8%B5%84FTX%E5%B9%B6%E4%B8%8A%E5%B8%82FTX-Token-FTT-"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
@@ -2562,9 +2545,7 @@ X-Total-Count →10000
 <td>发文时比特币价格</td>
 </tr>
 </tbody></table>
-
-<h3 id="获取社交媒体内容">获取社交媒体内容</h3>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='929949353c'>获取社交媒体内容</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
  <span class="s1">'https://data.mifengcha.com/api/v3/social_media?source=TWITTER'</span>
 </code></pre></div>
 <blockquote>
@@ -2720,7 +2701,10 @@ URL: wss://data.mifengcha.com/ws/v3
 <blockquote>
 <p>订阅成功将会返回以下内容:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"Subscribed"</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subscribed"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h5 id='19b61b1c63'>消息格式</h5>
 <p><code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
 <h5 id='51d2618749-17'>返回参数说明</h5>
@@ -2745,7 +2729,10 @@ URL: wss://data.mifengcha.com/ws/v3
 <blockquote>
 <p>取消订阅成功将会返回以下内容:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"Unsubscribed"</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unsubscribed"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h5 id='19b61b1c63-2'>消息格式</h5>
 <p><code>{&quot;op&quot;: &quot;unsubscribe&quot;, &quot;args&quot;: [&quot;&lt;topic1&gt;&quot;,&quot;&lt;topic2&gt;&quot;, ...]}</code></p>
 <h5 id='51d2618749-18'>返回参数说明</h5>
@@ -2771,7 +2758,13 @@ URL: wss://data.mifengcha.com/ws/v3
 <blockquote>
 <p>将会返回以下内容:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nl">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="nl">"topics"</span><span class="p">:[</span><span class="s2">"price:bitcoin"</span><span class="p">]}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"price:bitcoin"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h5 id='19b61b1c63-3'>消息格式</h5>
 <p><code>{&quot;op&quot;: &quot;topics&quot;}</code></p>
 <h5 id='51d2618749-19'>返回参数说明</h5>
