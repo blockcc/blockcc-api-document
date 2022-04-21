@@ -145,7 +145,7 @@ In order to provide higher quality of service, different restrictions are made a
 See [Pricing](https://data.block.cc/pricing) for details
 
 **In addition to the package limit, if the number of connections reaches 200, the DDoS defense system will be triggered
-and the IP will be banned for 24 hours**
+and the IP will be banned for 8 hours**
 
 > You can check your remaining times through the response header:
 

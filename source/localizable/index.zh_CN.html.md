@@ -253,7 +253,7 @@ wss://data.mifengcha.com/ws
 
 为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
 
-**除了套餐限制以外，单个IP并发数达到200将会触发DDoS防御机制，并且封禁24小时。**
+**除了套餐限制以外，单个IP并发数达到200将会触发DDoS防御机制，并且封禁8小时。**
 
 ##### 响应头
 
