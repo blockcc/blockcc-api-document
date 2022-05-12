@@ -299,7 +299,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  'https://data.block.cc/api/v3/symbols/ethereum'
+  'https://data.block.cc/api/v3/symbols/tether'
 ```
 
 > Response:
@@ -307,81 +307,101 @@ curl -X GET \
 ```json
  [
   {
-    "slug": "ethereum",
-    "symbol": "ETH",
-    "fullname": "Ethereum",
-    "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
-    "volumeUsd": 48535287645.18,
-    "status": "enable",
-    "marketCapUsd": 330065744723.0739,
-    "availableSupply": 116017188.1865,
-    "totalSupply": 116017188.1865,
-    "maxSupply": 116017188.1865,
-    "websiteUrl": "https://www.ethereum.org/",
-    "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
-    "whitePaperUrls": null,
-    "githubId": "ethereum",
-    "twitterId": "ethereum",
-    "facebookId": "ethereumproject",
+    "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/tether.png",
+    "rank": 3,
+    "volumeUsd": 8391582654.89,
+    "marketCapUsd": 83717264202.5134,
+    "availableSupply": 83147694182.5932,
+    "totalSupply": 86713951794.8747,
+    "maxSupply": 86713951794.8747,
+    "priceStartAt": 1427590500000,
+    "explorerUrls": "https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t,https://snowtrace.io/token/0xc7198437980c041c805a1edcba50c1ce5db95118,https://blockchair.com/bitcoin/omni/property/31,https://www.omniexplorer.info/asset/31,https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7,https://blockexplorer.boba.network/,https://algoexplorer.io/asset/312769,https://polygonscan.com/token/0xc2132d05d31c914a87c6611c10748aeb04b58e8f,https://ethplorer.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7,https://cronos-explorer.crypto.org/token/0x66e428c3f67a68878562e79a0234c1f83c208770,https://avascan.info/blockchain/c/address/0xc7198437980c041c805a1edcba50c1ce5db95118/token,https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955,https://usdt.tokenview.com/en",
+    "whitePaperUrls": "https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf",
+    "githubId": null,
+    "twitterId": "tether_to",
+    "facebookId": "tether.to",
     "telegramId": null,
-    "redditId": "ethereum",
+    "redditId": null,
     "algorithm": null,
     "proof": null,
+    "issueDate": null,
+    "contractAddress": "31",
+    "ignore": false,
+    "fiat": false,
+    "status": "enable",
     "platforms": [
       {
-        "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
-        "platform": "BSC",
-        "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+        "contractAddress": "tr7nhqjekqxgtci8q8zy4pl8otszgjlj6t",
+        "platform": "TRX",
+        "explorer": "https://tronscan.org/#/contract/tr7nhqjekqxgtci8q8zy4pl8otszgjlj6t"
       },
       {
-        "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
-        "platform": "HECO",
-        "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+        "contractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "platform": "ETH",
+        "explorer": "https://cn.etherscan.com/token/0xdac17f958d2ee523a2206206994597c13d831ec7"
+      },
+      {
+        "contractAddress": "31",
+        "platform": "OMNI",
+        "explorer": "https://omniexplorer.info/asset/31"
       }
     ],
-    "issueDate": "2015-07-29T16:00:00Z",
-    "details": null
+    "details": null,
+    "slug": "tether",
+    "symbol": "USDT",
+    "fullname": "Tether",
+    "websiteUrl": "https://tether.to"
   }
 ]
 
 ```
 
 ```json
-  {
-  "slug": "ethereum",
-  "symbol": "ETH",
-  "fullname": "Ethereum",
-  "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/ethereum.png",
-  "volumeUsd": 48535287645.18,
-  "status": "enable",
-  "marketCapUsd": 330065744723.0739,
-  "availableSupply": 116017188.1865,
-  "totalSupply": 116017188.1865,
-  "maxSupply": 116017188.1865,
-  "websiteUrl": "https://www.ethereum.org/",
-  "explorerUrls": "https://eth.tokenview.com/,https://ethplorer.io/,https://blockchair.com/ethereum,https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd,https://etherscan.io/",
-  "whitePaperUrls": null,
-  "githubId": "ethereum",
-  "twitterId": "ethereum",
-  "facebookId": "ethereumproject",
+{
+  "logoUrl": "https://mifengcha.oss-cn-beijing.aliyuncs.com/static/coinInfo/tether.png",
+  "rank": 3,
+  "volumeUsd": 8391582654.89,
+  "marketCapUsd": 83717264202.5134,
+  "availableSupply": 83147694182.5932,
+  "totalSupply": 86713951794.8747,
+  "maxSupply": 86713951794.8747,
+  "priceStartAt": 1427590500000,
+  "explorerUrls": "https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t,https://snowtrace.io/token/0xc7198437980c041c805a1edcba50c1ce5db95118,https://blockchair.com/bitcoin/omni/property/31,https://www.omniexplorer.info/asset/31,https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7,https://blockexplorer.boba.network/,https://algoexplorer.io/asset/312769,https://polygonscan.com/token/0xc2132d05d31c914a87c6611c10748aeb04b58e8f,https://ethplorer.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7,https://cronos-explorer.crypto.org/token/0x66e428c3f67a68878562e79a0234c1f83c208770,https://avascan.info/blockchain/c/address/0xc7198437980c041c805a1edcba50c1ce5db95118/token,https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955,https://usdt.tokenview.com/en",
+  "whitePaperUrls": "https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf",
+  "githubId": null,
+  "twitterId": "tether_to",
+  "facebookId": "tether.to",
   "telegramId": null,
-  "redditId": "ethereum",
+  "redditId": null,
   "algorithm": null,
   "proof": null,
+  "issueDate": null,
+  "contractAddress": "31",
+  "ignore": false,
+  "fiat": false,
+  "status": "enable",
   "platforms": [
     {
-      "contractAddress": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
-      "platform": "BSC",
-      "explorer": "https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8"
+      "contractAddress": "tr7nhqjekqxgtci8q8zy4pl8otszgjlj6t",
+      "platform": "TRX",
+      "explorer": "https://tronscan.org/#/contract/tr7nhqjekqxgtci8q8zy4pl8otszgjlj6t"
     },
     {
-      "contractAddress": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
-      "platform": "HECO",
-      "explorer": "https://hecoinfo.com/token/0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+      "contractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "platform": "ETH",
+      "explorer": "https://cn.etherscan.com/token/0xdac17f958d2ee523a2206206994597c13d831ec7"
+    },
+    {
+      "contractAddress": "31",
+      "platform": "OMNI",
+      "explorer": "https://omniexplorer.info/asset/31"
     }
   ],
-  "issueDate": "2015-07-29T16:00:00Z",
-  "details": null
+  "details": null,
+  "slug": "tether",
+  "symbol": "USDT",
+  "fullname": "Tether",
+  "websiteUrl": "https://tether.to"
 }
 ```
 
@@ -404,9 +424,9 @@ Get a list of all supported currencies
 
 #### Response Parameter
 
-| Parameter       | Description                                                 |
+| 参数              | 说明                                                          |
 |-----------------|-------------------------------------------------------------|
-| slug            | Slug（ID）                                                    |
+| slug            | Currency Slug (ID)                                          |
 | symbol          | Symbol                                                      |
 | fullname        | Fullname                                                    |
 | logoUrl         | Logo Url                                                    |
@@ -425,9 +445,12 @@ Get a list of all supported currencies
 | telegramId      | Telegram                                                    |
 | algorithm       | Core Algorithm                                              |
 | proof           | Proof                                                       |
-| platforms       | platform information                                        |
-| issueDate       | Time to issue                                               |
-| details         | Currency introduction, not returned by default              |
+| platforms       | Cross-chain information                                     |
+| issueDate       | Issue Date                                                  |
+| contractAddress | Contract address                                            |
+| ignore          | Is ignored market capitalization                            |
+| fiat            | Is Fiat Currency                                            |
+| details         | Currency introduction, return when `details`=1              |
 
 ## Market Data
 
