@@ -314,16 +314,16 @@ X-RateLimit-Total →10000
 }
 ```
 
-| HTTP 状态码 |  错误码  | 错误信息                                      |
-|----------|-------|-------------------------------------------|
-| 400      | 10010 | Duration Limited, 请求获取的数据区间太大 请求获取的数据区间太大 |
-| 400      | 10030 | Param Required, 请求参数缺失                    |
-| 400      | 10050 | Empty Resource, 空资源                       |
-| 400      | 10070 | Unavailable Resource, 该资源已停用              |
-| 429      | 10040 | Rate Limited, 请求并发过高或者请求次已达上限             |
-| 414      | 10090 | Url Too Long, url太长                       |
-| 500      | 10020 | Internal Server Error, 服务器错误 请联系客服反馈      |
-| 404      |  404  | Not Found                                 |
+| HTTP 状态码 | 错误码   | 错误信息                                 |
+|----------|-------|--------------------------------------|
+| 400      | 10010 | Duration Limited, 请求获取的数据区间太大        |
+| 400      | 10030 | Param Required, 请求参数缺失               |
+| 400      | 10050 | Empty Resource, 空资源                  |
+| 400      | 10070 | Unavailable Resource, 该资源已停用         |
+| 429      | 10040 | Rate Limited, 请求并发过高或者请求次已达上限        |
+| 414      | 10090 | Url Too Long, url太长                  |
+| 500      | 10020 | Internal Server Error, 服务器错误 请联系客服反馈 |
+| 404      | 404   | Not Found                            |
 
 ## 分页
 
