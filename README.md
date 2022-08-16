@@ -6,30 +6,16 @@
 
 <p align="center"><em>This repo above was fork from Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
 
-Repository URL
------------
-
-- Github: [https://github.com/blockcc/blockcc-api-document](https://github.com/blockcc/blockcc-api-document).
-
-- Gitee: [https://gitee.com/blockcc/blockcc-api-document](https://gitee.com/blockcc/blockcc-api-document).
-
 Document URL
 ------------
 
-- CloudflarePages: [https://blockcc-api-document.pages.dev](https://blockcc-api-document.pages.dev)
-
-- GithubPages: [https://blockcc.github.io/blockcc-api-document](https://blockcc.github.io/blockcc-api-document)
-
-- GiteePages: [https://blockcc.gitee.io/blockcc-api-document](https://blockcc.gitee.io/blockcc-api-document)
+[pages.dev](https://blockcc-api-document.pages.dev) | [github.io](https://blockcc.github.io/blockcc-api-document)
 
 ---
+中文文档
 
-- Cloudflare中文文档: [https://blockcc-api-document.pages.dev/zh_CN](https://blockcc-api-document.pages.dev/zh_CN)
-
-- Github中文文档: [https://blockcc.github.io/blockcc-api-document/zh_CN](https://blockcc.github.io/blockcc-api-document/zh_CN)
-
-- Gitee中文文档: [https://blockcc.gitee.io/blockcc-api-document/zh_CN](https://blockcc.gitee.io/blockcc-api-document/zh_CN)
-
+[pages.dev](https://blockcc-api-document.pages.dev/zh_CN)
+| [github.io](https://blockcc.github.io/blockcc-api-document/zh_CN)
 
 
 Features
