@@ -22,71 +22,71 @@ code_clipboard: true
 # 更新日志
 
 <table>
-	<tr>
-		<th width="110px">生效时间(UTC+8)</th>
-		<th width="50px">变化</th>
-		<th>更新内容</th>
-	</tr>
+        <tr>
+                <th width="110px">生效时间(UTC+8)</th>
+                <th width="50px">变化</th>
+                <th>更新内容</th>
+        </tr>
   <tr>
-		<td>2021.12.01</td>
-		<td>新增</td>
-		<td>
-			新增DEX数据: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap/QuickSwap/Raydium
-		</td>
+                <td>2021.12.01</td>
+                <td>新增</td>
+                <td>
+                        新增DEX数据: Balancer/DODO/dYdX/Orca/ShibaSwap/Tokenlon/TraderJoe/ZKSwap/QuickSwap/Raydium
+                </td>
   </tr>
   <tr>
-		<td>2021.07.12</td>
-		<td>恢复</td>
-		<td>
-			获取交易对成交记录接口维护完成
-		</td>
-	</tr>
+                <td>2021.07.12</td>
+                <td>恢复</td>
+                <td>
+                        获取交易对成交记录接口维护完成
+                </td>
+        </tr>
   <tr>
-		<td>2021.05.26</td>
-		<td>维护</td>
-		<td>
-			获取交易对成交记录接口维护
-		</td>
-	</tr>
+                <td>2021.05.26</td>
+                <td>维护</td>
+                <td>
+                        获取交易对成交记录接口维护
+                </td>
+        </tr>
   <tr>
-		<td>2021.05.26</td>
-		<td>新增</td>
-		<td>
-			币种新增 platforms 字段
-		</td>
-	</tr>
-	<tr>
-		<td>2021.01.21</td>
-		<td>新增</td>
-		<td>
-			新增JAVA SDK
-		</td>
-	</tr>
-	<tr>
-		<td>2020.10.16</td>
-		<td>新增</td>
-		<td>历史价格接口新增时间间隔请求参数 </td>
-	</tr>
-	<tr>
-		<td>2020.10.01</td>
-		<td>优化</td>
-		<td>API v1不再为免费用户提供, APIv3已稳定为用户服务了1年多的时间, 建议更新到APIv3获得更好的体验.</td>
-	</tr>
-	<tr>
-		<td>2020.05.25</td>
-		<td>新增</td>
-		<td>新增社交媒体API</td>
-	</tr>
-	<tr>
-		<td>2020.04.16</td>
-		<td>新增</td>
-		<td>K线新增1分钟类型</td>
-	</tr>
-	<tr>
-		<td>2020.04.09</td>
-		<td>新增</td>
-		<td>价格新增字段：24小时最高价、24小时最低价、1周涨跌幅、1周最高价、1周最低价、1月涨跌幅、1月最高价、1月最低价、历史最高价、历史最低价</td>
-	</tr>
+                <td>2021.05.26</td>
+                <td>新增</td>
+                <td>
+                        币种新增 platforms 字段
+                </td>
+        </tr>
+        <tr>
+                <td>2021.01.21</td>
+                <td>新增</td>
+                <td>
+                        新增JAVA SDK
+                </td>
+        </tr>
+        <tr>
+                <td>2020.10.16</td>
+                <td>新增</td>
+                <td>历史价格接口新增时间间隔请求参数 </td>
+        </tr>
+        <tr>
+                <td>2020.10.01</td>
+                <td>优化</td>
+                <td>API v1不再为免费用户提供, APIv3已稳定为用户服务了1年多的时间, 建议更新到APIv3获得更好的体验.</td>
+        </tr>
+        <tr>
+                <td>2020.05.25</td>
+                <td>新增</td>
+                <td>新增社交媒体API</td>
+        </tr>
+        <tr>
+                <td>2020.04.16</td>
+                <td>新增</td>
+                <td>K线新增1分钟类型</td>
+        </tr>
+        <tr>
+                <td>2020.04.09</td>
+                <td>新增</td>
+                <td>价格新增字段：24小时最高价、24小时最低价、1周涨跌幅、1周最高价、1周最低价、1月涨跌幅、1月最高价、1月最低价、历史最高价、历史最低价</td>
+        </tr>
 </table>
 
 # 简介
@@ -249,34 +249,6 @@ wss://data.mifengcha.com/ws
     </tr>
 </table>
 
-## 请求限制
-
-为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
-
-**除了套餐限制以外，单个IP并发数达到200将会触发DDoS防御机制，并且封禁8小时。**
-
-##### 响应头
-
-响应头包含剩余次数和总次数
-
-| Header                | 描述          |
-|-----------------------|-------------|
-| X-RateLimit-Remaining | 剩余次数        |
-| X-RateLimit-Total     | 总次数(每月1号刷新) |
-
-```
-X-RateLimit-Remaining →9999
-X-RateLimit-Total →10000
-```
-
-| 版本  | 调用次数(次/月) | 每秒查询率（次/秒) | WebSocket连接数 |
-|-----|-----------|------------|--------------|
-| 体验版 |  10,000   |     1      | ×            |
-| 基础版 |  300,000  |     2      | 1            |
-| 专业版 |  900,000  |     3      | 3            |
-| 企业版 | 4,000,000 |     5      | 15           |
-| 旗舰版 | 8,000,000 |     8      | 45           |
-
 ## 请求格式
 
 所有的API请求都是restful，目前只有一种方法：GET
@@ -302,28 +274,6 @@ X-RateLimit-Total →10000
 
 - 不建议在中国大陆境内使用临时域名以及代理的方式访问蜜蜂查API，此类方式访问API连接的稳定性很难保证。
 - 建议使用香港云服务器进行访问。
-
-## 错误码
-
-> 错误码响应内容示例:
-
-```json
-{
-  "code": 10030,
-  "message": "Param Required"
-}
-```
-
-| HTTP 状态码 | 错误码   | 错误信息                                 |
-|----------|-------|--------------------------------------|
-| 400      | 10010 | Duration Limited, 请求获取的数据区间太大        |
-| 400      | 10030 | Param Required, 请求参数缺失               |
-| 400      | 10050 | Empty Resource, 空资源                  |
-| 400      | 10070 | Unavailable Resource, 该资源已停用         |
-| 429      | 10040 | Rate Limited, 请求并发过高或者请求次已达上限        |
-| 414      | 10090 | Url Too Long, url太长                  |
-| 500      | 10020 | Internal Server Error, 服务器错误 请联系客服反馈 |
-| 404      | 404   | Not Found                            |
 
 ## 分页
 
@@ -365,6 +315,7 @@ X-Total-Count →10000
 
 - 点击[这里](https://data.mifengcha.com/contactus)提交表单。
 - 发邮件至[support@mifengcha.com](mailto:support@mifengcha.com)联系工作人员。
+- 添加Telegram电报客服进行沟通：[https://t.me/mifengcha_cs](https://t.me/mifengcha_cs)
 
 如您遇到API错误，请按照以下模板向我们反馈问题
 
@@ -480,7 +431,7 @@ curl -X GET \
 ##### 请求参数
 
 <table>
-	<tr>
+        <tr>
         <td>参数</td>
         <td>说明</td>
     </tr>
@@ -1758,7 +1709,62 @@ wscat -c 'wss://data.mifengcha.com/ws/v3?api_key=[YOUR_API_KEY]'
 | code    | Message Code          |
 | message | Message               |
 | data    | [Orderbook](#获取交易对深度) |
- 
 
+# 获取你的API KEY
 
+要使用蜜蜂查API，请先登录账号，完成API Key的申请，再根据本文档详情进行开发。如果您还没有API密钥，请点击注册。需注意：
 
+- 如果您的账号尚未绑定任何套餐，使用API Key是无法调取到数据的，开通套餐请[点击这里](https://data.mifengcha.com/pricing)。
+- 请谨慎保管好您的API Key，不要轻易告诉任何人。
+- 重设API Key是即刻生效，可直接使用新的，旧的API Key立即失效不可再用。
+
+# 请求限制
+
+为了提供更高服务质量，根据不同的套餐作出不同的限制。详情查看 [Pricing](https://data.mifengcha.com/pricing)
+
+**除了套餐限制以外，单个IP并发数达到200将会触发DDoS防御机制，并且封禁8小时。**
+
+##### 响应头
+
+响应头包含剩余次数和总次数
+
+| Header                | 描述          |
+|-----------------------|-------------|
+| X-RateLimit-Remaining | 剩余次数        |
+| X-RateLimit-Total     | 总次数(每月1号刷新) |
+
+```
+X-RateLimit-Remaining →9999
+X-RateLimit-Total →10000
+```
+
+| 版本  | 调用次数(次/月) | 每秒查询率（次/秒) | WebSocket连接数 |
+|-----|-----------|------------|--------------|
+| 体验版 |  10,000   |     1      | ×            |
+| 基础版 |  300,000  |     2      | 1            |
+| 专业版 |  900,000  |     3      | 3            |
+| 企业版 | 4,000,000 |     5      | 15           |
+| 旗舰版 | 8,000,000 |     8      | 45           |
+
+# 错误码
+
+> 错误码响应内容示例:
+
+```json
+{
+  "code": 10030,
+  "message": "Param Required"
+}
+```
+
+| HTTP 状态码 | 错误码   | 错误信息                                 |
+|----------|-------|--------------------------------------|
+| 400      | 10010 | Duration Limited, 请求获取的数据区间太大        |
+| 400      | 10030 | Param Required, 请求参数缺失               |
+| 400      | 10050 | Empty Resource, 空资源                  |
+| 400      | 10070 | Unavailable Resource, 该资源已停用         |
+| 429      | 10040 | Rate Limited, 请求并发过高或者请求次已达上限        |
+| 429      | 10080 | API KEY Error, API KEY错误             |
+| 414      | 10090 | Url Too Long, url太长                  |
+| 500      | 10020 | Internal Server Error, 服务器错误 请联系客服反馈 |
+| 404      | 404   | Not Found                            |
