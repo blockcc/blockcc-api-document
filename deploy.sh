@@ -86,13 +86,6 @@ parse_args() {
 main() {
   repo=origin
   main_internal "$@"
-
-  repo=origin2
-  push_only=true
-  main_internal "$@"
-
-  repo=origin3
-  main_internal "$@"
 }
 
 main_internal() {
