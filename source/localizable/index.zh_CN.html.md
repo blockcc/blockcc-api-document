@@ -156,19 +156,29 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 
 ## 接入URLS
 
-您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。其中，data.mifengcha.com域名对中国大陆的用户做了一定的链路延迟优化。
+您可以自行比较使用data.block.cc和data.mifengcha.com两个域名的延迟情况，选择延迟低的进行使用。
+
+与中国香港地区直连不稳定的地区可以尝试使用我们的CDN域名data1.block.cc和data1.mifengcha.com
 
 ##### REST API
 
-https://data.block.cc/api
+https://data.block.cc/api/v3
 
-https://data.mifengcha.com/api
+https://data.mifengcha.com/api/v3
+
+https://data1.block.cc/api/v3 (CDN备用)
+
+https://data1.mifengcha.com/api/v3 (CDN备用)
 
 ##### Websocket Feed
 
-wss://data.block.cc/ws
+wss://data.block.cc/ws/v3
 
-wss://data.mifengcha.com/ws
+wss://data.mifengcha.com/ws/v3
+
+wss://data1.block.cc/ws/v3 (CDN备用)
+
+wss://data1.mifengcha.com/ws/v3 (CDN备用)
 
 # 接入说明
 
