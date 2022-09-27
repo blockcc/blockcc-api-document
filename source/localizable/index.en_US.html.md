@@ -48,7 +48,7 @@ Add SocialMedia API [SocialMedia](#socialmedia)
 
 ### 2020-04-16
 
-Add kline 1min interval [Kline](#kline)
+Add Kline/Candlestick 1min interval [Kline/Candlestick](#kline)
 
 ### 2020-04-09
 
@@ -860,7 +860,7 @@ Note: The data center will intercept abnormal data. Please check the timestamp w
 * The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a
   timestamp, it is the timestamp before request
 
-### Kline
+### Kline/Candlestick
 
 ```shell
 curl -X GET \
@@ -891,7 +891,7 @@ curl -X GET \
 
 ```
 
-Get Kline Data(OHLCV)
+Get Kline/Candlestick Data(OHLCV)
 
 <aside class="notice">
 Data Source: From Exchange
