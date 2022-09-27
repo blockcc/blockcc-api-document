@@ -412,7 +412,7 @@
                               <a href="#orderbook" class="toc-h3 toc-link" data-title="REST API">Orderbook</a>
                             </li>
                             <li>
-                              <a href="#kline" class="toc-h3 toc-link" data-title="REST API">Kline</a>
+                              <a href="#kline-candlestick" class="toc-h3 toc-link" data-title="REST API">Kline/Candlestick</a>
                             </li>
                             <li>
                               <a href="#trades" class="toc-h3 toc-link" data-title="REST API"><del>Trades</del></a>
@@ -505,7 +505,7 @@ update to APIv3 for a better experience.</li>
 <h3 id='2020-05-25'>2020-05-25</h3>
 <p>Add SocialMedia API <a href="#socialmedia">SocialMedia</a></p>
 <h3 id='2020-04-16'>2020-04-16</h3>
-<p>Add kline 1min interval <a href="#kline">Kline</a></p>
+<p>Add Kline/Candlestick 1min interval <a href="#kline">Kline/Candlestick</a></p>
 <h3 id='2020-04-09'>2020-04-09</h3>
 <p>Add fields to <a href="#price">Price</a></p>
 
@@ -1700,7 +1700,7 @@ Note: The data center will intercept abnormal data. Please check the timestamp w
 <li>The data update time is generally the timestamp returned by the exchange API, if the exchange API does not return a
 timestamp, it is the timestamp before request</li>
 </ul>
-<h3 id='kline'>Kline</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
+<h3 id='kline-candlestick'>Kline/Candlestick</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="se">\</span>
   <span class="s1">'https://data.block.cc/api/v3/kline?desc=gate-io_BTC_USDT&amp;interval=15m'</span>
 </code></pre></div>
 <blockquote>
@@ -1726,7 +1726,7 @@ timestamp, it is the timestamp before request</li>
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre></div>
-<p>Get Kline Data(OHLCV)</p>
+<p>Get Kline/Candlestick Data(OHLCV)</p>
 
 <aside class="notice">
 Data Source: From Exchange
