@@ -7,12 +7,13 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
 
-- <a target="_blank" href='https://data.block.cc/login'>Login data.block.cc</a>
+- <a target="_blank" href='https://pro.block.cc//login'>Login pro.block.cc</a>
 - <br>
 - <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: true
 code_clipboard: true
+logo: 'https://mifengcha-public.oss-cn-beijing.aliyuncs.com/pro/en_US/logo'
 ---
 
 # Changelog
@@ -33,6 +34,10 @@ code_clipboard: true
 
 - Add `platforms` field to [Symbols](#symbols)
 
+### 2021-01-21
+
+- Add JAVA SDK
+
 ### 2020-10-16
 
 - Add request param `interval` to [HistoricalPrice](#historicalprice)
@@ -48,7 +53,7 @@ Add SocialMedia API [SocialMedia](#socialmedia)
 
 ### 2020-04-16
 
-Add Kline/Candlestick 1min interval [Kline/Candlestick](#kline)
+Add Kline/Candlestick 1min interval [Kline/Candlestick](#kline-candlestick)
 
 ### 2020-04-09
 
@@ -106,7 +111,7 @@ Version: v3.0.0
 ### Get API KEY
 
 All Block.cc API requests must be authenticated using an API key. If you don't have an API key yet,
-please [click to register](https://data.block.cc/register).
+please [click to register](https://pro.block.cc/register).
 
 ### Use your API KEY
 
@@ -142,7 +147,7 @@ The API key can only be provided in the Websocket API via a query string paramet
 ```
 
 In order to provide higher quality of service, different restrictions are made according to different packages.
-See [Pricing](https://data.block.cc/pricing) for details
+See [Pricing](https://pro.block.cc/pricing) for details
 
 **In addition to the package limit, if the number of connections reaches 200, the DDoS defense system will be triggered
 and the IP will be banned for 8 hours**
@@ -172,6 +177,7 @@ X-RateLimit-Remaining：9999
 | 400              | 10050      | Empty Resource        |
 | 400              | 10070      | Unavailable Resource  |
 | 429              | 10040      | Rate Limited          |
+| 429              | 10080      | API KEY Error         |
 | 414              | 10090      | Url Too Long          |
 | 500              | 10020      | Internal Server Error |
 | 404              | 404        | Not Found             |
@@ -1532,16 +1538,3 @@ wscat -c 'wss://data.block.cc/ws/v3?api_key=[YOUR_API_KEY]'
 | message   | Message                 |
 | data      | [Orderbook](#orderbook) |
 
-# Exchanges Included
-
-API recommendations
-
-1. Use QueryString or URLParams to pass parameters.
-2. Please provide an interface to obtain tickers in batches so that prices and trading pairs can be updated in batches.
-3. If you cannot provide an interface to obtain tickers in batches, please provide an interface to obtain all trading
-   pairs. (Not recommended, high request frequency, slow update speed)
-4. Please use symbol splitting or fixed length for trading pairs as much as possible.
-5. Under normal circumstances, the number of requests per minute is about 10 times.
-6. The interface data is guaranteed to be stable and true.
-
-[Click Here](http://cn.mikecrm.com/TNFyHPJ) Submit the exchange acceptance form
