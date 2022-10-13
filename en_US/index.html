@@ -299,7 +299,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="https://mifengcha-public.oss-accelerate.aliyuncs.com/logo.png" class="logo" style="width: 64px;" alt="" />
+      <img src="https://mifengcha-public.oss-cn-beijing.aliyuncs.com/pro/en_US/logo" class="logo" style="width: 64px;" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -322,6 +322,9 @@
                   </li>
                   <li>
                     <a href="#2021-05-26-2" class="toc-h2 toc-link" data-title="2021-05-26">2021-05-26</a>
+                  </li>
+                  <li>
+                    <a href="#2021-01-21" class="toc-h2 toc-link" data-title="2021-01-21">2021-01-21</a>
                   </li>
                   <li>
                     <a href="#2020-10-16" class="toc-h2 toc-link" data-title="2020-10-16">2020-10-16</a>
@@ -464,12 +467,9 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#exchanges-included" class="toc-h1 toc-link" data-title="Exchanges Included">Exchanges Included</a>
-          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a target="_blank" href='https://data.block.cc/login'>Login data.block.cc</a></li>
+            <li><a target="_blank" href='https://pro.block.cc//login'>Login pro.block.cc</a></li>
             <li><br></li>
             <li><a class="locale-button" href='../zh_CN'><img src="../images/flags/zh_CN-8d23d3a4.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="../images/flags/en_US-47772e90.svg" alt="English"/></a></li>
         </ul>
@@ -493,6 +493,10 @@
 <ul>
 <li>Add <code>platforms</code> field to <a href="#symbols">Symbols</a></li>
 </ul>
+<h3 id='2021-01-21'>2021-01-21</h3>
+<ul>
+<li>Add JAVA SDK</li>
+</ul>
 <h3 id='2020-10-16'>2020-10-16</h3>
 <ul>
 <li>Add request param <code>interval</code> to <a href="#historicalprice">HistoricalPrice</a></li>
@@ -505,7 +509,7 @@ update to APIv3 for a better experience.</li>
 <h3 id='2020-05-25'>2020-05-25</h3>
 <p>Add SocialMedia API <a href="#socialmedia">SocialMedia</a></p>
 <h3 id='2020-04-16'>2020-04-16</h3>
-<p>Add Kline/Candlestick 1min interval <a href="#kline">Kline/Candlestick</a></p>
+<p>Add Kline/Candlestick 1min interval <a href="#kline-candlestick">Kline/Candlestick</a></p>
 <h3 id='2020-04-09'>2020-04-09</h3>
 <p>Add fields to <a href="#price">Price</a></p>
 
@@ -547,7 +551,7 @@ Version: v3.0.0
 </aside>
 <h2 id='authenticate'>Authenticate</h2><h3 id='get-api-key'>Get API KEY</h3>
 <p>All Block.cc API requests must be authenticated using an API key. If you don&#39;t have an API key yet,
-please <a href="https://data.block.cc/register">click to register</a>.</p>
+please <a href="https://pro.block.cc/register">click to register</a>.</p>
 <h3 id='use-your-api-key'>Use your API KEY</h3>
 <blockquote>
 <p>example:</p>
@@ -576,7 +580,7 @@ wscat <span class="nt">-c</span> <span class="s1">'wss://data.block.cc/ws/v3?api
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>In order to provide higher quality of service, different restrictions are made according to different packages.
-See <a href="https://data.block.cc/pricing">Pricing</a> for details</p>
+See <a href="https://pro.block.cc/pricing">Pricing</a> for details</p>
 
 <p><strong>In addition to the package limit, if the number of connections reaches 200, the DDoS defense system will be triggered
 and the IP will be banned for 8 hours</strong></p>
@@ -626,6 +630,11 @@ X-RateLimit-Remaining：9999
 <td>429</td>
 <td>10040</td>
 <td>Rate Limited</td>
+</tr>
+<tr>
+<td>429</td>
+<td>10080</td>
+<td>API KEY Error</td>
 </tr>
 <tr>
 <td>414</td>
@@ -2639,20 +2648,6 @@ and occupy the topic subscription quota.</li>
 <td><a href="#orderbook">Orderbook</a></td>
 </tr>
 </tbody></table>
-<h1 id='exchanges-included'>Exchanges Included</h1>
-<p>API recommendations</p>
-
-<ol>
-<li>Use QueryString or URLParams to pass parameters.</li>
-<li>Please provide an interface to obtain tickers in batches so that prices and trading pairs can be updated in batches.</li>
-<li>If you cannot provide an interface to obtain tickers in batches, please provide an interface to obtain all trading
-pairs. (Not recommended, high request frequency, slow update speed)</li>
-<li>Please use symbol splitting or fixed length for trading pairs as much as possible.</li>
-<li>Under normal circumstances, the number of requests per minute is about 10 times.</li>
-<li>The interface data is guaranteed to be stable and true.</li>
-</ol>
-
-<p><a href="http://cn.mikecrm.com/TNFyHPJ">Click Here</a> Submit the exchange acceptance form</p>
 
       </div>
       <div class="dark-box">
