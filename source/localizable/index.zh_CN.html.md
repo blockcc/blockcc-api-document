@@ -13,7 +13,6 @@ toc_footers:
 - <a href="http://mifengcha.mikecrm.com/Zha7vqZ">币种收录</a>
 - <a href='https://data.mifengcha.com/contactus'>问题反馈</a>
 - <br>
-- <a class="locale-button" href='../zh_CN'><img src="/images/flags/zh_CN.svg" alt="简体中文"/></a> <a class="locale-button" href='../en_US'><img src="/images/flags/en_US.svg" alt="English"/></a>
 
 search: false
 code_clipboard: true
